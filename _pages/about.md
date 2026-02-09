@@ -6,7 +6,7 @@ subtitle: What I cannot create, I do not understand.
 
 profile:
   align: right
-  image: prof_pic.jpg
+  image: prof_pic.png
   image_circular: false
 
 selected_papers: false

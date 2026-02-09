@@ -1,14 +1,13 @@
 github_users:
-  - torvalds
-  - alshedivat
+  - yurekami
 
 repo_description_lines_max: 2
 
 github_repos:
-  - alshedivat/al-folio
-  - jekyll/jekyll
-  - twbs/bootstrap
-  - jquery/jquery
-  - FortAwesome/Font-Awesome
-  - mathjax/MathJax
-  - jpswalsh/academicons
+  - vllm-project/vllm
+  - sgl-project/sglang
+  - verl-project/verl
+  - deepseek-ai/3FS
+  - deepseek-ai/DeepGEMM
+  - skypilot-org/skypilot
+  - BerriAI/litellm
