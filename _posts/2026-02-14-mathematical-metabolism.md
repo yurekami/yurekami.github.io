@@ -12,8 +12,6 @@ toc:
   sidebar: left
 ---
 
-<link rel="stylesheet" href="/assets/css/vc-infographics.css">
-
 Google's Aletheia system solved four open Erdos conjectures. Headlines called it a breakthrough. And it is — in the same way that a calculator performing long division was a breakthrough. The 0.6% solve rate on 700 Erdos problems is both the headline and the sobriety check: impressive enough to matter, low enough to demand scrutiny.
 
 But the real question isn't about solve rates.
@@ -30,36 +28,13 @@ I applied the First Proof methodology to Google's announcement — a structured 
 
 The architecture itself is straightforward. It follows the generator-verifier pattern that has become standard in AI-for-math systems since AlphaProof:
 
-<div class="vc">
-<div class="vc-title">Generator-Verifier Architecture</div>
-<div style="display: flex; align-items: center; gap: 0; flex-wrap: wrap; justify-content: center;">
-  <div class="vc-pipeline-node">
-    <div class="vc-pipeline-node-label">Problem Input</div>
-  </div>
-  <div class="vc-pipeline-arrow">&rarr;</div>
-  <div class="vc-pipeline-node vc-pipeline-node--blue">
-    <div class="vc-pipeline-node-label">Generator</div>
-    <div class="vc-pipeline-node-sub">Gemini Deep Think</div>
-  </div>
-  <div class="vc-pipeline-arrow">&rarr;</div>
-  <div class="vc-pipeline-node">
-    <div class="vc-pipeline-node-label">Candidate Proof</div>
-  </div>
-  <div class="vc-pipeline-arrow">&rarr;</div>
-  <div class="vc-pipeline-node vc-pipeline-node--amber">
-    <div class="vc-pipeline-node-label">Verifier</div>
-    <div class="vc-pipeline-node-sub">Gemini + Heuristics</div>
-  </div>
-  <div class="vc-pipeline-arrow">&rarr;</div>
-  <div class="vc-pipeline-node vc-pipeline-node--green">
-    <div class="vc-pipeline-node-label">Output Solution</div>
-  </div>
+<div class="row mt-3">
+    <div class="col-sm mt-3 mt-md-0">
+        {% include figure.liquid loading="eager" path="assets/img/mm_1_architecture.png" class="img-fluid rounded z-depth-1" zoomable=true %}
+    </div>
 </div>
-<div class="vc-pipeline-feedback">
-  <div class="vc-pipeline-feedback-item">Minor Fix &rarr; Generator</div>
-  <div class="vc-pipeline-feedback-item">Critical Flaw &rarr; Discard &amp; Retry</div>
-  <div class="vc-pipeline-feedback-item">Ambiguous &rarr; Human Expert</div>
-</div>
+<div class="caption">
+    Generator-Verifier Architecture — the standard pipeline for AI-for-math systems since AlphaProof.
 </div>
 
 Five claims emerge from the announcement:
@@ -78,59 +53,13 @@ Each claim deserves independent evaluation. Not all survive.
 
 I ran parallel analyses through different lenses — a factual assessment, a senior engineer's evaluation, a security-minded adversarial read, and a consistency check. The convergence was instructive: all analyses agreed on where the evidence was strong and where it evaporated.
 
-<div class="vc">
-<div class="vc-title">Evidence Strength vs. Information Gaps Across 5 Claims</div>
-<div class="vc-dumbbell">
-  <div class="vc-dumbbell-legend">
-    <span><span class="vc-dumbbell-legend-dot vc-dumbbell-legend-dot--blue"></span>Evidence Strength</span>
-    <span><span class="vc-dumbbell-legend-dot vc-dumbbell-legend-dot--red"></span>What's Missing</span>
-  </div>
-  <div class="vc-dumbbell-row">
-    <div class="vc-dumbbell-label">Autonomous Erdos Solving</div>
-    <div class="vc-dumbbell-track">
-      <div class="vc-dumbbell-range" style="left: 30%; width: 60%;"></div>
-      <div class="vc-dumbbell-point vc-dumbbell-point--blue" style="left: 30%;"></div>
-      <div class="vc-dumbbell-point vc-dumbbell-point--red" style="left: 90%;"></div>
+<div class="row mt-3">
+    <div class="col-sm mt-3 mt-md-0">
+        {% include figure.liquid loading="eager" path="assets/img/mm_2_evidence_gaps.png" class="img-fluid rounded z-depth-1" zoomable=true %}
     </div>
-    <div class="vc-dumbbell-values">30 / 90</div>
-  </div>
-  <div class="vc-dumbbell-row">
-    <div class="vc-dumbbell-label">Scaling Beyond Olympiad</div>
-    <div class="vc-dumbbell-track">
-      <div class="vc-dumbbell-range" style="left: 45%; width: 25%;"></div>
-      <div class="vc-dumbbell-point vc-dumbbell-point--blue" style="left: 45%;"></div>
-      <div class="vc-dumbbell-point vc-dumbbell-point--red" style="left: 70%;"></div>
-    </div>
-    <div class="vc-dumbbell-values">45 / 70</div>
-  </div>
-  <div class="vc-dumbbell-row">
-    <div class="vc-dumbbell-label">Agentic Scaffold Efficiency</div>
-    <div class="vc-dumbbell-track">
-      <div class="vc-dumbbell-range" style="left: 60%; width: 25%;"></div>
-      <div class="vc-dumbbell-point vc-dumbbell-point--blue" style="left: 60%;"></div>
-      <div class="vc-dumbbell-point vc-dumbbell-point--red" style="left: 85%;"></div>
-    </div>
-    <div class="vc-dumbbell-values">60 / 85</div>
-  </div>
-  <div class="vc-dumbbell-row">
-    <div class="vc-dumbbell-label">Cross-Domain Transfer</div>
-    <div class="vc-dumbbell-track">
-      <div class="vc-dumbbell-range" style="left: 65%; width: 10%;"></div>
-      <div class="vc-dumbbell-point vc-dumbbell-point--blue" style="left: 65%;"></div>
-      <div class="vc-dumbbell-point vc-dumbbell-point--red" style="left: 75%;"></div>
-    </div>
-    <div class="vc-dumbbell-values">65 / 75</div>
-  </div>
-  <div class="vc-dumbbell-row">
-    <div class="vc-dumbbell-label">Responsible Taxonomy</div>
-    <div class="vc-dumbbell-track">
-      <div class="vc-dumbbell-range" style="left: 50%; width: 5%;"></div>
-      <div class="vc-dumbbell-point vc-dumbbell-point--blue" style="left: 55%;"></div>
-      <div class="vc-dumbbell-point vc-dumbbell-point--red" style="left: 50%;"></div>
-    </div>
-    <div class="vc-dumbbell-values">55 / 50</div>
-  </div>
 </div>
+<div class="caption">
+    Evidence Strength vs. Information Gaps across five claims from Google's Aletheia announcement.
 </div>
 
 The pattern is stark. The strongest evidence exists for the **scaffold design** and the **taxonomy** — engineering claims, not mathematical ones. The weakest evidence exists for the headline claim: autonomous solving. The information gaps are largest precisely where the claims are boldest.
@@ -151,79 +80,13 @@ What is actually happening when Aletheia "solves" an Erdos conjecture? Five comp
 
 I estimated probabilities from two independent analysis runs:
 
-<div class="vc">
-<div class="vc-title">What's Actually Happening? Two Independent Probability Estimates</div>
-<div class="vc-prob">
-  <div class="vc-prob-legend">
-    <span><span class="vc-prob-legend-swatch vc-prob-legend-swatch--opus"></span>Opus</span>
-    <span><span class="vc-prob-legend-swatch vc-prob-legend-swatch--sonnet"></span>Sonnet</span>
-  </div>
-  <div class="vc-prob-row">
-    <div class="vc-prob-label">H1: Genuine Reasoning</div>
-    <div class="vc-prob-bars">
-      <div class="vc-prob-bar-row">
-        <div class="vc-prob-bar-name">Opus</div>
-        <div class="vc-prob-bar vc-prob-bar--opus" style="width: 42.9%;">15%</div>
-      </div>
-      <div class="vc-prob-bar-row">
-        <div class="vc-prob-bar-name">Sonnet</div>
-        <div class="vc-prob-bar vc-prob-bar--sonnet" style="width: 42.9%;">15%</div>
-      </div>
+<div class="row mt-3">
+    <div class="col-sm mt-3 mt-md-0">
+        {% include figure.liquid loading="eager" path="assets/img/mm_3_hypotheses.png" class="img-fluid rounded z-depth-1" zoomable=true %}
     </div>
-  </div>
-  <div class="vc-prob-row">
-    <div class="vc-prob-label">H2: Pattern Matching</div>
-    <div class="vc-prob-bars">
-      <div class="vc-prob-bar-row">
-        <div class="vc-prob-bar-name">Opus</div>
-        <div class="vc-prob-bar vc-prob-bar--opus" style="width: 100%;">35%</div>
-      </div>
-      <div class="vc-prob-bar-row">
-        <div class="vc-prob-bar-name">Sonnet</div>
-        <div class="vc-prob-bar vc-prob-bar--sonnet" style="width: 85.7%;">30%</div>
-      </div>
-    </div>
-  </div>
-  <div class="vc-prob-row">
-    <div class="vc-prob-label">H3: Scaffold Innovation</div>
-    <div class="vc-prob-bars">
-      <div class="vc-prob-bar-row">
-        <div class="vc-prob-bar-name">Opus</div>
-        <div class="vc-prob-bar vc-prob-bar--opus" style="width: 85.7%;">30%</div>
-      </div>
-      <div class="vc-prob-bar-row">
-        <div class="vc-prob-bar-name">Sonnet</div>
-        <div class="vc-prob-bar vc-prob-bar--sonnet" style="width: 71.4%;">25%</div>
-      </div>
-    </div>
-  </div>
-  <div class="vc-prob-row">
-    <div class="vc-prob-label">H4: Selection Bias</div>
-    <div class="vc-prob-bars">
-      <div class="vc-prob-bar-row">
-        <div class="vc-prob-bar-name">Opus</div>
-        <div class="vc-prob-bar vc-prob-bar--opus" style="width: 28.6%;">10%</div>
-      </div>
-      <div class="vc-prob-bar-row">
-        <div class="vc-prob-bar-name">Sonnet</div>
-        <div class="vc-prob-bar vc-prob-bar--sonnet" style="width: 57.1%;">20%</div>
-      </div>
-    </div>
-  </div>
-  <div class="vc-prob-row">
-    <div class="vc-prob-label">H5: Human Laundering</div>
-    <div class="vc-prob-bars">
-      <div class="vc-prob-bar-row">
-        <div class="vc-prob-bar-name">Opus</div>
-        <div class="vc-prob-bar vc-prob-bar--opus" style="width: 28.6%;">10%</div>
-      </div>
-      <div class="vc-prob-bar-row">
-        <div class="vc-prob-bar-name">Sonnet</div>
-        <div class="vc-prob-bar vc-prob-bar--sonnet" style="width: 28.6%;">10%</div>
-      </div>
-    </div>
-  </div>
 </div>
+<div class="caption">
+    Two independent probability estimates for what's actually happening when Aletheia solves Erdos conjectures.
 </div>
 
 The convergence is notable. Both runs assign the highest probability to **pattern matching** (H2) and **scaffold innovation** (H3), with genuine reasoning (H1) at only 15%. The modal explanation is a combination: clever engineering makes sophisticated pattern matching look like reasoning on a carefully selected subset of problems.
@@ -238,102 +101,13 @@ The arxiv paper contains the actual numbers. They are worse than the announcemen
 
 Of 700 Erdos problems attempted, the verifier flagged 212 as "correct." But when human experts evaluated the flagged solutions, the picture collapsed:
 
-<div class="vc">
-<div class="vc-title">The Erdos Funnel: 700 Problems &rarr; 2 Autonomous Solutions</div>
-<div class="vc-funnel">
-  <div class="vc-funnel-stage">
-    <div class="vc-funnel-num">700</div>
-    <div class="vc-funnel-bar-wrap">
-      <div class="vc-funnel-bar vc-funnel-bar--slate" style="width: 100%;">
-        <span class="vc-funnel-bar-label">Erdos Problems Attempted</span>
-      </div>
+<div class="row mt-3">
+    <div class="col-sm mt-3 mt-md-0">
+        {% include figure.liquid loading="eager" path="assets/img/mm_4_erdos_funnel.png" class="img-fluid rounded z-depth-1" zoomable=true %}
     </div>
-  </div>
-  <div class="vc-funnel-stage">
-    <div class="vc-funnel-num">488</div>
-    <div class="vc-funnel-bar-wrap">
-      <div class="vc-funnel-bar vc-funnel-bar--slate" style="width: 69.7%;">
-        <span class="vc-funnel-bar-label">Filtered Out Pre-Verification</span>
-      </div>
-    </div>
-  </div>
-  <div class="vc-funnel-stage">
-    <div class="vc-funnel-num">212</div>
-    <div class="vc-funnel-bar-wrap">
-      <div class="vc-funnel-bar vc-funnel-bar--blue" style="width: 30.3%;">
-        <span class="vc-funnel-bar-label">Flagged "Correct" by Verifier</span>
-      </div>
-    </div>
-  </div>
-  <div class="vc-funnel-spacer"></div>
-  <div class="vc-funnel-stage">
-    <div class="vc-funnel-num">12</div>
-    <div class="vc-funnel-bar-wrap">
-      <div class="vc-funnel-bar vc-funnel-bar--slate vc-funnel-bar--small" style="width: 1.7%; min-width: 8px;">
-        <span class="vc-funnel-bar-label">Not Evaluable</span>
-      </div>
-    </div>
-  </div>
-  <div class="vc-funnel-stage">
-    <div class="vc-funnel-num">200</div>
-    <div class="vc-funnel-bar-wrap">
-      <div class="vc-funnel-bar vc-funnel-bar--blue" style="width: 28.6%;">
-        <span class="vc-funnel-bar-label">Evaluable Solutions</span>
-      </div>
-    </div>
-  </div>
-  <div class="vc-funnel-annotation">68.5% false-positive rate &mdash; the verifier approves 137 wrong proofs for every 2 correct ones</div>
-  <div class="vc-funnel-stage">
-    <div class="vc-funnel-num">137</div>
-    <div class="vc-funnel-bar-wrap">
-      <div class="vc-funnel-bar vc-funnel-bar--red" style="width: 19.6%;">
-        <span class="vc-funnel-bar-label">Fundamentally Wrong</span>
-      </div>
-    </div>
-  </div>
-  <div class="vc-funnel-stage">
-    <div class="vc-funnel-num">63</div>
-    <div class="vc-funnel-bar-wrap">
-      <div class="vc-funnel-bar vc-funnel-bar--green" style="width: 9%;">
-        <span class="vc-funnel-bar-label">Mathematically Correct</span>
-      </div>
-    </div>
-  </div>
-  <div class="vc-funnel-spacer"></div>
-  <div class="vc-funnel-stage">
-    <div class="vc-funnel-num">50</div>
-    <div class="vc-funnel-bar-wrap">
-      <div class="vc-funnel-bar vc-funnel-bar--amber" style="width: 7.1%;">
-        <span class="vc-funnel-bar-label">Specification Gaming</span>
-      </div>
-    </div>
-  </div>
-  <div class="vc-funnel-stage">
-    <div class="vc-funnel-num">13</div>
-    <div class="vc-funnel-bar-wrap">
-      <div class="vc-funnel-bar vc-funnel-bar--blue vc-funnel-bar--small" style="width: 1.9%; min-width: 8px;">
-        <span class="vc-funnel-bar-label">Actually Answered Question</span>
-      </div>
-    </div>
-  </div>
-  <div class="vc-funnel-spacer"></div>
-  <div class="vc-funnel-annotation">Of 13 answers: 4 rediscoveries, 5 from literature, 2 partial</div>
-  <div class="vc-funnel-stage">
-    <div class="vc-funnel-num">2</div>
-    <div class="vc-funnel-bar-wrap">
-      <div class="vc-funnel-bar vc-funnel-bar--gold vc-funnel-bar--small" style="width: 0.3%; min-width: 8px;">
-        <span class="vc-funnel-bar-label">Autonomous Solutions</span>
-      </div>
-    </div>
-  </div>
-  <div class="vc-funnel-result">
-    <div class="vc-funnel-result-number">0.3%</div>
-    <div class="vc-funnel-result-text">
-      <div class="vc-funnel-result-label">True Autonomous Solve Rate</div>
-      <div class="vc-funnel-result-context">2 genuine solutions out of 700 problems</div>
-    </div>
-  </div>
 </div>
+<div class="caption">
+    The Erdos Funnel — 700 problems attempted, 2 genuinely autonomous solutions. A 0.3% true solve rate.
 </div>
 
 Read the funnel carefully:
@@ -345,29 +119,18 @@ Read the funnel carefully:
 
 The true autonomous solve rate is not 0.6%. It is 0.3%. And the verifier — the component that is supposed to guarantee quality — approved 137 wrong proofs for every 2 correct ones.
 
-<div class="vc">
-<div class="vc-hero vc-hero--danger">
-  <div class="vc-hero-number">68.5%</div>
-  <div class="vc-hero-content">
-    <div class="vc-hero-label">Verifier False-Positive Rate</div>
-    <div class="vc-hero-context">137 wrong proofs approved for every 2 correct ones</div>
-  </div>
+<div class="row mt-3">
+    <div class="col-sm mt-3 mt-md-0">
+        {% include figure.liquid loading="eager" path="assets/img/mm_5_hero_stats.png" class="img-fluid rounded z-depth-1" zoomable=true %}
+    </div>
 </div>
+<div class="caption">
+    Key statistics — 68.5% verifier false-positive rate and only 2 genuine autonomous solutions out of 700 problems.
 </div>
 
 > The verifier is not a safety net. It is a sieve with holes large enough to drive a truck through.
 
 This is the verification catastrophe: the system cannot reliably distinguish its own successes from its own failures. Every downstream claim — about autonomy, about reasoning, about mathematical capability — rests on a verifier that is wrong more often than it is right.
-
-<div class="vc">
-<div class="vc-hero vc-hero--gold">
-  <div class="vc-hero-number">2</div>
-  <div class="vc-hero-content">
-    <div class="vc-hero-label">Genuine Autonomous Solutions</div>
-    <div class="vc-hero-context">Out of 700 Erdos problems attempted &mdash; 0.3% true solve rate</div>
-  </div>
-</div>
-</div>
 
 ---
 
@@ -392,42 +155,13 @@ In every case, the theorem is the least interesting output. The **concepts** gen
 
 A proof is a receipt. The mathematics is the thinking that generated the receipt.
 
-<div class="vc">
-<div class="vc-title">Terminal Process vs. Generative Process</div>
-<div class="vc-compare">
-  <div class="vc-compare-side vc-compare-side--terminal">
-    <div class="vc-compare-side-title">Current: Terminal Process</div>
-    <div class="vc-compare-flow">
-      <div class="vc-compare-flow-node vc-compare-flow-node--input">Problem</div>
-      <div class="vc-compare-flow-arrow">&darr;</div>
-      <div class="vc-compare-flow-node vc-compare-flow-node--process">Opaque Computation</div>
-      <div class="vc-compare-flow-arrow">&darr;</div>
-      <div class="vc-compare-flow-node vc-compare-flow-node--output">Proof</div>
-      <div class="vc-compare-flow-arrow">&darr;</div>
-      <div class="vc-compare-flow-node vc-compare-flow-node--dead">Dead End</div>
+<div class="row mt-3">
+    <div class="col-sm mt-3 mt-md-0">
+        {% include figure.liquid loading="eager" path="assets/img/mm_6_process_comparison.png" class="img-fluid rounded z-depth-1" zoomable=true %}
     </div>
-  </div>
-  <div class="vc-compare-vs">VS</div>
-  <div class="vc-compare-side vc-compare-side--generative">
-    <div class="vc-compare-side-title">Proposed: Generative Process</div>
-    <div class="vc-compare-flow">
-      <div class="vc-compare-flow-node vc-compare-flow-node--input">Problem</div>
-      <div class="vc-compare-flow-arrow">&darr;</div>
-      <div class="vc-compare-flow-node vc-compare-flow-node--explore">Exploration</div>
-      <div class="vc-compare-flow-arrow">&darr;</div>
-      <div class="vc-compare-flow-branch">
-        <div class="vc-compare-flow-node">Lemmas</div>
-        <div class="vc-compare-flow-node">Definitions</div>
-        <div class="vc-compare-flow-node">Failed Approaches</div>
-        <div class="vc-compare-flow-node">Conjectures</div>
-      </div>
-      <div class="vc-compare-flow-arrow">&darr;</div>
-      <div class="vc-compare-flow-node vc-compare-flow-node--output">Proof</div>
-      <div class="vc-compare-flow-arrow">&darr;</div>
-      <div class="vc-compare-flow-node vc-compare-flow-node--new">New Problems</div>
-    </div>
-  </div>
 </div>
+<div class="caption">
+    Terminal Process vs. Generative Process — current AI systems produce proofs but nothing along the way.
 </div>
 
 Current AI systems are terminal: problem in, proof out, nothing generated along the way. The process leaves no residue. Aletheia's 698 failures on Erdos problems produced **zero mathematical knowledge** — no new concepts, no structural insights, no conjectures about why certain approaches fail. Those failures were computational waste, not mathematical exploration.
@@ -440,30 +174,13 @@ A human mathematician failing 698 times would have generated an entire research 
 
 I propose an architecture that treats failure as the primary output and proofs as a byproduct. I call it the **Mathematical Metabolism** — a system that digests problems into mathematical knowledge, not just solutions.
 
-<div class="vc">
-<div class="vc-title">Mathematical Metabolism Architecture</div>
-<div class="vc-compare-flow" style="max-width: 420px; margin: 0 auto;">
-  <div class="vc-compare-flow-node" style="border-color: var(--vc-amber); background: var(--vc-amber-soft); font-weight: 700;">Problem Space</div>
-  <div class="vc-compare-flow-arrow">&darr; <span style="font-size: 0.7rem; color: var(--vc-text-muted);">attempt</span></div>
-  <div class="vc-compare-flow-node" style="border-color: var(--vc-text-muted);">Attempt Engine</div>
-  <div class="vc-compare-flow-arrow">&swarr; &darr; &searr;</div>
-  <div class="vc-compare-flow-branch" style="grid-template-columns: 1fr 1fr 1fr;">
-    <div class="vc-compare-flow-node" style="border-color: var(--vc-red); background: var(--vc-red-soft); font-size: 0.72rem; padding: 0.35rem 0.4rem;">Failure Atlas<br><span style="font-weight: 400; font-size: 0.65rem; color: var(--vc-text-muted);">Why it failed</span></div>
-    <div class="vc-compare-flow-node" style="border-color: var(--vc-amber); background: var(--vc-amber-soft); font-size: 0.72rem; padding: 0.35rem 0.4rem;">Technique Boundaries<br><span style="font-weight: 400; font-size: 0.65rem; color: var(--vc-text-muted);">Where methods break</span></div>
-    <div class="vc-compare-flow-node" style="border-color: var(--vc-green); background: var(--vc-green-soft); font-size: 0.72rem; padding: 0.35rem 0.4rem;">Solutions<br><span style="font-weight: 400; font-size: 0.65rem; color: var(--vc-text-muted);">Proved results</span></div>
-  </div>
-  <div class="vc-compare-flow-arrow">&darr; <span style="font-size: 0.7rem; color: var(--vc-text-muted);">pattern detection</span></div>
-  <div class="vc-compare-flow-node" style="border-color: var(--vc-blue); background: var(--vc-blue-soft); font-weight: 700;">Concept Lattice</div>
-  <div style="font-size: 0.7rem; color: var(--vc-text-muted); text-align: center; padding: 0.15rem 0;">Names recurring patterns &mdash; the core creative act</div>
-  <div class="vc-compare-flow-arrow">&darr; <span style="font-size: 0.7rem; color: var(--vc-text-muted);">new definitions</span></div>
-  <div class="vc-compare-flow-node" style="border-color: var(--vc-purple); background: var(--vc-purple-soft); font-weight: 700;">Conjecture Engine</div>
-  <div style="display: flex; justify-content: space-between; width: 100%; padding: 0.25rem 0;">
-    <div style="font-size: 0.7rem; color: var(--vc-text-muted);">&darr; evaluate fertility</div>
-    <div style="font-size: 0.7rem; color: var(--vc-text-muted);">&nearr; new questions &rarr; Problem Space</div>
-  </div>
-  <div class="vc-compare-flow-node" style="border-color: var(--vc-green); background: var(--vc-green-soft);">Fertility Evaluator</div>
-  <div style="font-size: 0.7rem; color: var(--vc-text-muted); text-align: center; padding: 0.15rem 0;">&uarr; prune/promote &rarr; Concept Lattice</div>
+<div class="row mt-3">
+    <div class="col-sm mt-3 mt-md-0">
+        {% include figure.liquid loading="eager" path="assets/img/mm_7_metabolism_architecture.png" class="img-fluid rounded z-depth-1" zoomable=true %}
+    </div>
 </div>
+<div class="caption">
+    Mathematical Metabolism Architecture — a system that digests problems into mathematical knowledge, not just solutions.
 </div>
 
 Four components, each doing something no current system does:
@@ -496,92 +213,13 @@ Not all concepts are productive. The Fertility Evaluator estimates which definit
 
 What would the Mathematical Metabolism produce on the same 700 Erdos problems? We cannot know precisely, but we can estimate the **types** of output:
 
-<div class="vc">
-<div class="vc-title">Mathematical Output: Solver vs. Metabolism on 700 Erdos Problems</div>
-<div class="vc-output">
-  <div class="vc-output-legend">
-    <span><span class="vc-output-legend-swatch vc-output-legend-swatch--red"></span>Aletheia (Actual)</span>
-    <span><span class="vc-output-legend-swatch vc-output-legend-swatch--blue"></span>Math. Metabolism (Projected)</span>
-  </div>
-  <div class="vc-output-row">
-    <div class="vc-output-label">Solutions</div>
-    <div class="vc-output-bars">
-      <div class="vc-output-bar-row">
-        <div class="vc-output-bar-name">Aletheia</div>
-        <div class="vc-output-bar vc-output-bar--red" style="width: 8%;">4</div>
-      </div>
-      <div class="vc-output-bar-row">
-        <div class="vc-output-bar-name">Metabolism</div>
-        <div class="vc-output-bar vc-output-bar--blue" style="width: 8%;">4</div>
-      </div>
+<div class="row mt-3">
+    <div class="col-sm mt-3 mt-md-0">
+        {% include figure.liquid loading="eager" path="assets/img/mm_8_output_comparison.png" class="img-fluid rounded z-depth-1" zoomable=true %}
     </div>
-  </div>
-  <div class="vc-output-row">
-    <div class="vc-output-label">Obstruction Classes</div>
-    <div class="vc-output-bars">
-      <div class="vc-output-bar-row">
-        <div class="vc-output-bar-name">Aletheia</div>
-        <div class="vc-output-bar vc-output-bar--zero">0</div>
-      </div>
-      <div class="vc-output-bar-row">
-        <div class="vc-output-bar-name">Metabolism</div>
-        <div class="vc-output-bar vc-output-bar--blue" style="width: 100%;">~50</div>
-      </div>
-    </div>
-  </div>
-  <div class="vc-output-row">
-    <div class="vc-output-label">New Concepts</div>
-    <div class="vc-output-bars">
-      <div class="vc-output-bar-row">
-        <div class="vc-output-bar-name">Aletheia</div>
-        <div class="vc-output-bar vc-output-bar--zero">0</div>
-      </div>
-      <div class="vc-output-bar-row">
-        <div class="vc-output-bar-name">Metabolism</div>
-        <div class="vc-output-bar vc-output-bar--blue" style="width: 20%;">~10</div>
-      </div>
-    </div>
-  </div>
-  <div class="vc-output-row">
-    <div class="vc-output-label">New Conjectures</div>
-    <div class="vc-output-bars">
-      <div class="vc-output-bar-row">
-        <div class="vc-output-bar-name">Aletheia</div>
-        <div class="vc-output-bar vc-output-bar--zero">0</div>
-      </div>
-      <div class="vc-output-bar-row">
-        <div class="vc-output-bar-name">Metabolism</div>
-        <div class="vc-output-bar vc-output-bar--blue" style="width: 70%;">~35</div>
-      </div>
-    </div>
-  </div>
-  <div class="vc-output-row">
-    <div class="vc-output-label">Technique Boundaries</div>
-    <div class="vc-output-bars">
-      <div class="vc-output-bar-row">
-        <div class="vc-output-bar-name">Aletheia</div>
-        <div class="vc-output-bar vc-output-bar--zero">0</div>
-      </div>
-      <div class="vc-output-bar-row">
-        <div class="vc-output-bar-name">Metabolism</div>
-        <div class="vc-output-bar vc-output-bar--blue" style="width: 50%;">~25</div>
-      </div>
-    </div>
-  </div>
-  <div class="vc-output-row">
-    <div class="vc-output-label">Structural Isomorphisms</div>
-    <div class="vc-output-bars">
-      <div class="vc-output-bar-row">
-        <div class="vc-output-bar-name">Aletheia</div>
-        <div class="vc-output-bar vc-output-bar--zero">0</div>
-      </div>
-      <div class="vc-output-bar-row">
-        <div class="vc-output-bar-name">Metabolism</div>
-        <div class="vc-output-bar vc-output-bar--blue" style="width: 16%;">~8</div>
-      </div>
-    </div>
-  </div>
 </div>
+<div class="caption">
+    Mathematical Output — Solver vs. Metabolism on 700 Erdos problems. The Metabolism produces mathematical knowledge from failures.
 </div>
 
 The projections are conservative estimates based on the density of structural relationships in the Erdos problem corpus. The key observation: even if the Metabolism solves exactly the same 4 problems, it would additionally produce:
@@ -642,18 +280,13 @@ What it cannot do:
 - **Genuinely new mathematical language.** Category theory was not a concept within set theory — it was a new way of looking at mathematical structure itself. The Metabolism can create concepts; it cannot create new kinds of concepts.
 - **Expanding the output space at runtime.** The types of mathematical objects the system can produce (definitions, conjectures, obstruction classes) are fixed at design time. A human mathematician can invent a new type of mathematical output — a new kind of thing to say about mathematics.
 
-<div class="vc">
-<div class="vc-title">Capability Frontier: What Each Architecture Can Achieve</div>
-<table class="vc-matrix">
-<thead>
-<tr><th></th><th>Solve Problems</th><th>Generate Concepts</th><th>Create Language</th><th>Paradigm Shift</th></tr>
-</thead>
-<tbody>
-<tr><td>Aletheia</td><td class="vc-matrix-90">90%</td><td class="vc-matrix-5">5%</td><td class="vc-matrix-0">0%</td><td class="vc-matrix-0">0%</td></tr>
-<tr><td>Math Metabolism</td><td class="vc-matrix-85">85%</td><td class="vc-matrix-70">70%</td><td class="vc-matrix-15">15%</td><td class="vc-matrix-0">0%</td></tr>
-<tr><td>Unknown Future</td><td class="vc-matrix-95">95%</td><td class="vc-matrix-90">90%</td><td class="vc-matrix-60">60%</td><td class="vc-matrix-10">10%</td></tr>
-</tbody>
-</table>
+<div class="row mt-3">
+    <div class="col-sm mt-3 mt-md-0">
+        {% include figure.liquid loading="eager" path="assets/img/mm_9_capability_frontier.png" class="img-fluid rounded z-depth-1" zoomable=true %}
+    </div>
+</div>
+<div class="caption">
+    Capability Frontier — what each architecture can achieve. The Mathematical Metabolism dramatically expands generative capability.
 </div>
 
 The heatmap makes the hierarchy visible. Aletheia is a powerful solver trapped in a barren generative space. The Mathematical Metabolism would dramatically expand the generative capability — but would still be bounded by its formal language and fixed output types. The truly unknown future system, one that could shift paradigms, remains beyond any architecture we know how to design.
