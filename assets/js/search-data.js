@@ -20,7 +20,7 @@ ninja.data = [{
         
           title: "The Mathematical Metabolism: Why AI Solves Problems But Doesn&#39;t Create Mathematics",
         
-        description: "Google&#39;s Aletheia system recently solved several open Erdős problems, raising interesting questions about the distinction between proving theorems and doing mathematics. I discuss the verification data, the process-product distinction, and sketch an architecture for AI systems that generate mathematical concepts rather than merely proofs.",
+        description: "Google&#39;s Gemini Deep Think solves 4 Erdos conjectures. But solving problems isn&#39;t doing mathematics. I propose an architecture for AI that creates mathematical knowledge — not just proofs.",
         section: "Posts",
         handler: () => {
           
