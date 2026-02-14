@@ -16,9 +16,9 @@ ninja.data = [{
           handler: () => {
             window.location.href = "/blog/";
           },
-        },{id: "post-some-thoughts-on-ai-problem-solving-and-mathematical-concept-formation",
+        },{id: "post-the-mathematical-metabolism-why-ai-solves-problems-but-doesn-39-t-create-mathematics",
         
-          title: "Some thoughts on AI problem-solving and mathematical concept formation",
+          title: "The Mathematical Metabolism: Why AI Solves Problems But Doesn&#39;t Create Mathematics",
         
         description: "Google&#39;s Aletheia system recently solved several open Erdős problems, raising interesting questions about the distinction between proving theorems and doing mathematics. I discuss the verification data, the process-product distinction, and sketch an architecture for AI systems that generate mathematical concepts rather than merely proofs.",
         section: "Posts",
