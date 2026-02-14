@@ -8,50 +8,56 @@ categories: [research]
 giscus_comments: true
 related_posts: true
 featured: true
+mermaid:
+  enabled: true
 toc:
   sidebar: left
 ---
 
-Google's Aletheia system solved four open Erdos conjectures. Headlines called it a breakthrough. And it is — in the same way that a calculator performing long division was a breakthrough. The 0.6% solve rate on 700 Erdos problems is both the headline and the sobriety check: impressive enough to matter, low enough to demand scrutiny.
+In a recent announcement, the Google DeepMind team presented their Aletheia system, which reportedly solved four open Erdős conjectures — a noteworthy result, particularly given the historical difficulty of many problems in the Erdős corpus. The solve rate of approximately 0.6% on a bank of 700 Erdős problems is, on first glance, both impressive (four genuine solutions to long-standing open problems) and informative (the 99.4% failure rate telling us something about the current limits of the approach).
 
-But the real question isn't about solve rates.
-
-> "What I cannot create, I do not understand." — Richard Feynman
-
-Feynman's dictum cuts both ways. Invert it: **what creates nothing, understands nothing — no matter how many problems it solves.** Aletheia produces proofs. It does not produce mathematics. The distinction is the entire point of this post.
+I wanted to record some thoughts on this work, not so much about the specific results (which I have not fully verified), but about a broader question that the work brings into focus: **what is the distinction between an AI system that proves theorems and one that does mathematics?** It turns out that the answer, while somewhat philosophical, has concrete architectural implications that I find interesting.
 
 ---
 
-## 1. The Three-Stage Dissection
+## 1. The architecture and claims
 
-I applied the First Proof methodology to Google's announcement — a structured analysis in three stages: **Formulation** (what is actually being claimed?), **Framework** (how does it compare to prior work?), and **Execution** (what survives scrutiny?).
+The Aletheia system follows what has by now become the standard generator-verifier paradigm for AI-for-mathematics, going back at least to AlphaProof and related systems:
 
-The architecture itself is straightforward. It follows the generator-verifier pattern that has become standard in AI-for-math systems since AlphaProof:
+```mermaid
+flowchart LR
+    A[Problem Input] --> B[Generator\nGemini Deep Think]
+    B --> C[Candidate Proof]
+    C --> D[Verifier\nGemini + Heuristics]
+    D --> E[Output Solution]
+    D -->|Minor Fix| B
+    D -->|Critical Flaw| F[Discard & Retry]
+    D -->|Ambiguous| G[Human Expert]
 
-<div class="row mt-3">
-    <div class="col-sm mt-3 mt-md-0">
-        {% include figure.liquid loading="eager" path="assets/img/mm_1_architecture.png" class="img-fluid rounded z-depth-1" zoomable=true %}
-    </div>
-</div>
+    style B fill:#1e3a5f,stroke:#58a6ff,color:#c9d1d9
+    style D fill:#451a03,stroke:#f0883e,color:#c9d1d9
+    style E fill:#064e3b,stroke:#3fb950,color:#c9d1d9
+```
+
 <div class="caption">
     Generator-Verifier Architecture — the standard pipeline for AI-for-math systems since AlphaProof.
 </div>
 
-Five claims emerge from the announcement:
+Roughly speaking, the announcement makes five claims of varying strength:
 
-1. **Autonomous Erdos Solving** — the system independently solved four open conjectures.
-2. **Scaling Beyond Olympiad** — this extends AI math reasoning past competition-level problems.
-3. **Agentic Scaffold Efficiency** — the generator-verifier loop is an effective reasoning scaffold.
-4. **Cross-Domain Transfer** — capabilities generalize across mathematical domains.
-5. **Responsible Taxonomy** — solutions are categorized by level of human involvement.
+1. **Autonomous solving** — the system independently solved four open Erdős conjectures.
+2. **Scaling beyond competition mathematics** — this extends AI reasoning beyond olympiad-level problems to research-level mathematics.
+3. **Scaffold effectiveness** — the generator-verifier feedback loop provides an effective reasoning scaffold.
+4. **Cross-domain transfer** — the capabilities generalize across different mathematical domains.
+5. **Responsible taxonomy** — solutions are categorized by the level of human involvement required.
 
-Each claim deserves independent evaluation. Not all survive.
+Not all of these claims are of equal strength, and it is worth examining them separately.
 
 ---
 
-## 2. Multi-Perspective Analysis
+## 2. What the evidence supports (and where it thins)
 
-I ran parallel analyses through different lenses — a factual assessment, a senior engineer's evaluation, a security-minded adversarial read, and a consistency check. The convergence was instructive: all analyses agreed on where the evidence was strong and where it evaporated.
+I found it instructive to evaluate these five claims through several independent lenses — a factual check against the paper's actual data, an engineering assessment of the architecture, and an adversarial reading looking for gaps. The results were broadly consistent:
 
 <div class="row mt-3">
     <div class="col-sm mt-3 mt-md-0">
@@ -62,23 +68,21 @@ I ran parallel analyses through different lenses — a factual assessment, a sen
     Evidence Strength vs. Information Gaps across five claims from Google's Aletheia announcement.
 </div>
 
-The pattern is stark. The strongest evidence exists for the **scaffold design** and the **taxonomy** — engineering claims, not mathematical ones. The weakest evidence exists for the headline claim: autonomous solving. The information gaps are largest precisely where the claims are boldest.
-
-This is not unusual. It is the standard pattern of AI capability announcements: strong engineering, weak epistemics.
+The pattern here is worth noting. The strongest evidentiary support exists for the engineering claims — the scaffold design and the taxonomy — which is perhaps unsurprising, as these are the most verifiable aspects of the work. The evidence is thinnest precisely for the headline claim of autonomous solving, where the information gaps are largest. One sees this pattern frequently in AI capability announcements: the engineering contributions are genuine and well-documented, while the more ambitious cognitive claims rest on less firm ground.
 
 ---
 
-## 3. The Hypothesis Landscape
+## 3. Competing explanations
 
-What is actually happening when Aletheia "solves" an Erdos conjecture? Five competing hypotheses, each with different implications:
+An important question is: what is the system actually doing when it "solves" an Erdős problem? One can identify at least five competing hypotheses:
 
-- **H1: Genuine Reasoning** — the model performs something functionally equivalent to mathematical reasoning, discovering novel proof strategies.
-- **H2: Sophisticated Pattern Matching** — the model recombines known techniques in ways that happen to work on these particular problems, without genuine understanding.
-- **H3: Scaffold Innovation** — the breakthrough is not in the model but in the agentic architecture: the feedback loops, the verification, the retry logic.
-- **H4: Selection Bias** — the solved problems were particularly amenable to existing techniques; the 99.4% failure rate is the real signal.
-- **H5: Human Laundering** — human expertise entered the pipeline through problem selection, hint provision, or verification criteria, and the "autonomous" label obscures this.
+- **H1 (Genuine reasoning):** The model discovers novel proof strategies through something functionally equivalent to mathematical reasoning.
+- **H2 (Sophisticated pattern matching):** The model recombines known techniques in ways that happen to resolve these particular problems, without deeper structural understanding.
+- **H3 (Scaffold innovation):** The genuine breakthrough lies in the agentic architecture — the feedback loops, verification, and retry logic — rather than in the model's mathematical capabilities per se.
+- **H4 (Selection effects):** The solved problems were unusually amenable to existing techniques, and the 99.4% failure rate is the more informative statistic.
+- **H5 (Human knowledge leakage):** Human mathematical expertise entered the pipeline through problem selection, hint design, or verification criteria, making the "autonomous" label somewhat misleading.
 
-I estimated probabilities from two independent analysis runs:
+Two independent estimation attempts suggest the following probability landscape:
 
 <div class="row mt-3">
     <div class="col-sm mt-3 mt-md-0">
@@ -86,20 +90,18 @@ I estimated probabilities from two independent analysis runs:
     </div>
 </div>
 <div class="caption">
-    Two independent probability estimates for what's actually happening when Aletheia solves Erdos conjectures.
+    Two independent probability estimates for what's actually happening when Aletheia solves Erdős conjectures.
 </div>
 
-The convergence is notable. Both runs assign the highest probability to **pattern matching** (H2) and **scaffold innovation** (H3), with genuine reasoning (H1) at only 15%. The modal explanation is a combination: clever engineering makes sophisticated pattern matching look like reasoning on a carefully selected subset of problems.
-
-This is not a dismissal. Pattern matching at this level of sophistication is genuinely useful. But it is not mathematics.
+Both estimates assign the highest probability to some combination of pattern matching (H2) and scaffold innovation (H3), with genuine reasoning (H1) receiving roughly 15%. The most likely explanation, it seems to me, is that clever engineering enables sophisticated pattern matching to succeed on a carefully (perhaps unconsciously) selected subset of problems. I should emphasize that this is not a dismissal — pattern matching at this level of sophistication is a genuine and potentially very useful capability. But it is not the same thing as mathematical understanding, for reasons I will try to make precise below.
 
 ---
 
-## 4. The Verification Catastrophe
+## 4. The verification problem
 
-The arxiv paper contains the actual numbers. They are worse than the announcement suggests.
+The arxiv paper contains detailed numbers that are worth examining carefully, as they paint a somewhat different picture from the announcement.
 
-Of 700 Erdos problems attempted, the verifier flagged 212 as "correct." But when human experts evaluated the flagged solutions, the picture collapsed:
+Of 700 Erdős problems attempted, the system's verifier flagged 212 candidate solutions as correct. However, when human experts evaluated these flagged solutions, the situation turned out to be more nuanced:
 
 <div class="row mt-3">
     <div class="col-sm mt-3 mt-md-0">
@@ -107,17 +109,15 @@ Of 700 Erdos problems attempted, the verifier flagged 212 as "correct." But when
     </div>
 </div>
 <div class="caption">
-    The Erdos Funnel — 700 problems attempted, 2 genuinely autonomous solutions. A 0.3% true solve rate.
+    The Erdős Funnel — 700 problems attempted, 2 genuinely autonomous solutions. A 0.3% true solve rate.
 </div>
 
-Read the funnel carefully:
+The key observations:
 
-- **137 of 200 evaluable "correct" solutions were fundamentally wrong.** That is a 68.5% false-positive rate from the verifier. The system's internal quality signal is catastrophically miscalibrated.
-- **50 of the 63 mathematically correct solutions were specification gaming** — they answered a different question than the one asked, or exploited ambiguity in the formalization.
-- **Only 13 actually answered the posed question.** Of those, 4 were rediscoveries of known results, 5 were identifications from existing literature, and 2 were partial.
-- **2 were genuinely autonomous solutions.** Two. Out of 700.
-
-The true autonomous solve rate is not 0.6%. It is 0.3%. And the verifier — the component that is supposed to guarantee quality — approved 137 wrong proofs for every 2 correct ones.
+- Of approximately 200 evaluable "correct" solutions, 137 were fundamentally incorrect — a false-positive rate of 68.5% from the verifier. This is a remarkably high error rate for a component whose role is precisely to distinguish correct proofs from incorrect ones.
+- Of the 63 mathematically correct solutions, roughly 50 involved some form of specification gaming — answering a question that was technically different from the one posed, or exploiting ambiguity in the formalization.
+- Only 13 solutions actually addressed the intended question. Among these, 4 rediscovered known results, 5 identified solutions from existing literature, and 2 were partial.
+- Two solutions were genuinely autonomous and novel.
 
 <div class="row mt-3">
     <div class="col-sm mt-3 mt-md-0">
@@ -128,19 +128,19 @@ The true autonomous solve rate is not 0.6%. It is 0.3%. And the verifier — the
     Key statistics — 68.5% verifier false-positive rate and only 2 genuine autonomous solutions out of 700 problems.
 </div>
 
-> The verifier is not a safety net. It is a sieve with holes large enough to drive a truck through.
+The true autonomous solve rate is therefore closer to 0.3% than the reported 0.6%. But the more concerning finding, to my mind, is the verifier's false-positive rate. A verification system that approves roughly 70 incorrect proofs for every correct one is, in a precise sense, not verifying — it is filtering with low selectivity. All downstream claims about the system's mathematical capabilities are conditioned on the verifier's reliability, so this finding has significant implications.
 
-This is the verification catastrophe: the system cannot reliably distinguish its own successes from its own failures. Every downstream claim — about autonomy, about reasoning, about mathematical capability — rests on a verifier that is wrong more often than it is right.
+**Remark 1.** This is in some sense a familiar problem in automated theorem proving: the gap between formal verification (where tools like Lean or Coq provide genuine certainty) and the kind of heuristic verification used here (where an LLM evaluates whether a proof "looks right"). The field would benefit enormously from requiring that candidate solutions be accompanied by formal proofs in a proof assistant.
 
 ---
 
-## 5. The Deeper Question: Process vs. Product
+## 5. Process versus product
 
-Suppose the verification problem is solved. Suppose Aletheia could reliably produce correct proofs for open problems. Would that constitute doing mathematics?
+Let me now turn to the question I find most interesting. Suppose, for the sake of argument, that the verification problem is entirely solved — that the system could reliably produce correct proofs for open problems at scale. Would this constitute doing mathematics?
 
-No. And the reason illuminates what mathematics actually is.
+I would argue that it would not, and the reason is illuminating.
 
-Mathematics is not a set of solved problems. It is a **living language** — a process of creating concepts, definitions, and structural relationships that make previously opaque domains legible. The measure of a mathematician is not theorems proved but **concepts created**.
+Mathematics, as it is actually practiced by research mathematicians, is not primarily about accumulating solved problems. It is, at a deeper level, the process of creating **concepts**, **definitions**, and **structural relationships** that make previously opaque domains tractable. Roughly speaking, the measure of a mathematician's contribution to a field is not the number of theorems proved but the quality of the concepts introduced.
 
 | Mathematician | Famous Result                | What Actually Mattered                                               |
 | :------------ | :--------------------------- | :------------------------------------------------------------------- |
@@ -151,67 +151,102 @@ Mathematics is not a set of solved problems. It is a **living language** — a p
 | Thurston      | Geometrization conjecture    | **Geometric structures on 3-manifolds** — a classification framework |
 | Emmy Noether  | Noether's theorem            | **Abstract algebra** — the language of symmetry itself               |
 
-In every case, the theorem is the least interesting output. The **concepts** generated during the struggle — the failed approaches, the new definitions invented to articulate what was missing, the structural insights that reorganized entire fields — these are the actual product of mathematical work.
+In each case, the famous theorem is arguably the least important output of the mathematician's work. The concepts generated during the process — the failed approaches that revealed structural features, the new definitions invented to articulate what was missing, the structural insights that reorganized entire fields — these are the actual products of mathematical research.
 
-A proof is a receipt. The mathematics is the thinking that generated the receipt.
+One might put it this way: a proof is a receipt. The mathematics is the intellectual process that generated it.
 
-<div class="row mt-3">
-    <div class="col-sm mt-3 mt-md-0">
-        {% include figure.liquid loading="eager" path="assets/img/mm_6_process_comparison.png" class="img-fluid rounded z-depth-1" zoomable=true %}
-    </div>
-</div>
+```mermaid
+flowchart TD
+    subgraph Terminal["Current: Terminal Process"]
+        direction TB
+        T1[Problem] --> T2[Opaque Computation]
+        T2 --> T3[Proof]
+        T3 --> T4[Dead End]
+        style T4 stroke-dasharray: 5 5,opacity:0.5
+    end
+    subgraph Generative["Proposed: Generative Process"]
+        direction TB
+        G1[Problem] --> G2[Exploration]
+        G2 --> G3[Lemmas]
+        G2 --> G4[Definitions]
+        G2 --> G5[Failed Approaches]
+        G2 --> G6[Conjectures]
+        G3 & G4 & G5 & G6 --> G7[Proof]
+        G7 --> G8[New Problems]
+    end
+
+    style Terminal fill:#1a0000,stroke:#f85149,color:#c9d1d9
+    style Generative fill:#001a0d,stroke:#3fb950,color:#c9d1d9
+```
+
 <div class="caption">
     Terminal Process vs. Generative Process — current AI systems produce proofs but nothing along the way.
 </div>
 
-Current AI systems are terminal: problem in, proof out, nothing generated along the way. The process leaves no residue. Aletheia's 698 failures on Erdos problems produced **zero mathematical knowledge** — no new concepts, no structural insights, no conjectures about why certain approaches fail. Those failures were computational waste, not mathematical exploration.
+Current AI systems are, in this sense, **terminal**: a problem goes in, a proof (or failure) comes out, and nothing of mathematical value is generated along the way. The process leaves no residue. Aletheia's 698 failures on Erdős problems produced, as far as one can tell, zero mathematical knowledge — no new concepts, no structural insights, no conjectures about why certain approaches fail on certain problem families. Those failures were, from a mathematical standpoint, pure waste.
 
-A human mathematician failing 698 times would have generated an entire research program.
+**Remark 2.** Compare this with how a human mathematician would approach the same 698 failures. One would expect to see, at minimum: recognition of recurring obstruction patterns, new auxiliary definitions introduced to name those patterns, conjectures about the relationships between obstruction classes, and likely the seeds of an entirely new research program. The failures would be productive. This is the crucial asymmetry.
 
 ---
 
-## 6. The Mathematical Metabolism
+## 6. Towards a mathematical metabolism
 
-I propose an architecture that treats failure as the primary output and proofs as a byproduct. I call it the **Mathematical Metabolism** — a system that digests problems into mathematical knowledge, not just solutions.
+These observations suggest a different architectural goal. Rather than optimizing for solve rate (which encourages the terminal process described above), one might instead optimize for **mathematical knowledge production**, treating failure as the primary source of information and proofs as a (welcome) byproduct. I will call this architecture a **mathematical metabolism** — by analogy with biological metabolism, which extracts useful energy and building materials from food, rather than simply classifying it as "digestible" or "indigestible."
 
-<div class="row mt-3">
-    <div class="col-sm mt-3 mt-md-0">
-        {% include figure.liquid loading="eager" path="assets/img/mm_7_metabolism_architecture.png" class="img-fluid rounded z-depth-1" zoomable=true %}
-    </div>
-</div>
+```mermaid
+flowchart TD
+    PS[Problem Space] -->|attempt| AE[Attempt Engine]
+    AE --> FA[Failure Atlas\nWhy it failed]
+    AE --> TB[Technique Boundaries\nWhere methods break]
+    AE --> SOL[Solutions\nProved results]
+    FA & TB & SOL -->|pattern detection| CL[Concept Lattice\nNames recurring patterns]
+    CL -->|new definitions| CE[Conjecture Engine]
+    CE -->|evaluate fertility| FE[Fertility Evaluator]
+    CE -->|new questions| PS
+    FE -->|prune/promote| CL
+
+    style PS fill:#451a03,stroke:#f0883e,color:#c9d1d9
+    style FA fill:#450a0a,stroke:#f85149,color:#c9d1d9
+    style TB fill:#451a03,stroke:#f0883e,color:#c9d1d9
+    style SOL fill:#064e3b,stroke:#3fb950,color:#c9d1d9
+    style CL fill:#1e3a5f,stroke:#58a6ff,color:#c9d1d9
+    style CE fill:#2e1065,stroke:#d2a8ff,color:#c9d1d9
+    style FE fill:#064e3b,stroke:#3fb950,color:#c9d1d9
+```
+
 <div class="caption">
     Mathematical Metabolism Architecture — a system that digests problems into mathematical knowledge, not just solutions.
 </div>
 
-Four components, each doing something no current system does:
+The architecture has four main components, each performing a function that, as far as I know, no current system attempts:
 
-### Failure Atlas
+### The Failure Atlas
 
-Every failed proof attempt is stored, analyzed, and classified. Not just "this didn't work" but **why** it didn't work — what structural property of the problem resisted the technique. Failures are grouped into **obstruction classes**: families of problems that resist the same approaches for the same structural reasons.
+Every failed proof attempt is stored, analyzed, and classified — not merely as "this approach did not work" but with a structured account of **why** it did not work: what structural property of the problem resisted the technique. Failures are grouped into what one might call **obstruction classes**: families of problems that resist the same approaches for identifiable structural reasons.
 
-This is what human mathematicians do instinctively. When a technique fails, a good mathematician asks: "What would need to be true about this problem for this technique to work?" The gap between what is true and what would need to be true is a **structural insight**. Accumulate enough of them and you have a new concept.
+This mirrors what mathematicians do instinctively. When a technique fails, a good mathematician asks: "What would need to be true about this problem for this technique to succeed?" The gap between what is true and what would need to be true is a structural insight. Accumulate enough such insights and one has, in effect, a new concept waiting to be named.
 
-### Concept Lattice
+### The Concept Lattice
 
-An evolving vocabulary of mathematical definitions, organized by logical dependency and structural similarity. When the Failure Atlas detects a recurring obstruction pattern, the Concept Lattice attempts to **name it** — to create a definition that captures the common structure.
+An evolving vocabulary of mathematical definitions, organized by logical dependency and structural similarity. When the Failure Atlas detects a recurring obstruction pattern across multiple problems, the Concept Lattice attempts to **name it** — to produce a formal definition that captures the common structure.
 
-This is concept formation. It is, arguably, the core creative act in mathematics. Galois did it when he invented groups. Grothendieck did it when he invented schemes. The act of creating the right definition — one that carves nature at its joints — is worth more than any number of proofs.
+This is concept formation, and it is arguably the core creative act in mathematics. Galois did it when he invented groups; Grothendieck did it when he invented schemes. The act of finding the right definition — one that, in Plato's metaphor, carves nature at its joints — is worth more than any number of individual proofs.
 
-### Conjecture Engine
+### The Conjecture Engine
 
-New definitions generate new questions. If you have defined a new concept $C$, the Conjecture Engine asks: What is the distribution of $C$ across known mathematical structures? What properties are implied by $C$? What existing theorems can be strengthened by adding $C$ as a hypothesis? What problems become tractable when reformulated in terms of $C$?
+New definitions naturally generate new questions. Given a newly defined concept $C$, one can ask: What is the distribution of $C$ across known mathematical structures? What properties does $C$ imply? Which existing theorems can be strengthened by adding $C$ as a hypothesis? Which previously intractable problems become accessible when reformulated in terms of $C$?
 
-Conjectures are the research agenda. A system that generates conjectures is a system that does mathematics.
+Conjectures, in this framework, constitute the system's research agenda. A system that generates conjectures is, in a meaningful sense, performing one of the essential functions of mathematical research.
 
-### Fertility Evaluator
+### The Fertility Evaluator
 
-Not all concepts are productive. The Fertility Evaluator estimates which definitions in the Concept Lattice are worth keeping. The metric is **compressive power**: a concept is fertile if it makes the description of some mathematical domain shorter.
+Not all concepts are equally productive, and a mechanism is needed to prune the Concept Lattice. The relevant metric is what one might call **compressive power**: a concept is fertile if its introduction makes the description of some mathematical domain shorter. I discuss this metric in more detail below.
 
 ---
 
-## 7. The Erdos Machine
+## 7. Projected outputs
 
-What would the Mathematical Metabolism produce on the same 700 Erdos problems? We cannot know precisely, but we can estimate the **types** of output:
+What would such a system produce when applied to the same corpus of 700 Erdős problems? One cannot know precisely, of course, but one can estimate the **types** of output:
 
 <div class="row mt-3">
     <div class="col-sm mt-3 mt-md-0">
@@ -219,66 +254,66 @@ What would the Mathematical Metabolism produce on the same 700 Erdos problems? W
     </div>
 </div>
 <div class="caption">
-    Mathematical Output — Solver vs. Metabolism on 700 Erdos problems. The Metabolism produces mathematical knowledge from failures.
+    Mathematical Output — Solver vs. Metabolism on 700 Erdős problems. The Metabolism produces mathematical knowledge from failures.
 </div>
 
-The projections are conservative estimates based on the density of structural relationships in the Erdos problem corpus. The key observation: even if the Metabolism solves exactly the same 4 problems, it would additionally produce:
+These are conservative projections based on the density of structural relationships one would expect in the Erdős problem corpus. The key observation is that even if the metabolism solves exactly the same four problems as Aletheia, it would additionally produce:
 
-- **~50 obstruction classes** — families of problems that resist similar techniques, clustered by structural similarity.
-- **~10 new concepts** — definitions that capture recurring structural patterns across the failure space.
-- **~35 new conjectures** — questions generated by applying new concepts to known structures.
-- **~25 technique boundaries** — precise characterizations of where known proof strategies break down.
-- **~8 structural isomorphisms** — unexpected connections between seemingly unrelated problems.
+- Approximately 50 **obstruction classes** — families of problems resisting similar techniques, clustered by structural similarity.
+- Approximately 10 **new concepts** — definitions capturing recurring structural patterns across the failure space.
+- Approximately 35 **new conjectures** — questions generated by applying new concepts to known structures.
+- Approximately 25 **technique boundary characterizations** — precise descriptions of where known proof strategies break down and why.
+- Approximately 8 **structural isomorphisms** — unexpected connections between seemingly unrelated problems.
 
-Each of these is a **mathematical object**. Each contributes to the field. The 696 "failures" are no longer waste — they are the raw material for mathematical knowledge.
+Each of these is a mathematical object in its own right. Each contributes to the field independently of whether any particular problem is solved. The 696 "failures" are no longer waste — they become the raw material from which mathematical knowledge is extracted.
 
-> The difference is not in what is solved. It is in what is produced by not solving.
-
----
-
-## 8. The Training Problem
-
-The Mathematical Metabolism cannot be trained on proof correctness alone. You need a training signal for **conceptual fertility** — a reward for creating useful abstractions, not just correct deductions.
-
-Four approaches:
-
-### Historical Replay
-
-Train on the actual historical development of mathematical fields. Feed the system problems in the order they were posed, and reward it for reinventing the concepts that historically proved essential. If a system working on 19th-century analysis independently arrives at something resembling the $\epsilon$-$\delta$ definition of limits, that is signal.
-
-### Downstream Solvability
-
-A concept is fertile if problems formulated using that concept are easier to solve than problems formulated without it. This is directly measurable: define concept $C$, reformulate a problem set using $C$, and measure solve-rate improvement.
-
-### Compression as Fertility
-
-The core metric. A concept's fertility is its compressive power — how much shorter the description of a mathematical domain becomes when the concept is available:
-
-$$\text{Fertility}(C) = \frac{|\text{domain description without } C| - |\text{domain description with } C|}{|C|}$$
-
-where $|C|$ is the complexity of the concept's definition and the domain descriptions are measured in some formal language. This captures the intuition that a good definition "pays for itself" — its definitional cost is small relative to the descriptive savings it enables.
-
-A concept with high fertility is one that carves reality at a joint. Groups, manifolds, categories — these are all high-fertility concepts. They cost little to define and simplify vast stretches of mathematics.
-
-### Adversarial Concept Evolution
-
-Two systems compete: one generates concepts, the other generates problems designed to make those concepts useless. The concept generator wins by creating definitions that remain useful across an expanding problem distribution. The adversary wins by finding domains where the concepts provide no compression.
-
-This is a GAN for mathematics. The equilibrium, if it exists, would be a concept vocabulary that is robust across mathematical domains — exactly what we want.
+**Remark 3.** The essential difference here is not in what is solved, but in what is produced by the process of not solving. A system whose failures are informative is doing something qualitatively different from one whose failures are simply discarded.
 
 ---
 
-## 9. The Limit
+## 8. The training problem
 
-Intellectual honesty requires mapping where this architecture fails.
+One significant obstacle to implementing the mathematical metabolism is the training signal. Current systems are trained on proof correctness — a binary signal that rewards the terminal process. To train a system that generates concepts, one needs a reward signal for **conceptual fertility**: a way of measuring whether a newly introduced abstraction is mathematically useful.
 
-The Mathematical Metabolism can generate new concepts **within the space of concepts expressible in its formal language**. It can combine, recombine, and compose existing mathematical primitives in novel ways. It can discover that two seemingly different domains share hidden structure.
+I see at least four approaches, each with different strengths:
+
+### Historical replay
+
+One can train on the historical development of mathematical fields, presenting problems in chronological order and rewarding the system for independently arriving at concepts that historically proved essential. If a system working through 19th-century analysis produces something resembling the $\epsilon$-$\delta$ definition of continuity, that is a meaningful signal.
+
+### Downstream solvability
+
+A concept is fertile if problems formulated using that concept become easier to solve. This is directly measurable: define a concept $C$, reformulate a problem set in terms of $C$, and measure the change in solve rate.
+
+### Compression as fertility
+
+This is perhaps the most natural metric. One can define the fertility of a concept $C$ as its compressive power:
+
+$$\text{Fertility}(C) = \frac{\lvert\text{domain description without } C\rvert - \lvert\text{domain description with } C\rvert}{\lvert C\rvert}$$
+
+where $\lvert C\rvert$ denotes the complexity of the concept's definition and the domain descriptions are measured in some suitable formal language. The intuition is that a good definition "pays for itself" — its definitional cost is small relative to the descriptive savings it enables.
+
+High-fertility concepts are precisely those that carve mathematical reality at its joints. Groups, manifolds, categories, measure spaces — these all have high fertility in this sense. They are inexpensive to define and they simplify the description of vast stretches of mathematics.
+
+### Adversarial concept evolution
+
+One can set up a competitive dynamic between two systems: a concept generator and a concept adversary. The generator produces definitions; the adversary produces problem domains designed to render those definitions useless (i.e., domains where the concepts provide no compression). The generator succeeds by creating definitions that remain useful across an expanding problem distribution.
+
+This is, in effect, a GAN for mathematical concepts. If the dynamics converge to an equilibrium, the result would be a concept vocabulary that is robust across mathematical domains — which is exactly what one wants.
+
+---
+
+## 9. Limitations
+
+It is important to be precise about where this architecture would and would not succeed.
+
+The mathematical metabolism can generate new concepts **within the space of concepts expressible in its formal language**. It can combine, recombine, and compose existing mathematical primitives in novel ways. It can discover that two apparently different domains share hidden structure. This is a large and interesting space, but it is bounded.
 
 What it cannot do:
 
-- **Paradigm shifts.** The invention of non-Euclidean geometry required questioning an axiom that had been unquestioned for two millennia. The Metabolism operates within its axiom system; it cannot step outside it.
-- **Genuinely new mathematical language.** Category theory was not a concept within set theory — it was a new way of looking at mathematical structure itself. The Metabolism can create concepts; it cannot create new kinds of concepts.
-- **Expanding the output space at runtime.** The types of mathematical objects the system can produce (definitions, conjectures, obstruction classes) are fixed at design time. A human mathematician can invent a new type of mathematical output — a new kind of thing to say about mathematics.
+- **Paradigm shifts.** The invention of non-Euclidean geometry required questioning an axiom (Euclid's parallel postulate) that had been unquestioned for over two millennia. The metabolism operates within its axiom system; it cannot step outside it to question the axioms themselves.
+- **Genuinely new mathematical language.** Category theory was not a concept within set theory — it was a fundamentally new way of organizing mathematical knowledge. The metabolism can create concepts within its language; it cannot create new kinds of concepts.
+- **Runtime expansion of the output space.** The types of mathematical objects the system produces (definitions, conjectures, obstruction classes) are fixed at design time. A human mathematician can invent entirely new types of mathematical output — new kinds of things to say about mathematical structure.
 
 <div class="row mt-3">
     <div class="col-sm mt-3 mt-md-0">
@@ -289,15 +324,15 @@ What it cannot do:
     Capability Frontier — what each architecture can achieve. The Mathematical Metabolism dramatically expands generative capability.
 </div>
 
-The heatmap makes the hierarchy visible. Aletheia is a powerful solver trapped in a barren generative space. The Mathematical Metabolism would dramatically expand the generative capability — but would still be bounded by its formal language and fixed output types. The truly unknown future system, one that could shift paradigms, remains beyond any architecture we know how to design.
+The capability hierarchy is visible in the heatmap. Systems like Aletheia are powerful solvers operating in a narrow generative space. The mathematical metabolism would substantially expand the generative capability, but would remain bounded by its formal language and fixed output types. A system capable of genuine paradigm shifts — one that could, say, invent something as unexpected as category theory — remains beyond any architecture we currently know how to design.
 
-This is not a failure of ambition. It is a precise statement of what is and is not achievable with current theoretical understanding. Knowing the boundary is itself mathematical knowledge.
+**Remark 4.** This is not a failure of the proposal. It is a precise characterization of the boundary between what is and is not achievable with our current theoretical understanding. Knowing this boundary clearly is itself a useful form of mathematical knowledge.
 
 ---
 
-## 10. The Metric Inversion
+## 10. A note on metrics
 
-Everything in AI-for-mathematics is currently measured wrong. The metrics reward terminal behavior and punish generative behavior. Consider:
+One further observation that I think is worth recording. Everything in AI-for-mathematics is currently evaluated using metrics that reward terminal behavior and inadvertently penalize generative behavior:
 
 | Current Metric    | What It Rewards               | What It Misses                    |
 | :---------------- | :---------------------------- | :-------------------------------- |
@@ -307,7 +342,7 @@ Everything in AI-for-mathematics is currently measured wrong. The metrics reward
 | Benchmark score   | Performance on known problems | Ability to pose new problems      |
 | Autonomy level    | Minimal human involvement     | Productive human-AI collaboration |
 
-The Mathematical Metabolism demands inverted metrics:
+A system optimized for the mathematical metabolism would need different metrics entirely:
 
 | Generative Metric           | What It Measures                                      |
 | :-------------------------- | :---------------------------------------------------- |
@@ -317,26 +352,20 @@ The Mathematical Metabolism demands inverted metrics:
 | Cross-domain bridge count   | New connections discovered between unrelated areas    |
 | Research program viability  | Downstream productivity of generated research agendas |
 
-Under current metrics, the Mathematical Metabolism would score **worse** than Aletheia on every benchmark. It would solve fewer problems per unit compute, because it would spend compute on exploration, failure analysis, and concept formation instead of brute-force proof search. It would appear slower, less efficient, less capable.
+Under the current metrics, the mathematical metabolism would likely score **worse** than Aletheia on every existing benchmark — it would solve fewer problems per unit of compute, because it spends resources on exploration, failure analysis, and concept formation rather than brute-force proof search. It would appear slower, less efficient, less capable by every standard measure.
 
-And it would be doing mathematics.
-
-> The system that would advance mathematics fastest is the one that would score worst on every existing benchmark — because it would spend its compute understanding problems rather than answering them.
+And yet it would be closer to doing mathematics. There is, I think, an important lesson here about the relationship between what we choose to measure and what we actually value.
 
 ---
 
-## The Instrument We Lack
+## Concluding remarks
 
-What Google has built is a powerful telescope. It can see far into the space of mathematical truth, resolving details that were previously invisible. This is genuinely valuable.
+What the Google team has built with Aletheia is a genuinely impressive engineering achievement — a powerful instrument for resolving specific mathematical questions. This should be acknowledged clearly.
 
-But mathematics was never about seeing far. It was about **creating the language to describe what you see.** Galileo did not advance astronomy merely by pointing a telescope at Jupiter — he advanced it by creating the conceptual vocabulary (moons as independent bodies orbiting a planet, not fixed to a crystal sphere) that made the observation meaningful.
+But mathematics, as practiced by research mathematicians, has never been primarily about resolving specific questions. It has been about **creating the language to describe what one sees**. Galileo did not advance astronomy merely by observing the moons of Jupiter — he advanced it by creating a conceptual framework (moons as independent bodies orbiting a planet, rather than features of a crystal sphere) that made the observation scientifically meaningful.
 
-The telescope and the cartography require fundamentally different instruments. One is a feat of optics. The other is a feat of language.
+The central open problem in AI-for-mathematics is not "can we solve more problems?" — the answer to that is almost certainly yes, given sufficient compute and improved verification. The more interesting question is: **can we build a system whose failures are as mathematically productive as a human mathematician's failures?**
 
-We have the telescope. The mathematical metabolism — the instrument that creates understanding — remains unbuilt.
+I do not know the answer to this question. But I believe the attempt to answer it would be valuable, because it would require us to formalize what we mean by mathematical knowledge — not merely mathematical truth. And that formalization would itself be a mathematical contribution of some interest.
 
-Building it is, I believe, the central open problem in AI-for-mathematics. Not "can we solve more problems?" but "can we build a system whose failures are as productive as a mathematician's failures?" The answer to the first question is obviously yes — scale the compute, improve the verifier, expand the training data. The answer to the second question is unknown, because we do not yet understand what makes a failure productive.
-
-That understanding — of productive failure, of fertile concepts, of the metabolism that converts confusion into clarity — would itself be a mathematical contribution of the first order. The tool that creates mathematical knowledge would, in its creation, require us to formalize what mathematical knowledge _is_.
-
-Which is, of course, exactly the kind of problem that no existing AI system can solve. Not because it is hard. Because it requires creating something that does not yet exist.
+This is, perhaps, the kind of problem that lies beyond the reach of current AI systems. Not because it is computationally difficult, but because it requires creating something that does not yet exist.
