@@ -10,6 +10,12 @@ related_posts: true
 featured: true
 toc:
   sidebar: left
+mermaid:
+  enabled: true
+  zoomable: true
+chart:
+  plotly: true
+  vega_lite: true
 ---
 
 Google's Aletheia system solved four open Erdos conjectures. Headlines called it a breakthrough. And it is — in the same way that a calculator performing long division was a breakthrough. The 0.6% solve rate on 700 Erdos problems is both the headline and the sobriety check: impressive enough to matter, low enough to demand scrutiny.
