@@ -1,0 +1,813 @@
+/* ============================================================
+   Visual Capitalist + Academic Infographics
+   Pure CSS — no JS dependencies
+   Dark mode: html[data-theme="dark"] .vc
+   ============================================================ */
+
+/* --- Base Container & Tokens --- */
+.vc {
+  --vc-bg: #ffffff;
+  --vc-bg-subtle: #f8fafc;
+  --vc-bg-muted: #f1f5f9;
+  --vc-text: #0f172a;
+  --vc-text-secondary: #334155;
+  --vc-text-muted: #64748b;
+  --vc-border: #e2e8f0;
+
+  --vc-blue: #2563eb;
+  --vc-blue-soft: #dbeafe;
+  --vc-red: #dc2626;
+  --vc-red-soft: #fee2e2;
+  --vc-green: #059669;
+  --vc-green-soft: #d1fae5;
+  --vc-amber: #d97706;
+  --vc-amber-soft: #fef3c7;
+  --vc-purple: #7c3aed;
+  --vc-purple-soft: #ede9fe;
+  --vc-gold: #b45309;
+  --vc-gold-soft: #fef3c7;
+  --vc-slate: #64748b;
+  --vc-slate-soft: #f1f5f9;
+
+  font-family: "Source Serif 4", "Palatino Linotype", Palatino, Georgia, serif;
+  color: var(--vc-text);
+  margin: 2rem 0;
+  line-height: 1.6;
+}
+
+/* --- Dark Mode Overrides --- */
+html[data-theme="dark"] .vc {
+  --vc-bg: #0f172a;
+  --vc-bg-subtle: #1e293b;
+  --vc-bg-muted: #1e293b;
+  --vc-text: #f1f5f9;
+  --vc-text-secondary: #cbd5e1;
+  --vc-text-muted: #94a3b8;
+  --vc-border: #334155;
+
+  --vc-blue: #3b82f6;
+  --vc-blue-soft: #1e3a5f;
+  --vc-red: #ef4444;
+  --vc-red-soft: #450a0a;
+  --vc-green: #10b981;
+  --vc-green-soft: #064e3b;
+  --vc-amber: #f59e0b;
+  --vc-amber-soft: #451a03;
+  --vc-purple: #8b5cf6;
+  --vc-purple-soft: #2e1065;
+  --vc-gold: #d97706;
+  --vc-gold-soft: #451a03;
+  --vc-slate: #94a3b8;
+  --vc-slate-soft: #1e293b;
+}
+
+/* ============================================================
+   .vc-title — Section label
+   ============================================================ */
+.vc-title {
+  font-size: 0.75rem;
+  font-weight: 700;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: var(--vc-text-muted);
+  border-bottom: 2px solid var(--vc-border);
+  padding-bottom: 0.5rem;
+  margin-bottom: 1.25rem;
+}
+
+/* ============================================================
+   .vc-hero — Big stat callout card
+   ============================================================ */
+.vc-hero {
+  display: flex;
+  align-items: center;
+  gap: 1.25rem;
+  background: var(--vc-bg-subtle);
+  border-left: 5px solid var(--vc-blue);
+  border-radius: 6px;
+  padding: 1.25rem 1.5rem;
+}
+.vc-hero--danger { border-left-color: var(--vc-red); }
+.vc-hero--success { border-left-color: var(--vc-green); }
+.vc-hero--warning { border-left-color: var(--vc-amber); }
+.vc-hero--gold { border-left-color: var(--vc-gold); }
+
+.vc-hero-number {
+  font-size: 3rem;
+  font-weight: 800;
+  line-height: 1;
+  font-variant-numeric: tabular-nums;
+  white-space: nowrap;
+  color: var(--vc-text);
+}
+.vc-hero--danger .vc-hero-number { color: var(--vc-red); }
+.vc-hero--success .vc-hero-number { color: var(--vc-green); }
+.vc-hero--warning .vc-hero-number { color: var(--vc-amber); }
+.vc-hero--gold .vc-hero-number { color: var(--vc-gold); }
+
+.vc-hero-content {
+  flex: 1;
+  min-width: 0;
+}
+.vc-hero-label {
+  font-size: 1rem;
+  font-weight: 600;
+  color: var(--vc-text-secondary);
+  margin-bottom: 0.15rem;
+}
+.vc-hero-context {
+  font-size: 0.85rem;
+  color: var(--vc-text-muted);
+  line-height: 1.4;
+}
+
+/* ============================================================
+   .vc-pipeline — Horizontal flow diagram
+   ============================================================ */
+.vc-pipeline {
+  overflow-x: auto;
+}
+.vc-pipeline-flow {
+  display: flex;
+  align-items: center;
+  gap: 0;
+  flex-wrap: nowrap;
+  min-width: max-content;
+}
+/* Also support direct children layout (flat markup) */
+.vc-pipeline {
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+}
+.vc-pipeline > :not(.vc-pipeline-feedback) {
+  /* handled by the inner flex row below */
+}
+
+/* We'll use a wrapper-less approach: nodes and arrows are siblings */
+.vc-pipeline {
+  display: block;
+}
+.vc-pipeline-row {
+  display: flex;
+  align-items: center;
+  gap: 0;
+  flex-wrap: wrap;
+  justify-content: center;
+}
+.vc-pipeline-node {
+  background: var(--vc-bg-subtle);
+  border: 2px solid var(--vc-border);
+  border-radius: 8px;
+  padding: 0.75rem 1rem;
+  text-align: center;
+  min-width: 100px;
+  flex-shrink: 0;
+}
+.vc-pipeline-node--blue { border-color: var(--vc-blue); background: var(--vc-blue-soft); }
+.vc-pipeline-node--amber { border-color: var(--vc-amber); background: var(--vc-amber-soft); }
+.vc-pipeline-node--green { border-color: var(--vc-green); background: var(--vc-green-soft); }
+.vc-pipeline-node--red { border-color: var(--vc-red); background: var(--vc-red-soft); }
+.vc-pipeline-node--purple { border-color: var(--vc-purple); background: var(--vc-purple-soft); }
+
+.vc-pipeline-node-label {
+  font-size: 0.85rem;
+  font-weight: 700;
+  color: var(--vc-text);
+}
+.vc-pipeline-node-sub {
+  font-size: 0.72rem;
+  color: var(--vc-text-muted);
+  margin-top: 0.15rem;
+}
+.vc-pipeline-arrow {
+  font-size: 1.2rem;
+  color: var(--vc-text-muted);
+  padding: 0 0.4rem;
+  flex-shrink: 0;
+  user-select: none;
+}
+.vc-pipeline-feedback {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.5rem;
+  justify-content: center;
+  margin-top: 1rem;
+  padding-top: 0.75rem;
+  border-top: 1px dashed var(--vc-border);
+}
+.vc-pipeline-feedback-item {
+  font-size: 0.72rem;
+  color: var(--vc-text-muted);
+  background: var(--vc-bg-muted);
+  border-radius: 100px;
+  padding: 0.25rem 0.75rem;
+  white-space: nowrap;
+}
+
+/* ============================================================
+   .vc-dumbbell — Evidence vs Gaps chart
+   ============================================================ */
+.vc-dumbbell {
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+}
+.vc-dumbbell-legend {
+  display: flex;
+  gap: 1.5rem;
+  justify-content: flex-end;
+  font-size: 0.75rem;
+  color: var(--vc-text-muted);
+  margin-bottom: 0.25rem;
+}
+.vc-dumbbell-legend-dot {
+  display: inline-block;
+  width: 10px;
+  height: 10px;
+  border-radius: 50%;
+  margin-right: 0.35rem;
+  vertical-align: middle;
+}
+.vc-dumbbell-legend-dot--blue { background: var(--vc-blue); }
+.vc-dumbbell-legend-dot--red { background: var(--vc-red); }
+
+.vc-dumbbell-row {
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+}
+.vc-dumbbell-label {
+  width: 180px;
+  flex-shrink: 0;
+  font-size: 0.82rem;
+  font-weight: 600;
+  color: var(--vc-text-secondary);
+  text-align: right;
+}
+.vc-dumbbell-track {
+  flex: 1;
+  height: 4px;
+  background: var(--vc-border);
+  border-radius: 2px;
+  position: relative;
+  min-width: 200px;
+}
+.vc-dumbbell-range {
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  height: 2px;
+  background: var(--vc-text-muted);
+  opacity: 0.35;
+}
+.vc-dumbbell-point {
+  position: absolute;
+  top: 50%;
+  transform: translate(-50%, -50%);
+  width: 14px;
+  height: 14px;
+  border-radius: 50%;
+  border: 2.5px solid #fff;
+  box-shadow: 0 1px 3px rgba(0,0,0,0.15);
+  z-index: 1;
+}
+html[data-theme="dark"] .vc-dumbbell-point {
+  border-color: #1e293b;
+}
+.vc-dumbbell-point--blue { background: var(--vc-blue); }
+.vc-dumbbell-point--red { background: var(--vc-red); }
+
+.vc-dumbbell-values {
+  width: 70px;
+  flex-shrink: 0;
+  font-size: 0.72rem;
+  color: var(--vc-text-muted);
+  font-variant-numeric: tabular-nums;
+}
+
+/* ============================================================
+   .vc-prob — Hypothesis probability bars
+   ============================================================ */
+.vc-prob {
+  display: flex;
+  flex-direction: column;
+  gap: 1.25rem;
+}
+.vc-prob-legend {
+  display: flex;
+  gap: 1.5rem;
+  justify-content: flex-end;
+  font-size: 0.75rem;
+  color: var(--vc-text-muted);
+  margin-bottom: 0.25rem;
+}
+.vc-prob-legend-swatch {
+  display: inline-block;
+  width: 14px;
+  height: 10px;
+  border-radius: 2px;
+  margin-right: 0.35rem;
+  vertical-align: middle;
+}
+.vc-prob-legend-swatch--opus { background: var(--vc-blue); }
+.vc-prob-legend-swatch--sonnet { background: var(--vc-green); }
+
+.vc-prob-row {
+  display: flex;
+  flex-direction: column;
+  gap: 0.35rem;
+}
+.vc-prob-label {
+  font-size: 0.82rem;
+  font-weight: 600;
+  color: var(--vc-text-secondary);
+}
+.vc-prob-bars {
+  display: flex;
+  flex-direction: column;
+  gap: 0.2rem;
+}
+.vc-prob-bar-row {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+}
+.vc-prob-bar-name {
+  width: 52px;
+  flex-shrink: 0;
+  font-size: 0.7rem;
+  color: var(--vc-text-muted);
+  text-align: right;
+}
+.vc-prob-bar {
+  height: 20px;
+  border-radius: 3px;
+  display: flex;
+  align-items: center;
+  padding-left: 0.5rem;
+  font-size: 0.7rem;
+  font-weight: 700;
+  color: #fff;
+  min-width: 32px;
+  transition: width 0.3s ease;
+}
+.vc-prob-bar--opus { background: var(--vc-blue); }
+.vc-prob-bar--sonnet { background: var(--vc-green); }
+
+/* ============================================================
+   .vc-funnel — THE HERO: Cascading proportional bars
+   ============================================================ */
+.vc-funnel {
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+}
+.vc-funnel-stage {
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+}
+.vc-funnel-num {
+  width: 70px;
+  flex-shrink: 0;
+  font-size: 1.5rem;
+  font-weight: 800;
+  text-align: right;
+  font-variant-numeric: tabular-nums;
+  color: var(--vc-text);
+  line-height: 1;
+}
+.vc-funnel-bar-wrap {
+  flex: 1;
+  position: relative;
+  min-height: 32px;
+  display: flex;
+  align-items: center;
+}
+.vc-funnel-bar {
+  height: 32px;
+  border-radius: 4px;
+  display: flex;
+  align-items: center;
+  padding: 0 0.75rem;
+  min-width: 8px;
+  position: relative;
+}
+.vc-funnel-bar-label {
+  font-size: 0.78rem;
+  font-weight: 600;
+  color: #fff;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+/* Color variants */
+.vc-funnel-bar--slate { background: var(--vc-slate); }
+.vc-funnel-bar--blue { background: var(--vc-blue); }
+.vc-funnel-bar--red { background: var(--vc-red); }
+.vc-funnel-bar--amber { background: var(--vc-amber); }
+.vc-funnel-bar--green { background: var(--vc-green); }
+.vc-funnel-bar--gold { background: var(--vc-gold); }
+.vc-funnel-bar--purple { background: var(--vc-purple); }
+
+/* Small variant: label outside */
+.vc-funnel-bar--small .vc-funnel-bar-label {
+  position: absolute;
+  left: calc(100% + 0.5rem);
+  color: var(--vc-text-secondary);
+  font-weight: 500;
+}
+
+.vc-funnel-spacer {
+  height: 0.75rem;
+}
+.vc-funnel-annotation {
+  margin: 0.25rem 0 0.25rem 80px;
+  padding: 0.5rem 0.75rem;
+  background: var(--vc-bg-muted);
+  border-left: 3px solid var(--vc-amber);
+  border-radius: 0 4px 4px 0;
+  font-size: 0.78rem;
+  color: var(--vc-text-secondary);
+  line-height: 1.45;
+}
+.vc-funnel-result {
+  margin-top: 1rem;
+  display: flex;
+  align-items: center;
+  gap: 1.25rem;
+  padding: 1.25rem 1.5rem;
+  border: 2px solid var(--vc-gold);
+  border-radius: 8px;
+  background: var(--vc-gold-soft);
+}
+.vc-funnel-result-number {
+  font-size: 2.5rem;
+  font-weight: 800;
+  color: var(--vc-gold);
+  line-height: 1;
+  white-space: nowrap;
+}
+.vc-funnel-result-text {
+  flex: 1;
+}
+.vc-funnel-result-label {
+  font-size: 1rem;
+  font-weight: 700;
+  color: var(--vc-text);
+}
+.vc-funnel-result-context {
+  font-size: 0.82rem;
+  color: var(--vc-text-muted);
+  margin-top: 0.1rem;
+}
+
+/* ============================================================
+   .vc-compare — Side-by-side process comparison
+   ============================================================ */
+.vc-compare {
+  display: grid;
+  grid-template-columns: 1fr auto 1fr;
+  gap: 1.25rem;
+  align-items: start;
+}
+.vc-compare-side {
+  background: var(--vc-bg-subtle);
+  border-radius: 8px;
+  padding: 1.25rem;
+  border: 2px solid var(--vc-border);
+}
+.vc-compare-side--terminal { border-color: var(--vc-red); }
+.vc-compare-side--generative { border-color: var(--vc-green); }
+
+.vc-compare-side-title {
+  font-size: 0.75rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+  margin-bottom: 1rem;
+  color: var(--vc-text-muted);
+}
+.vc-compare-side--terminal .vc-compare-side-title { color: var(--vc-red); }
+.vc-compare-side--generative .vc-compare-side-title { color: var(--vc-green); }
+
+.vc-compare-vs {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 0.85rem;
+  font-weight: 800;
+  color: var(--vc-text-muted);
+  padding-top: 3rem;
+}
+
+.vc-compare-flow {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 0;
+}
+.vc-compare-flow-arrow {
+  font-size: 1rem;
+  color: var(--vc-text-muted);
+  padding: 0.25rem 0;
+  user-select: none;
+}
+.vc-compare-flow-node {
+  background: var(--vc-bg);
+  border: 1.5px solid var(--vc-border);
+  border-radius: 6px;
+  padding: 0.45rem 0.85rem;
+  font-size: 0.8rem;
+  font-weight: 600;
+  color: var(--vc-text-secondary);
+  text-align: center;
+  width: 100%;
+  max-width: 180px;
+}
+.vc-compare-flow-node--input { border-color: var(--vc-text-muted); }
+.vc-compare-flow-node--process { border-color: var(--vc-red); background: var(--vc-red-soft); }
+.vc-compare-flow-node--output { border-color: var(--vc-green); background: var(--vc-green-soft); }
+.vc-compare-flow-node--explore { border-color: var(--vc-blue); background: var(--vc-blue-soft); }
+.vc-compare-flow-node--new { border-color: var(--vc-purple); background: var(--vc-purple-soft); }
+.vc-compare-flow-node--dead {
+  opacity: 0.4;
+  border-style: dashed;
+}
+
+.vc-compare-flow-branch {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 0.4rem;
+  width: 100%;
+}
+.vc-compare-flow-branch .vc-compare-flow-node {
+  max-width: none;
+  font-size: 0.72rem;
+  padding: 0.35rem 0.5rem;
+}
+
+/* ============================================================
+   .vc-metabolism — Architecture flow grid
+   ============================================================ */
+.vc-metabolism-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr;
+  gap: 0.75rem;
+  justify-items: center;
+  align-items: center;
+}
+.vc-metabolism-node {
+  background: var(--vc-bg-subtle);
+  border: 2px solid var(--vc-border);
+  border-radius: 8px;
+  padding: 0.65rem 1rem;
+  text-align: center;
+  width: 100%;
+  max-width: 180px;
+}
+.vc-metabolism-node-label {
+  font-size: 0.82rem;
+  font-weight: 700;
+  color: var(--vc-text);
+}
+.vc-metabolism-node-sub {
+  font-size: 0.68rem;
+  color: var(--vc-text-muted);
+  margin-top: 0.1rem;
+}
+
+.vc-metabolism-node--amber { border-color: var(--vc-amber); background: var(--vc-amber-soft); }
+.vc-metabolism-node--blue { border-color: var(--vc-blue); background: var(--vc-blue-soft); }
+.vc-metabolism-node--red { border-color: var(--vc-red); background: var(--vc-red-soft); }
+.vc-metabolism-node--green { border-color: var(--vc-green); background: var(--vc-green-soft); }
+.vc-metabolism-node--purple { border-color: var(--vc-purple); background: var(--vc-purple-soft); }
+
+.vc-metabolism-arrow {
+  font-size: 0.78rem;
+  color: var(--vc-text-muted);
+  text-align: center;
+  line-height: 1.2;
+  user-select: none;
+}
+.vc-metabolism-arrow-label {
+  font-size: 0.65rem;
+  color: var(--vc-text-muted);
+  display: block;
+}
+
+/* ============================================================
+   .vc-output — Output comparison bars
+   ============================================================ */
+.vc-output {
+  display: flex;
+  flex-direction: column;
+  gap: 0.9rem;
+}
+.vc-output-legend {
+  display: flex;
+  gap: 1.5rem;
+  justify-content: flex-end;
+  font-size: 0.75rem;
+  color: var(--vc-text-muted);
+  margin-bottom: 0.25rem;
+}
+.vc-output-legend-swatch {
+  display: inline-block;
+  width: 14px;
+  height: 10px;
+  border-radius: 2px;
+  margin-right: 0.35rem;
+  vertical-align: middle;
+}
+.vc-output-legend-swatch--red { background: var(--vc-red); }
+.vc-output-legend-swatch--blue { background: var(--vc-blue); }
+
+.vc-output-row {
+  display: flex;
+  flex-direction: column;
+  gap: 0.2rem;
+}
+.vc-output-label {
+  font-size: 0.82rem;
+  font-weight: 600;
+  color: var(--vc-text-secondary);
+}
+.vc-output-bars {
+  display: flex;
+  flex-direction: column;
+  gap: 0.15rem;
+}
+.vc-output-bar-row {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+}
+.vc-output-bar-name {
+  width: 72px;
+  flex-shrink: 0;
+  font-size: 0.68rem;
+  color: var(--vc-text-muted);
+  text-align: right;
+}
+.vc-output-bar {
+  height: 18px;
+  border-radius: 3px;
+  display: flex;
+  align-items: center;
+  padding-left: 0.5rem;
+  font-size: 0.68rem;
+  font-weight: 700;
+  color: #fff;
+  min-width: 28px;
+}
+.vc-output-bar--red { background: var(--vc-red); }
+.vc-output-bar--blue { background: var(--vc-blue); }
+.vc-output-bar--zero {
+  background: none;
+  border: 1.5px dashed var(--vc-border);
+  color: var(--vc-text-muted);
+  font-weight: 500;
+  min-width: 36px;
+  padding-left: 0.4rem;
+}
+.vc-output-bar-value {
+  font-size: 0.68rem;
+  color: var(--vc-text-muted);
+  margin-left: 0.4rem;
+}
+
+/* ============================================================
+   .vc-matrix — Capability heatmap table
+   ============================================================ */
+.vc-matrix {
+  width: 100%;
+  border-collapse: separate;
+  border-spacing: 3px;
+  font-size: 0.82rem;
+}
+.vc-matrix th {
+  font-size: 0.72rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.04em;
+  color: var(--vc-text-muted);
+  padding: 0.5rem 0.65rem;
+  text-align: center;
+  vertical-align: bottom;
+}
+.vc-matrix th:first-child {
+  text-align: left;
+}
+.vc-matrix td {
+  padding: 0.6rem 0.75rem;
+  text-align: center;
+  border-radius: 4px;
+  font-weight: 700;
+  font-variant-numeric: tabular-nums;
+}
+.vc-matrix td:first-child {
+  text-align: left;
+  font-weight: 600;
+  color: var(--vc-text-secondary);
+  background: none;
+}
+
+/* Heatmap levels — Light mode */
+.vc-matrix-0 { background: var(--vc-bg-muted); color: var(--vc-text-muted); }
+.vc-matrix-5 { background: #ede9fe; color: #6d28d9; }
+.vc-matrix-10 { background: #dbeafe; color: #1d4ed8; }
+.vc-matrix-15 { background: #c7d2fe; color: #4338ca; }
+.vc-matrix-60 { background: #6ee7b7; color: #064e3b; }
+.vc-matrix-70 { background: #34d399; color: #064e3b; }
+.vc-matrix-85 { background: #2563eb; color: #fff; }
+.vc-matrix-90 { background: #1d4ed8; color: #fff; }
+.vc-matrix-95 { background: #1e40af; color: #fff; }
+
+/* Heatmap levels — Dark mode */
+html[data-theme="dark"] .vc-matrix-0 { background: #1e293b; color: #64748b; }
+html[data-theme="dark"] .vc-matrix-5 { background: #2e1065; color: #a78bfa; }
+html[data-theme="dark"] .vc-matrix-10 { background: #1e3a5f; color: #93c5fd; }
+html[data-theme="dark"] .vc-matrix-15 { background: #312e81; color: #a5b4fc; }
+html[data-theme="dark"] .vc-matrix-60 { background: #065f46; color: #6ee7b7; }
+html[data-theme="dark"] .vc-matrix-70 { background: #047857; color: #34d399; }
+html[data-theme="dark"] .vc-matrix-85 { background: #1d4ed8; color: #dbeafe; }
+html[data-theme="dark"] .vc-matrix-90 { background: #1e40af; color: #dbeafe; }
+html[data-theme="dark"] .vc-matrix-95 { background: #1e3a8a; color: #bfdbfe; }
+
+/* ============================================================
+   Responsive — Mobile-first adjustments
+   ============================================================ */
+@media (max-width: 640px) {
+  .vc-hero {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 0.5rem;
+  }
+  .vc-hero-number {
+    font-size: 2.25rem;
+  }
+
+  .vc-pipeline-node {
+    min-width: 75px;
+    padding: 0.5rem 0.65rem;
+  }
+  .vc-pipeline-node-label {
+    font-size: 0.75rem;
+  }
+  .vc-pipeline-arrow {
+    font-size: 1rem;
+    padding: 0 0.2rem;
+  }
+
+  .vc-compare {
+    grid-template-columns: 1fr;
+  }
+  .vc-compare-vs {
+    padding-top: 0;
+    padding-bottom: 0;
+  }
+
+  .vc-funnel-num {
+    width: 45px;
+    font-size: 1.1rem;
+  }
+  .vc-funnel-annotation {
+    margin-left: 52px;
+    font-size: 0.72rem;
+  }
+  .vc-funnel-result {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 0.5rem;
+  }
+  .vc-funnel-result-number {
+    font-size: 2rem;
+  }
+
+  .vc-dumbbell-label {
+    width: 120px;
+    font-size: 0.72rem;
+  }
+  .vc-dumbbell-track {
+    min-width: 120px;
+  }
+
+  .vc-metabolism-grid {
+    grid-template-columns: 1fr 1fr;
+    gap: 0.5rem;
+  }
+  .vc-metabolism-node {
+    padding: 0.5rem 0.65rem;
+  }
+
+  .vc-matrix {
+    font-size: 0.72rem;
+  }
+  .vc-matrix th,
+  .vc-matrix td {
+    padding: 0.4rem 0.45rem;
+  }
+}

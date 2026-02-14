@@ -105,10 +105,10 @@ related_blog_posts:
 # Giscus comments (RECOMMENDED)
 # Follow instructions on https://giscus.app/ to setup for your repo to fill out the information below.
 giscus:
-  repo:
-  repo_id:
-  category: Comments
-  category_id:
+  repo: yurekami/yurekami.github.io
+  repo_id: R_kgDORL1QJg
+  category: General
+  category_id: DIC_kwDORL1QJs4C2bXF
   mapping: title
   strict: 1
   reactions_enabled: 1
