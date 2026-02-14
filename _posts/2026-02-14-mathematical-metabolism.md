@@ -191,14 +191,14 @@ No. And the reason illuminates what mathematics actually is.
 
 Mathematics is not a set of solved problems. It is a **living language** — a process of creating concepts, definitions, and structural relationships that make previously opaque domains legible. The measure of a mathematician is not theorems proved but **concepts created**.
 
-| Mathematician | Famous Result | What Actually Mattered |
-|:---|:---|:---|
-| Galois | Unsolvability of the quintic | **Group theory** — an entirely new algebraic language |
-| Cantor | Uncountability of the reals | **Set theory** — the foundation of modern mathematics |
-| Grothendieck | Weil conjectures | **Scheme theory** — reimagined the geometry of numbers |
-| Wiles | Fermat's Last Theorem | **Modularity lifting** — connected number theory to geometry |
-| Thurston | Geometrization conjecture | **Geometric structures on 3-manifolds** — a classification framework |
-| Emmy Noether | Noether's theorem | **Abstract algebra** — the language of symmetry itself |
+| Mathematician | Famous Result                | What Actually Mattered                                               |
+| :------------ | :--------------------------- | :------------------------------------------------------------------- |
+| Galois        | Unsolvability of the quintic | **Group theory** — an entirely new algebraic language                |
+| Cantor        | Uncountability of the reals  | **Set theory** — the foundation of modern mathematics                |
+| Grothendieck  | Weil conjectures             | **Scheme theory** — reimagined the geometry of numbers               |
+| Wiles         | Fermat's Last Theorem        | **Modularity lifting** — connected number theory to geometry         |
+| Thurston      | Geometrization conjecture    | **Geometric structures on 3-manifolds** — a classification framework |
+| Emmy Noether  | Noether's theorem            | **Abstract algebra** — the language of symmetry itself               |
 
 In every case, the theorem is the least interesting output. The **concepts** generated during the struggle — the failed approaches, the new definitions invented to articulate what was missing, the structural insights that reorganized entire fields — these are the actual product of mathematical work.
 
@@ -415,23 +415,23 @@ This is not a failure of ambition. It is a precise statement of what is and is n
 
 Everything in AI-for-mathematics is currently measured wrong. The metrics reward terminal behavior and punish generative behavior. Consider:
 
-| Current Metric | What It Rewards | What It Misses |
-|:---|:---|:---|
-| Solve rate | Answering posed questions | Questions never asked |
-| Proof correctness | Logical validity | Conceptual novelty |
-| Speed to solution | Computational efficiency | Depth of exploration |
-| Benchmark score | Performance on known problems | Ability to pose new problems |
-| Autonomy level | Minimal human involvement | Productive human-AI collaboration |
+| Current Metric    | What It Rewards               | What It Misses                    |
+| :---------------- | :---------------------------- | :-------------------------------- |
+| Solve rate        | Answering posed questions     | Questions never asked             |
+| Proof correctness | Logical validity              | Conceptual novelty                |
+| Speed to solution | Computational efficiency      | Depth of exploration              |
+| Benchmark score   | Performance on known problems | Ability to pose new problems      |
+| Autonomy level    | Minimal human involvement     | Productive human-AI collaboration |
 
 The Mathematical Metabolism demands inverted metrics:
 
-| Generative Metric | What It Measures |
-|:---|:---|
-| Concept fertility | Compressive power of generated definitions |
-| Conjecture quality | Solve rate of generated questions by external solvers |
-| Failure information density | Structural insights per failed proof attempt |
-| Cross-domain bridge count | New connections discovered between unrelated areas |
-| Research program viability | Downstream productivity of generated research agendas |
+| Generative Metric           | What It Measures                                      |
+| :-------------------------- | :---------------------------------------------------- |
+| Concept fertility           | Compressive power of generated definitions            |
+| Conjecture quality          | Solve rate of generated questions by external solvers |
+| Failure information density | Structural insights per failed proof attempt          |
+| Cross-domain bridge count   | New connections discovered between unrelated areas    |
+| Research program viability  | Downstream productivity of generated research agendas |
 
 Under current metrics, the Mathematical Metabolism would score **worse** than Aletheia on every benchmark. It would solve fewer problems per unit compute, because it would spend compute on exploration, failure analysis, and concept formation instead of brute-force proof search. It would appear slower, less efficient, less capable.
 
@@ -453,6 +453,6 @@ We have the telescope. The mathematical metabolism — the instrument that creat
 
 Building it is, I believe, the central open problem in AI-for-mathematics. Not "can we solve more problems?" but "can we build a system whose failures are as productive as a mathematician's failures?" The answer to the first question is obviously yes — scale the compute, improve the verifier, expand the training data. The answer to the second question is unknown, because we do not yet understand what makes a failure productive.
 
-That understanding — of productive failure, of fertile concepts, of the metabolism that converts confusion into clarity — would itself be a mathematical contribution of the first order. The tool that creates mathematical knowledge would, in its creation, require us to formalize what mathematical knowledge *is*.
+That understanding — of productive failure, of fertile concepts, of the metabolism that converts confusion into clarity — would itself be a mathematical contribution of the first order. The tool that creates mathematical knowledge would, in its creation, require us to formalize what mathematical knowledge _is_.
 
 Which is, of course, exactly the kind of problem that no existing AI system can solve. Not because it is hard. Because it requires creating something that does not yet exist.
