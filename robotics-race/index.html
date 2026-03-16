@@ -1,0 +1,996 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>The Robotics Supply Chain Kill Switch</title>
+<meta name="description" content="How China controls the physical supply chain needed to build America's humanoid robots. Interactive visualization of 31 critical supply chain nodes.">
+<style>
+*, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
+
+:root {
+  --bg: #0a0a0f;
+  --bg2: #12121a;
+  --fg: #e0e0e8;
+  --fg2: #888894;
+  --accent: #c0392b;
+  --sidebar-w: 240px;
+}
+
+body {
+  background: var(--bg);
+  color: var(--fg);
+  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', system-ui, sans-serif;
+  overflow: hidden;
+  height: 100vh;
+}
+
+#sidebar {
+  position: fixed;
+  top: 0; left: 0; bottom: 0;
+  width: var(--sidebar-w);
+  background: var(--bg2);
+  border-right: 1px solid rgba(255,255,255,0.06);
+  padding: 20px 18px;
+  z-index: 10;
+  overflow-y: auto;
+  display: flex;
+  flex-direction: column;
+  gap: 18px;
+}
+
+#sidebar::-webkit-scrollbar { width: 4px; }
+#sidebar::-webkit-scrollbar-track { background: transparent; }
+#sidebar::-webkit-scrollbar-thumb { background: rgba(255,255,255,0.1); border-radius: 2px; }
+
+#sidebar h1 {
+  font-size: 17px;
+  font-weight: 700;
+  letter-spacing: -0.02em;
+  line-height: 1.25;
+  color: #fff;
+}
+#sidebar .subtitle {
+  font-size: 11px;
+  color: var(--fg2);
+  margin-top: 5px;
+  line-height: 1.45;
+}
+#sidebar .subtitle a { color: var(--fg2); text-decoration: underline; text-underline-offset: 2px; }
+
+.stat-section {
+  display: flex;
+  flex-direction: column;
+  gap: 5px;
+}
+.stat-section h3 {
+  font-size: 10px;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+  color: var(--fg2);
+}
+.stat-big {
+  font-size: 28px;
+  font-weight: 700;
+  letter-spacing: -0.03em;
+  line-height: 1;
+}
+.stat-label {
+  font-size: 11px;
+  color: var(--fg2);
+}
+
+.tier-bar {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+}
+.tier-row {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  font-size: 11px;
+}
+.tier-color {
+  width: 10px;
+  height: 10px;
+  border-radius: 2px;
+  flex-shrink: 0;
+}
+.tier-name {
+  flex: 1;
+  color: var(--fg2);
+}
+.tier-count {
+  text-align: right;
+  white-space: nowrap;
+}
+.tier-pct {
+  text-align: right;
+  width: 32px;
+  color: var(--fg2);
+  font-size: 10px;
+}
+
+.histogram {
+  display: flex;
+  align-items: flex-end;
+  gap: 2px;
+  height: 44px;
+}
+.histogram .bar {
+  flex: 1;
+  border-radius: 1px 1px 0 0;
+  min-height: 1px;
+  position: relative;
+}
+.hist-labels {
+  display: flex;
+  justify-content: space-between;
+  font-size: 9px;
+  color: var(--fg2);
+  margin-top: 2px;
+}
+
+.hbar-chart {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+}
+.hbar-row {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  font-size: 11px;
+}
+.hbar-label {
+  width: 78px;
+  flex-shrink: 0;
+  color: var(--fg2);
+  font-size: 10px;
+  text-align: right;
+}
+.hbar-track {
+  flex: 1;
+  height: 10px;
+  background: rgba(255,255,255,0.04);
+  border-radius: 2px;
+  overflow: hidden;
+}
+.hbar-fill {
+  height: 100%;
+  border-radius: 2px;
+}
+.hbar-val {
+  width: 24px;
+  flex-shrink: 0;
+  font-size: 10px;
+  color: var(--fg);
+  text-align: right;
+}
+
+.view-toggle {
+  display: flex;
+  gap: 4px;
+}
+.view-toggle button {
+  flex: 1;
+  padding: 6px 0;
+  font-size: 10px;
+  font-weight: 500;
+  border: 1px solid rgba(255,255,255,0.1);
+  border-radius: 4px;
+  background: transparent;
+  color: var(--fg2);
+  cursor: pointer;
+  transition: all 0.15s;
+}
+.view-toggle button.active {
+  background: rgba(255,255,255,0.08);
+  color: var(--fg);
+  border-color: rgba(255,255,255,0.2);
+}
+.view-toggle button:hover:not(.active) {
+  background: rgba(255,255,255,0.04);
+}
+
+.demand-table {
+  display: flex;
+  flex-direction: column;
+  gap: 3px;
+}
+.demand-row {
+  display: flex;
+  align-items: center;
+  font-size: 11px;
+  gap: 6px;
+}
+.demand-mat {
+  width: 22px;
+  font-weight: 600;
+  flex-shrink: 0;
+  color: var(--fg);
+}
+.demand-qty {
+  flex: 1;
+  color: var(--fg);
+}
+.demand-pct {
+  text-align: right;
+  font-size: 10px;
+  font-weight: 600;
+}
+
+.gradient-legend {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  font-size: 10px;
+  color: var(--fg2);
+}
+.gradient-legend canvas {
+  border-radius: 2px;
+}
+
+canvas#canvas {
+  display: block;
+  position: fixed;
+  top: 0;
+  left: var(--sidebar-w);
+  cursor: default;
+}
+
+#tooltip {
+  position: fixed;
+  pointer-events: none;
+  background: var(--bg2);
+  border: 1px solid rgba(255,255,255,0.12);
+  border-radius: 8px;
+  padding: 14px 16px;
+  font-size: 13px;
+  line-height: 1.5;
+  max-width: 380px;
+  opacity: 0;
+  transition: opacity 0.12s;
+  z-index: 20;
+  box-shadow: 0 8px 32px rgba(0,0,0,0.6);
+}
+#tooltip.visible { opacity: 1; }
+#tooltip .tt-title {
+  font-weight: 600;
+  font-size: 14px;
+  margin-bottom: 4px;
+  color: #fff;
+}
+#tooltip .tt-category {
+  font-size: 11px;
+  color: var(--fg2);
+  margin-bottom: 8px;
+}
+#tooltip .tt-dependency {
+  font-size: 12px;
+  margin-bottom: 8px;
+}
+#tooltip .tt-stats {
+  display: grid;
+  grid-template-columns: auto auto;
+  gap: 2px 14px;
+  font-size: 12px;
+}
+#tooltip .tt-stats .label { color: var(--fg2); }
+#tooltip .tt-stats .value { color: var(--fg); text-align: right; }
+#tooltip .tt-detail {
+  font-size: 11px;
+  color: var(--fg2);
+  margin-top: 8px;
+  line-height: 1.45;
+  border-top: 1px solid rgba(255,255,255,0.06);
+  padding-top: 8px;
+}
+#tooltip .tt-fix {
+  font-size: 11px;
+  margin-top: 8px;
+  line-height: 1.4;
+  padding: 6px 8px;
+  background: rgba(45, 154, 78, 0.1);
+  border: 1px solid rgba(45, 154, 78, 0.2);
+  border-radius: 4px;
+  color: #6fcf8a;
+}
+#tooltip .tt-fix-label {
+  font-size: 9px;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.06em;
+  color: #4aa864;
+  margin-bottom: 2px;
+}
+</style>
+</head>
+<body>
+
+<div id="sidebar">
+  <div>
+    <h1>The Robotics Supply Chain Kill Switch</h1>
+    <div class="subtitle">
+      How China controls America's humanoid future<br>
+      <span id="nodeCount">31</span> critical nodes &middot; color = China dependency<br>
+      <a href="https://github.com/yurekami" target="_blank">Source analysis</a> &middot; Morgan Stanley baseline
+    </div>
+  </div>
+
+  <div class="view-toggle">
+    <button class="active" onclick="setView('treemap')">Dependency Map</button>
+    <button onclick="setView('columns')">Readiness View</button>
+  </div>
+
+  <div class="stat-section">
+    <h3>Supply chain nodes</h3>
+    <div class="stat-big" id="statTotal">—</div>
+    <div class="stat-label">materials, components & processes</div>
+  </div>
+
+  <div class="stat-section">
+    <h3>Weighted avg. China dependency</h3>
+    <div class="stat-big" id="statAvg">—</div>
+    <div class="stat-label">strategic-weight adjusted, 0–10 scale</div>
+  </div>
+
+  <div class="stat-section">
+    <h3>Nodes by dependency level</h3>
+    <div class="histogram" id="histogram"></div>
+    <div class="hist-labels"><span>0</span><span>5</span><span>10</span></div>
+  </div>
+
+  <div class="stat-section">
+    <h3>Breakdown</h3>
+    <div class="tier-bar" id="tierBar"></div>
+  </div>
+
+  <div class="stat-section">
+    <h3>Dependency by category</h3>
+    <div class="hbar-chart" id="catChart"></div>
+  </div>
+
+  <div class="stat-section">
+    <h3>2050 Demand shock (1B humanoids)</h3>
+    <div class="demand-table" id="demandTable"></div>
+  </div>
+
+  <div class="stat-section">
+    <h3>Critical gaps</h3>
+    <div class="stat-big" id="statGaps">—</div>
+    <div class="stat-label" id="statGapsDesc">nodes with no domestic solution</div>
+  </div>
+
+  <div class="gradient-legend" id="legendContainer">
+    <span>Secure</span>
+    <canvas id="gradientLegend" width="80" height="8"></canvas>
+    <span>Critical</span>
+  </div>
+</div>
+
+<canvas id="canvas"></canvas>
+
+<div id="tooltip">
+  <div class="tt-title"></div>
+  <div class="tt-category"></div>
+  <div class="tt-dependency"></div>
+  <div class="tt-stats"></div>
+  <div class="tt-detail"></div>
+  <div class="tt-fix"></div>
+</div>
+
+<script>
+
+// ═══════════════════════════════════════════════════════════════════════
+// DATA — 31 critical supply chain nodes
+// ═══════════════════════════════════════════════════════════════════════
+
+const data = [
+  // ── Rare Earth Processing ────────────────────────────────────────────
+  { title: "Rare Earth Mining", category: "Rare Earth Processing", dependency: 7.0, weight: 800, readiness: 4, desc: "~70% of global rare earth mining controlled by China", detail: "Mining of raw ores containing Nd, Dy, Pr and other critical elements for the permanent magnets used in every robotic motor and actuator.", fix: "MP Materials ($MP) — Mountain Pass, CA; Energy Fuels ($UUUU) — monazite processing" },
+  { title: "RE Refining & Separation", category: "Rare Earth Processing", dependency: 8.7, weight: 900, readiness: 3, desc: "85–90% of global refining capacity in China", detail: "Chemical separation of mixed rare earth concentrates into individual oxide products. Even ore mined in the US or Australia is sent to China for processing — this is the deepest chokehold.", fix: "MP Materials (vertical integration); Lynas ($LYSDY) — Malaysia plant + US facility under construction" },
+  { title: "NdFeB Magnet Production", category: "Rare Earth Processing", dependency: 9.2, weight: 950, readiness: 2, desc: "90%+ of finished permanent magnets made in China", detail: "Sintered NdFeB magnets are the strongest permanent magnets known — critical for all robotic motors. Each humanoid requires dozens of precision magnets. Nearly zero Western manufacturing capacity.", fix: "Neo Performance ($NEO) — only Western NdFeB powder producer at scale; MP Materials magnet plant under construction" },
+  { title: "Heavy RE Processing", category: "Rare Earth Processing", dependency: 9.5, weight: 600, readiness: 2, desc: "Near-monopoly on Dy/Tb refining", detail: "Dysprosium and terbium processing for high-temperature magnet stability. Without these elements, motor magnets degrade under continuous thermal load. China controls ~95% of heavy RE separation.", fix: "USA Rare Earth ($USAR); American Resources ($ALOY) — defense-grade; Lynas ($LYSDY)" },
+
+  // ── Precision Components ─────────────────────────────────────────────
+  { title: "Harmonic Reducers (CN)", category: "Precision Components", dependency: 10.0, weight: 700, readiness: 1, desc: "Leaderdrive (China) — harmonic drive manufacturer", detail: "Precision strain wave gears enabling smooth robotic joint motion with zero backlash. Critical for humanoid dexterity. Leaderdrive is a primary supplier to Chinese humanoid programs. No US manufacturer.", fix: "No domestic producer. Harmonic Drive (Japan) is the allied-nation alternative." },
+  { title: "Harmonic Reducers (JP)", category: "Precision Components", dependency: 2.0, weight: 800, readiness: 7, desc: "Harmonic Drive Systems (Japan) — premium market leader", detail: "Japanese precision manufacturer producing the world's highest-quality harmonic drives. US ally, but supply chain still originates in East Asia. Sole-source risk at billion-unit scale.", fix: "Allied nation supply. Domestic licensing or JV needed for scale." },
+  { title: "RV Reducers (JP)", category: "Precision Components", dependency: 2.5, weight: 700, readiness: 6, desc: "Nabtesco (Japan) — RV reducer market leader", detail: "Cycloidal reducers for high-torque robotic applications at hip, knee, and shoulder joints. Japan-based, but even allied supply chains face bottlenecks at 1B-unit scale.", fix: "Allied nation. Domestic capacity development needed for scale." },
+  { title: "RV Reducers / Gears (CN)", category: "Precision Components", dependency: 10.0, weight: 500, readiness: 1, desc: "Shuanghuan Driveline (China) — growing competitor", detail: "Chinese manufacturer rapidly gaining market share with aggressive pricing on cycloidal drives and precision gears. Price advantage accelerating global adoption over Japanese incumbents.", fix: "No domestic equivalent. Critical gap in US industrial capability." },
+  { title: "Linear Actuator Assemblies", category: "Precision Components", dependency: 9.0, weight: 600, readiness: 1, desc: "Sanhua Intelligent (China) — integrated actuator systems", detail: "Complete linear actuator systems integrating motor, gearbox, encoder, and controller for humanoid limb motion. Sanhua supplies multiple leading robotics companies.", fix: "No major US producer at scale. One of the most critical gaps in domestic supply chain." },
+  { title: "Servo Systems / Ball Screws", category: "Precision Components", dependency: 9.0, weight: 650, readiness: 2, desc: "Shenzhen Inovance (China) — servo drives & screws", detail: "Integrated servo motor systems with precision ball screws for robotic positioning and force control. Inovance is China's largest industrial automation company.", fix: "ABB, Siemens (EU allies) are alternatives. No US producer at comparable scale and cost." },
+
+  // ── Magnet Materials ─────────────────────────────────────────────────
+  { title: "Neodymium (Nd)", category: "Magnet Materials", dependency: 7.5, weight: 850, readiness: 4, desc: "Core NdFeB magnet ingredient", detail: "Primary rare earth for permanent magnets. 1 billion humanoids would require ~400,000 tons — consuming 15% of all known global neodymium reserves. This is a structural resource crisis, not a theoretical one.", fix: "$MP, $UUUU, $USAR — domestic mining & processing", demand_2050: "400,000 tons", reserves_pct: 15 },
+  { title: "Praseodymium (Pr)", category: "Magnet Materials", dependency: 7.5, weight: 500, readiness: 4, desc: "Essential for NdPr oxide magnets", detail: "Co-occurs with neodymium in bastnasite and monazite ores. Used in NdPr didymium alloys that form the basis of most commercial permanent magnets.", fix: "$MP — Mountain Pass produces NdPr oxide concentrate" },
+  { title: "Dysprosium (Dy)", category: "Magnet Materials", dependency: 9.0, weight: 700, readiness: 2, desc: "Magnet stabilizer — 25% of global reserves by 2050", detail: "Without dysprosium, NdFeB magnets lose coercivity at operating temperatures, causing motor failure. 80,000 tons needed — 25% of all known reserves. Concentrated in Chinese ionic clay deposits.", fix: "$USAR, $ALOY, $LYSDY — heavy rare earth specialists", demand_2050: "80,000 tons", reserves_pct: 25 },
+  { title: "Terbium (Tb)", category: "Magnet Materials", dependency: 9.0, weight: 400, readiness: 2, desc: "High-temp alloying — 30% of reserves by 2050", detail: "Enhances magnetic coercivity at extreme temperatures. 16,000 tons needed — 30% of known reserves. The single most supply-constrained material in the entire humanoid bill of materials.", fix: "$ALOY (defense-grade alloys), $LYSDY", demand_2050: "16,000 tons", reserves_pct: 30 },
+  { title: "Samarium (Sm)", category: "Magnet Materials", dependency: 7.0, weight: 350, readiness: 3, desc: "Alternative SmCo magnet system", detail: "Samarium-cobalt magnets offer superior temperature stability and corrosion resistance. Viable backup magnet technology if NdFeB supply is disrupted.", fix: "Byproduct of domestic Nd/Pr processing" },
+  { title: "Cobalt (Co)", category: "Magnet Materials", dependency: 6.0, weight: 400, readiness: 5, desc: "SmCo magnets and battery cathodes", detail: "Used in alternative SmCo magnet systems and lithium battery cathodes. DRC dominates mining (70%+), with Chinese companies controlling most DRC operations.", fix: "Diversified global supply; recycling programs emerging; cobalt-free battery chemistries" },
+  { title: "Boron (B)", category: "Magnet Materials", dependency: 3.0, weight: 200, readiness: 7, desc: "NdFeB crystal matrix stabilizer", detail: "Essential structural component of the Nd₂Fe₁₄B crystal lattice. Turkey is the world's largest producer (73% of reserves). Lower geopolitical risk than rare earths.", fix: "Turkey and US sources available. Lowest-risk magnet input." },
+
+  // ── Structural Metals ────────────────────────────────────────────────
+  { title: "Titanium (Ti)", category: "Structural Metals", dependency: 4.0, weight: 600, readiness: 7, desc: "Frames, joints, structural alloys", detail: "High strength-to-weight ratio makes titanium essential for robotic skeleton and precision joint components. US has strong domestic production capability through defense-industrial base.", fix: "ATI Inc ($ATI), Carpenter Technology ($CRS) — domestic specialty alloy producers" },
+  { title: "Vanadium (V)", category: "Structural Metals", dependency: 5.5, weight: 350, readiness: 5, desc: "High-strength steel micro-alloying", detail: "Strengthens steel for threaded shafts, structural members, and high-stress components. China, Russia, and South Africa are major producers.", fix: "Largo Inc ($LGO) — vanadium processing" },
+  { title: "Molybdenum (Mo)", category: "Structural Metals", dependency: 3.5, weight: 400, readiness: 8, desc: "High-temperature alloy applications", detail: "Essential for alloys that maintain strength at elevated temperatures in actuator housings and motor casings. US is a top-3 global producer.", fix: "Freeport-McMoRan ($FCX) — world's largest molybdenum producer" },
+  { title: "Niobium (Nb)", category: "Structural Metals", dependency: 5.0, weight: 350, readiness: 4, desc: "Micro-alloying for toughness", detail: "Grain refinement and precipitation strengthening in specialty steels for robotic frames. Brazil dominates supply (85%+). US deposit under development.", fix: "NioCorp ($NB) — Elk Creek, Nebraska deposit" },
+  { title: "Chromium (Cr)", category: "Structural Metals", dependency: 4.0, weight: 350, readiness: 5, desc: "Corrosion resistance", detail: "Stainless steel and superalloy component for robots operating in outdoor, industrial, or harsh environments. South Africa is the primary source.", fix: "Diversified global supply (South Africa, Turkey, India)" },
+  { title: "Nickel (Ni)", category: "Structural Metals", dependency: 3.5, weight: 400, readiness: 6, desc: "Structural weight optimization", detail: "Nickel superalloys and stainless steels for robotic structural weight reduction. Well-diversified global supply chain.", fix: "Global supply diversified (Indonesia, Philippines, Russia, Canada)" },
+  { title: "Manganese (Mn)", category: "Structural Metals", dependency: 4.0, weight: 300, readiness: 5, desc: "Impact resistance in joints and gears", detail: "Essential steel-making additive for impact and wear resistance in high-cycle robotic joints. South Africa and Australia are primary sources.", fix: "South Africa, Australia sources — moderate supply risk" },
+  { title: "Cerium (Ce)", category: "Structural Metals", dependency: 6.5, weight: 250, readiness: 4, desc: "Prevents premature gear failure", detail: "Rare earth used in metallurgical inoculation to prevent harmful carbide formation in precision gear steels. A few grams per gear set prevent catastrophic tooth failure.", fix: "Byproduct of domestic NdPr processing at MP Materials / Energy Fuels" },
+  { title: "Lanthanum (La)", category: "Structural Metals", dependency: 6.5, weight: 250, readiness: 4, desc: "Precision gear metallurgy", detail: "Used alongside cerium for grain refinement and inclusion control in high-precision gear steels. Both Ce and La are light rare earths available as byproducts.", fix: "Byproduct of domestic NdPr processing" },
+
+  // ── Electronics & Power ──────────────────────────────────────────────
+  { title: "Gallium (Ga)", category: "Electronics & Power", dependency: 8.5, weight: 500, readiness: 2, desc: "GaN/GaAs — China controls 98% of primary production", detail: "Critical for power electronics (GaN transistors) and RF communications (GaAs) in robotic perception and control systems. Beijing has already imposed export restrictions on gallium.", fix: "$BMM, $VNP — domestic; AW1 (ASX) — gallium & indium from Utah deposit" },
+  { title: "Germanium (Ge)", category: "Electronics & Power", dependency: 8.5, weight: 450, readiness: 3, desc: "LiDAR, fiber optics, IR sensors", detail: "Essential for robotic perception systems — LiDAR rangefinders, infrared cameras, and high-speed fiber optic data links between subsystems. China has already restricted germanium exports.", fix: "Teck Resources ($TECK) — largest non-China producer; $BMM, $VNP" },
+  { title: "Lithium (Li)", category: "Electronics & Power", dependency: 5.0, weight: 700, readiness: 5, desc: "~2 kg per humanoid for battery systems", detail: "Lithium-ion batteries for mobile power. Australia and Chile lead mining, but China dominates midstream refining (60%+ of global lithium hydroxide/carbonate processing).", fix: "Albemarle ($ALB) — domestic lithium extraction; refining capacity being built" },
+  { title: "Battery-Grade Graphite", category: "Electronics & Power", dependency: 7.5, weight: 550, readiness: 3, desc: "~3 kg per humanoid for battery anodes", detail: "High-purity spherical graphite for lithium-ion battery anodes. China processes 65%+ of global supply even when the graphite ore is mined elsewhere.", fix: "GrafTech ($EAF), Syrah Resources ($SYR) — anode material facility in Vidalia, Louisiana" },
+  { title: "Copper (Cu)", category: "Electronics & Power", dependency: 2.5, weight: 650, readiness: 8, desc: "~6.5 kg per humanoid — wiring, motors, circuits", detail: "Electrical wiring, motor windings, PCBs. Well-diversified global supply. Chile, Peru, US, and Australia are major producers. Lowest geopolitical risk of any material in the humanoid BOM.", fix: "Freeport-McMoRan ($FCX) — major domestic copper producer" }
+];
+
+// ═══════════════════════════════════════════════════════════════════════
+// COLOR SCALES
+// ═══════════════════════════════════════════════════════════════════════
+
+function dependencyColor(score) {
+  if (score == null) return [128, 128, 128];
+  const t = Math.max(0, Math.min(10, score)) / 10;
+  let r, g, b;
+  if (t < 0.5) {
+    const s = t / 0.5;
+    r = Math.round(45 + s * 170);
+    g = Math.round(165 - s * 10);
+    b = Math.round(55 - s * 25);
+  } else {
+    const s = (t - 0.5) / 0.5;
+    r = Math.round(215 + s * 30);
+    g = Math.round(155 - s * 115);
+    b = Math.round(30 - s * 10);
+  }
+  return [r, g, b];
+}
+
+function dependencyColorCSS(score, alpha) {
+  const [r, g, b] = dependencyColor(score);
+  return `rgba(${r},${g},${b},${alpha})`;
+}
+
+function readinessColorCSS(score, alpha) {
+  if (score == null) return `rgba(128,128,128,${alpha})`;
+  // Invert: high readiness = green (safe), low readiness = red (danger)
+  const inverted = 10 - score;
+  const [r, g, b] = dependencyColor(inverted);
+  return `rgba(${r},${g},${b},${alpha})`;
+}
+
+// ═══════════════════════════════════════════════════════════════════════
+// SQUARIFIED TREEMAP LAYOUT
+// ═══════════════════════════════════════════════════════════════════════
+
+function squarify(items, x, y, w, h) {
+  if (items.length === 0) return [];
+  if (items.length === 1) {
+    return [{ ...items[0], rx: x, ry: y, rw: w, rh: h }];
+  }
+  const total = items.reduce((s, d) => s + d.value, 0);
+  if (total === 0) return [];
+  const results = [];
+  let remaining = [...items];
+  let cx = x, cy = y, cw = w, ch = h;
+  while (remaining.length > 0) {
+    const remTotal = remaining.reduce((s, d) => s + d.value, 0);
+    const vertical = cw >= ch;
+    const side = vertical ? ch : cw;
+    let row = [remaining[0]];
+    let rowSum = remaining[0].value;
+    for (let i = 1; i < remaining.length; i++) {
+      const candidate = [...row, remaining[i]];
+      const candidateSum = rowSum + remaining[i].value;
+      if (worstAspect(candidate, candidateSum, side, remTotal, vertical ? cw : ch) <
+          worstAspect(row, rowSum, side, remTotal, vertical ? cw : ch)) {
+        row = candidate;
+        rowSum = candidateSum;
+      } else break;
+    }
+    const rowFraction = rowSum / remTotal;
+    const rowThickness = vertical ? cw * rowFraction : ch * rowFraction;
+    let offset = 0;
+    for (const item of row) {
+      const itemFraction = item.value / rowSum;
+      const itemLength = side * itemFraction;
+      if (vertical) {
+        results.push({ ...item, rx: cx, ry: cy + offset, rw: rowThickness, rh: itemLength });
+      } else {
+        results.push({ ...item, rx: cx + offset, ry: cy, rw: itemLength, rh: rowThickness });
+      }
+      offset += itemLength;
+    }
+    if (vertical) { cx += rowThickness; cw -= rowThickness; }
+    else { cy += rowThickness; ch -= rowThickness; }
+    remaining = remaining.slice(row.length);
+  }
+  return results;
+}
+
+function worstAspect(row, rowSum, side, totalArea, availableExtent) {
+  const rowExtent = availableExtent * (rowSum / totalArea);
+  if (rowExtent === 0) return Infinity;
+  let worst = 0;
+  for (const item of row) {
+    const itemLen = side * (item.value / rowSum);
+    if (itemLen === 0) continue;
+    const aspect = Math.max(rowExtent / itemLen, itemLen / rowExtent);
+    if (aspect > worst) worst = aspect;
+  }
+  return worst;
+}
+
+// ═══════════════════════════════════════════════════════════════════════
+// RENDERING
+// ═══════════════════════════════════════════════════════════════════════
+
+let rects = [];
+let colRects = [];
+let hovered = null;
+let currentView = "treemap";
+
+const canvas = document.getElementById("canvas");
+const ctx = canvas.getContext("2d");
+let dpr = window.devicePixelRatio || 1;
+const MARGIN = 12;
+const GAP = 1.5;
+
+function setView(view) {
+  currentView = view;
+  document.querySelectorAll(".view-toggle button").forEach(b => b.classList.remove("active"));
+  document.querySelector(`.view-toggle button[onclick="setView('${view}')"]`).classList.add("active");
+  // Update legend labels
+  const legendContainer = document.getElementById("legendContainer");
+  if (view === "columns") {
+    legendContainer.querySelector("span:first-child").textContent = "No solution";
+    legendContainer.querySelector("span:last-child").textContent = "Ready";
+  } else {
+    legendContainer.querySelector("span:first-child").textContent = "Secure";
+    legendContainer.querySelector("span:last-child").textContent = "Critical";
+  }
+  hovered = null;
+  hideTooltip();
+  resize();
+}
+
+function layout() {
+  const sidebarW = parseInt(getComputedStyle(document.documentElement).getPropertyValue('--sidebar-w'));
+  const w = window.innerWidth - sidebarW;
+  const h = window.innerHeight;
+  canvas.width = w * dpr;
+  canvas.height = h * dpr;
+  canvas.style.width = w + "px";
+  canvas.style.height = h + "px";
+  const tx = MARGIN, ty = MARGIN;
+  const tw = w - MARGIN * 2, th = h - MARGIN * 2;
+
+  const byCategory = {};
+  for (const d of data) {
+    if (!byCategory[d.category]) byCategory[d.category] = [];
+    byCategory[d.category].push(d);
+  }
+  const categories = Object.keys(byCategory).map(cat => ({
+    cat,
+    items: byCategory[cat].sort((a, b) => b.weight - a.weight),
+    value: byCategory[cat].reduce((s, d) => s + d.weight, 0),
+  })).sort((a, b) => b.value - a.value);
+
+  const catRects = squarify(categories, tx, ty, tw, th);
+  rects = [];
+  for (const cr of catRects) {
+    const innerGap = GAP;
+    const items = cr.items.map(d => ({ ...d, value: d.weight }));
+    const innerRects = squarify(items,
+      cr.rx + innerGap, cr.ry + innerGap,
+      cr.rw - innerGap * 2, cr.rh - innerGap * 2
+    );
+    for (const ir of innerRects) rects.push(ir);
+  }
+}
+
+function draw() {
+  const w = canvas.width, h = canvas.height;
+  ctx.setTransform(dpr, 0, 0, dpr, 0, 0);
+  ctx.fillStyle = "#0a0a0f";
+  ctx.fillRect(0, 0, w / dpr, h / dpr);
+
+  for (const r of rects) {
+    const isHovered = r === hovered;
+    const g = GAP / 2;
+    const rx = r.rx + g, ry = r.ry + g;
+    const rw = r.rw - g * 2, rh = r.rh - g * 2;
+    if (rw <= 0 || rh <= 0) continue;
+
+    const fillAlpha = isHovered ? 0.85 : 0.55;
+    ctx.fillStyle = dependencyColorCSS(r.dependency, fillAlpha);
+    ctx.fillRect(rx, ry, rw, rh);
+
+    if (isHovered) {
+      ctx.strokeStyle = "#fff";
+      ctx.lineWidth = 2;
+      ctx.strokeRect(rx, ry, rw, rh);
+    }
+
+    if (rw > 48 && rh > 18) {
+      ctx.save();
+      ctx.beginPath();
+      ctx.rect(rx + 4, ry + 2, rw - 8, rh - 4);
+      ctx.clip();
+      const fontSize = Math.min(13, Math.max(9, Math.min(rw / 10, rh / 3)));
+      ctx.font = `500 ${fontSize}px -apple-system, system-ui, sans-serif`;
+      ctx.fillStyle = isHovered ? "#fff" : "rgba(255,255,255,0.88)";
+      ctx.textBaseline = "top";
+      ctx.fillText(r.title, rx + 5, ry + 4);
+
+      if (rh > 34 && rw > 56) {
+        const info = r.dependency + "/10 dep" +
+          (r.readiness != null ? " · " + r.readiness + "/10 ready" : "");
+        ctx.font = `400 ${Math.max(8, fontSize - 2)}px -apple-system, system-ui, sans-serif`;
+        ctx.fillStyle = "rgba(255,255,255,0.50)";
+        ctx.fillText(info, rx + 5, ry + 4 + fontSize + 2);
+      }
+      ctx.restore();
+    }
+  }
+}
+
+// ═══════════════════════════════════════════════════════════════════════
+// COLUMN VIEW (Readiness)
+// ═══════════════════════════════════════════════════════════════════════
+
+function layoutColumns() {
+  const sidebarW = parseInt(getComputedStyle(document.documentElement).getPropertyValue('--sidebar-w'));
+  const w = window.innerWidth - sidebarW;
+  const h = window.innerHeight;
+  canvas.width = w * dpr;
+  canvas.height = h * dpr;
+  canvas.style.width = w + "px";
+  canvas.style.height = h + "px";
+
+  const pad = { top: 24, bottom: 28, left: 6, right: 6 };
+  const plotW = w - pad.left - pad.right;
+  const plotH = h - pad.top - pad.bottom;
+  const colGap = 3;
+
+  // Group by integer dependency score
+  const byDep = {};
+  let totalWeight = 0;
+  for (const d of data) {
+    const key = Math.round(d.dependency);
+    if (!byDep[key]) byDep[key] = [];
+    byDep[key].push(d);
+    totalWeight += d.weight;
+  }
+
+  const scores = Object.keys(byDep).map(Number).sort((a, b) => a - b);
+  const numCols = scores.length;
+  const colWeights = scores.map(s => byDep[s].reduce((sum, d) => sum + d.weight, 0));
+  const totalGap = colGap * (numCols - 1);
+  const availW = plotW - totalGap;
+
+  colRects = [];
+  let cx = pad.left;
+
+  for (let i = 0; i < scores.length; i++) {
+    const score = scores[i];
+    const items = byDep[score];
+    const colWeight = colWeights[i];
+    const colW = (colWeight / totalWeight) * availW;
+
+    // Sort by readiness descending (most ready at top)
+    items.sort((a, b) => b.readiness - a.readiness);
+
+    let cy = pad.top;
+    for (const d of items) {
+      const itemH = colWeight > 0 ? (d.weight / colWeight) * plotH : 0;
+      if (itemH < 0.5) { cy += itemH; continue; }
+      colRects.push({ ...d, rx: cx, ry: cy, rw: colW, rh: itemH });
+      cy += itemH;
+    }
+    cx += colW + colGap;
+  }
+
+  colRects._meta = { scores, pad, colWeights, totalWeight, availW, plotH, colGap };
+}
+
+function drawColumns() {
+  const w = canvas.width, h = canvas.height;
+  ctx.setTransform(dpr, 0, 0, dpr, 0, 0);
+  ctx.fillStyle = "#0a0a0f";
+  ctx.fillRect(0, 0, w / dpr, h / dpr);
+
+  const meta = colRects._meta;
+  if (!meta) return;
+
+  // Column headers (dependency scores)
+  ctx.font = "600 11px -apple-system, system-ui, sans-serif";
+  ctx.textAlign = "center";
+  ctx.textBaseline = "bottom";
+  let hx = meta.pad.left;
+  for (let i = 0; i < meta.scores.length; i++) {
+    const colW = (meta.colWeights[i] / meta.totalWeight) * meta.availW;
+    if (colW > 18) {
+      ctx.fillStyle = dependencyColorCSS(meta.scores[i], 0.8);
+      ctx.fillText(meta.scores[i], hx + colW / 2, meta.pad.top - 6);
+    }
+    hx += colW + meta.colGap;
+  }
+
+  // Axis label
+  ctx.fillStyle = "rgba(255,255,255,0.35)";
+  ctx.font = "11px -apple-system, system-ui, sans-serif";
+  ctx.textAlign = "center";
+  ctx.textBaseline = "top";
+  ctx.fillText("← Secure                    China Dependency                    Critical →", meta.pad.left + meta.availW / 2, meta.pad.top + meta.plotH + 8);
+
+  // Rectangles
+  const gap = 0.6;
+  for (const r of colRects) {
+    const isHovered = r === hovered;
+    const rx = r.rx + gap, ry = r.ry + gap;
+    const rw = r.rw - gap * 2, rh = r.rh - gap * 2;
+    if (rw <= 0 || rh <= 0) continue;
+
+    const fillAlpha = isHovered ? 0.85 : 0.55;
+    ctx.fillStyle = readinessColorCSS(r.readiness, fillAlpha);
+    ctx.fillRect(rx, ry, rw, rh);
+
+    if (isHovered) {
+      ctx.strokeStyle = "#fff";
+      ctx.lineWidth = 2;
+      ctx.strokeRect(rx, ry, rw, rh);
+    }
+
+    if (rw > 38 && rh > 15) {
+      ctx.save();
+      ctx.beginPath();
+      ctx.rect(rx + 3, ry + 1, rw - 6, rh - 2);
+      ctx.clip();
+      const fontSize = Math.min(12, Math.max(8, Math.min(rw / 12, rh / 2.5)));
+      ctx.font = `500 ${fontSize}px -apple-system, system-ui, sans-serif`;
+      ctx.fillStyle = isHovered ? "#fff" : "rgba(255,255,255,0.85)";
+      ctx.textBaseline = "top";
+      ctx.textAlign = "left";
+      ctx.fillText(r.title, rx + 4, ry + 2);
+
+      if (rh > 28 && rw > 48) {
+        const info = "Readiness: " + r.readiness + "/10";
+        ctx.font = `400 ${Math.max(7, fontSize - 2)}px -apple-system, system-ui, sans-serif`;
+        ctx.fillStyle = "rgba(255,255,255,0.50)";
+        ctx.fillText(info, rx + 4, ry + 2 + fontSize + 1);
+      }
+      ctx.restore();
+    }
+  }
+}
+
+// ═══════════════════════════════════════════════════════════════════════
+// INTERACTION
+// ═══════════════════════════════════════════════════════════════════════
+
+function hitTest(mx, my) {
+  const sidebarW = parseInt(getComputedStyle(document.documentElement).getPropertyValue('--sidebar-w'));
+  const cx = mx - sidebarW, cy = my;
+  const arr = currentView === "treemap" ? rects : colRects;
+  for (let i = arr.length - 1; i >= 0; i--) {
+    const r = arr[i];
+    if (cx >= r.rx && cx < r.rx + r.rw && cy >= r.ry && cy < r.ry + r.rh) return r;
+  }
+  return null;
+}
+
+function showTooltip(d, mx, my) {
+  const tt = document.getElementById("tooltip");
+
+  tt.querySelector(".tt-title").textContent = d.title;
+  tt.querySelector(".tt-category").textContent = d.category;
+
+  // Dependency bar
+  const score = d.dependency;
+  const barWidth = score * 10;
+  const color = dependencyColorCSS(score, 1);
+  tt.querySelector(".tt-dependency").innerHTML =
+    `<span style="color:${color};font-weight:600;">China Dependency: ${score}/10</span>` +
+    `<div style="margin-top:3px;height:4px;background:rgba(255,255,255,0.08);border-radius:2px;">` +
+    `<div style="height:100%;width:${barWidth}%;background:${color};border-radius:2px;"></div></div>`;
+
+  // Stats grid
+  let statsHTML = `
+    <span class="label">US Readiness</span><span class="value">${d.readiness}/10</span>
+    <span class="label">Strategic Weight</span><span class="value">${d.weight}</span>`;
+  if (d.demand_2050) {
+    statsHTML += `<span class="label">2050 Demand</span><span class="value">${d.demand_2050}</span>`;
+  }
+  if (d.reserves_pct) {
+    statsHTML += `<span class="label">Reserves Stress</span><span class="value" style="color:${d.reserves_pct >= 25 ? '#e74c3c' : '#e67e22'}">${d.reserves_pct}% of known</span>`;
+  }
+  tt.querySelector(".tt-stats").innerHTML = statsHTML;
+
+  // Detail
+  tt.querySelector(".tt-detail").textContent = d.detail;
+
+  // Fix
+  tt.querySelector(".tt-fix").innerHTML =
+    `<div class="tt-fix-label">US / Western Alternative</div>` + d.fix;
+
+  // Position
+  const pad = 16;
+  let tx = mx + pad, ty = my - pad;
+  if (tx + 380 > window.innerWidth) tx = mx - 380 - pad;
+  if (ty < 10) ty = my + pad;
+  if (ty + 260 > window.innerHeight) ty = my - 260;
+  tt.style.left = tx + "px";
+  tt.style.top = ty + "px";
+  tt.classList.add("visible");
+}
+
+function hideTooltip() {
+  document.getElementById("tooltip").classList.remove("visible");
+}
+
+// ═══════════════════════════════════════════════════════════════════════
+// SIDEBAR STATISTICS
+// ═══════════════════════════════════════════════════════════════════════
+
+function computeStats() {
+  const totalNodes = data.length;
+
+  // Weight-adjusted average dependency
+  let wSum = 0, wCount = 0;
+  for (const d of data) {
+    wSum += d.dependency * d.weight;
+    wCount += d.weight;
+  }
+  const wAvg = wCount > 0 ? wSum / wCount : 0;
+
+  // Histogram: count of nodes per integer dependency score
+  const histogram = new Array(11).fill(0);
+  for (const d of data) {
+    const bin = Math.round(d.dependency);
+    histogram[Math.min(10, bin)] += d.weight;
+  }
+
+  // Tiers
+  const tiers = [
+    { name: "Secure", range: [0, 2], color: dependencyColorCSS(1, 1) },
+    { name: "Low risk", range: [2.1, 4], color: dependencyColorCSS(3, 1) },
+    { name: "Moderate", range: [4.1, 6], color: dependencyColorCSS(5, 1) },
+    { name: "High", range: [6.1, 8], color: dependencyColorCSS(7, 1) },
+    { name: "Critical", range: [8.1, 10], color: dependencyColorCSS(9.5, 1) },
+  ];
+  for (const tier of tiers) {
+    tier.count = 0;
+    for (const d of data) {
+      if (d.dependency >= tier.range[0] && d.dependency <= tier.range[1]) tier.count++;
+    }
+    tier.pct = totalNodes > 0 ? (tier.count / totalNodes * 100) : 0;
+  }
+
+  // Critical gaps: nodes with readiness <= 2
+  let gaps = 0;
+  for (const d of data) {
+    if (d.readiness <= 2) gaps++;
+  }
+
+  // Render
+  document.getElementById("statTotal").textContent = totalNodes;
+  document.getElementById("statAvg").innerHTML =
+    `<span style="color:${dependencyColorCSS(wAvg, 1)}">${wAvg.toFixed(1)}</span>`;
+
+  // Histogram
+  const maxHist = Math.max(...histogram);
+  document.getElementById("histogram").innerHTML = histogram.map((w, i) => {
+    const h = maxHist > 0 ? (w / maxHist * 100) : 0;
+    return `<div class="bar" style="height:${Math.max(3, h)}%;background:${dependencyColorCSS(i, 0.75)}" title="${i}: weight ${w}"></div>`;
+  }).join("");
+
+  // Tier breakdown
+  document.getElementById("tierBar").innerHTML = tiers.map(t =>
+    `<div class="tier-row">
+      <div class="tier-color" style="background:${t.color}"></div>
+      <span class="tier-name">${t.name}</span>
+      <span class="tier-count">${t.count} nodes</span>
+      <span class="tier-pct">${t.pct.toFixed(0)}%</span>
+    </div>`
+  ).join("");
+
+  // Dependency by category
+  const catNames = [...new Set(data.map(d => d.category))];
+  const catChartEl = document.getElementById("catChart");
+  catChartEl.innerHTML = catNames.map(cat => {
+    let wS = 0, wC = 0;
+    for (const d of data) {
+      if (d.category === cat) { wS += d.dependency * d.weight; wC += d.weight; }
+    }
+    const avg = wC > 0 ? wS / wC : 0;
+    const pct = avg / 10 * 100;
+    // Shorten category name for sidebar
+    const shortName = cat.replace("Rare Earth Processing", "RE Processing")
+                         .replace("Precision Components", "Components")
+                         .replace("Magnet Materials", "Magnets")
+                         .replace("Structural Metals", "Structural")
+                         .replace("Electronics & Power", "Elec & Power");
+    return `<div class="hbar-row">
+      <span class="hbar-label">${shortName}</span>
+      <div class="hbar-track"><div class="hbar-fill" style="width:${pct}%;background:${dependencyColorCSS(avg, 0.8)}"></div></div>
+      <span class="hbar-val">${avg.toFixed(1)}</span>
+    </div>`;
+  }).join("");
+
+  // Demand shock table
+  const demandItems = data.filter(d => d.demand_2050);
+  document.getElementById("demandTable").innerHTML = demandItems.map(d => {
+    const pctColor = d.reserves_pct >= 25 ? "#e74c3c" : d.reserves_pct >= 15 ? "#e67e22" : "#f1c40f";
+    return `<div class="demand-row">
+      <span class="demand-mat">${d.title.match(/\((\w+)\)/)?.[1] || d.title.slice(0,2)}</span>
+      <span class="demand-qty">${d.demand_2050}</span>
+      <span class="demand-pct" style="color:${pctColor}">${d.reserves_pct}% reserves</span>
+    </div>`;
+  }).join("");
+
+  // Critical gaps
+  document.getElementById("statGaps").innerHTML =
+    `<span style="color:${dependencyColorCSS(9, 1)}">${gaps}</span>`;
+}
+
+// ═══════════════════════════════════════════════════════════════════════
+// EVENTS
+// ═══════════════════════════════════════════════════════════════════════
+
+canvas.addEventListener("mousemove", (e) => {
+  const hit = hitTest(e.clientX, e.clientY);
+  if (hit !== hovered) {
+    hovered = hit;
+    currentView === "treemap" ? draw() : drawColumns();
+  }
+  if (hovered) {
+    showTooltip(hovered, e.clientX, e.clientY);
+    canvas.style.cursor = "pointer";
+  } else {
+    hideTooltip();
+    canvas.style.cursor = "default";
+  }
+});
+
+canvas.addEventListener("mouseleave", () => {
+  hovered = null;
+  hideTooltip();
+  currentView === "treemap" ? draw() : drawColumns();
+});
+
+function resize() {
+  dpr = window.devicePixelRatio || 1;
+  if (currentView === "treemap") { layout(); draw(); }
+  else { layoutColumns(); drawColumns(); }
+}
+
+function drawGradientLegend() {
+  const c = document.getElementById("gradientLegend");
+  const gctx = c.getContext("2d");
+  for (let x = 0; x < 80; x++) {
+    const score = (x / 79) * 10;
+    gctx.fillStyle = dependencyColorCSS(score, 1);
+    gctx.fillRect(x, 0, 1, 8);
+  }
+}
+
+// ═══════════════════════════════════════════════════════════════════════
+// INIT
+// ═══════════════════════════════════════════════════════════════════════
+
+computeStats();
+drawGradientLegend();
+resize();
+window.addEventListener("resize", resize);
+
+</script>
+</body>
+</html>
