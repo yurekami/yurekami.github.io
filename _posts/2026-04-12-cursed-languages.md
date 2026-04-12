@@ -8,6 +8,7 @@ categories: [research]
 giscus_comments: true
 related_posts: true
 featured: true
+slug: cursed-languages
 mermaid:
   enabled: true
 toc:
