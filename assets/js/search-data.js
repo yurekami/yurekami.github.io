@@ -16,7 +16,18 @@ ninja.data = [{
           handler: () => {
             window.location.href = "/blog/";
           },
-        },{id: "post-the-mathematical-metabolism-why-ai-solves-problems-but-doesn-39-t-create-mathematics",
+        },{id: "post-the-cursed-languages-on-compression-abstraction-and-the-limits-of-scaling",
+        
+          title: "The Cursed Languages: On Compression, Abstraction, and the Limits of Scaling",
+        
+        description: "Ziming Liu argues the blue ocean of AI lies in &quot;cursed&quot; data modalities — low-abstraction or data-scarce. I agree with the diagnosis but find the prescription incomplete. The real question is whether there exists a general mechanism for lifting the curse.",
+        section: "Posts",
+        handler: () => {
+          
+            window.location.href = "/blog/2026/cursed-languages/";
+          
+        },
+      },{id: "post-the-mathematical-metabolism-why-ai-solves-problems-but-doesn-39-t-create-mathematics",
         
           title: "The Mathematical Metabolism: Why AI Solves Problems But Doesn&#39;t Create Mathematics",
         
