@@ -16,7 +16,18 @@ ninja.data = [{
           handler: () => {
             window.location.href = "/blog/";
           },
-        },{id: "post-the-cursed-languages-on-compression-abstraction-and-the-limits-of-scaling",
+        },{id: "post-the-wrong-axis",
+        
+          title: "The Wrong Axis",
+        
+        description: "A half-dozen recent results in cryptography, post-quantum protocols, and automated bug discovery look like unrelated breakthroughs. They are the same move — a field&#39;s legible benchmark decoupling from the underlying cost surface. On why this keeps happening, and what to do about it.",
+        section: "Posts",
+        handler: () => {
+          
+            window.location.href = "/blog/2026/wrong-axis/";
+          
+        },
+      },{id: "post-the-cursed-languages-on-compression-abstraction-and-the-limits-of-scaling",
         
           title: "The Cursed Languages: On Compression, Abstraction, and the Limits of Scaling",
         
