@@ -16,7 +16,18 @@ ninja.data = [{
           handler: () => {
             window.location.href = "/blog/";
           },
-        },{id: "post-the-wrong-axis",
+        },{id: "post-jump-table-forgery-how-trail-of-bits-forged-google-39-s-quantum-zk-proof",
+        
+          title: "Jump-Table Forgery: How Trail of Bits Forged Google&#39;s Quantum ZK Proof",
+        
+        description: "Google published a Groth16 proof attesting to a high-efficiency quantum circuit for elliptic curve cryptanalysis. Trail of Bits forged a matching proof with zero Toffoli gates. The bug is a two-line dispatch flaw in the zkVM&#39;s simulator — the kind that only exists because the threat model treated the circuit checker as trusted infrastructure.",
+        section: "Posts",
+        handler: () => {
+          
+            window.location.href = "/blog/2026/jump-table-forgery/";
+          
+        },
+      },{id: "post-the-wrong-axis",
         
           title: "The Wrong Axis",
         
