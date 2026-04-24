@@ -27,6 +27,17 @@ ninja.data = [{
             window.location.href = "/blog/2026/wrong-axis/";
           
         },
+      },{id: "post-a-silent-off-by-one-in-the-world-39-s-fastest-lattice-sieve",
+        
+          title: "A Silent Off-by-One in the World&#39;s Fastest Lattice Sieve",
+        
+        description: "A 35,000-line SIMD-heavy BGJ sieve implementation ships with a quiet bug in its command-line parser. The lsh flag fails to advance its argument index, and the default-recovery guard excludes the one branch that needs it. The result is a silent misconfiguration of the final-pump LSH ratio — zero where the author expected 0.1 or 0.2 — passed directly into the critical path of an SVP challenge run. A note on why argv parsers deserve the same care as inner loops.",
+        section: "Posts",
+        handler: () => {
+          
+            window.location.href = "/blog/2026/bgj-sieve-amx-lsh-parsing/";
+          
+        },
       },{id: "post-the-cursed-languages-on-compression-abstraction-and-the-limits-of-scaling",
         
           title: "The Cursed Languages: On Compression, Abstraction, and the Limits of Scaling",
