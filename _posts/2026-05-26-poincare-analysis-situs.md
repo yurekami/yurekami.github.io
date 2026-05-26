@@ -1,6 +1,7 @@
 ---
 layout: post
 title: "The Paper That Invented Topology: Poincaré's Analysis Situs"
+slug: poincare-analysis-situs
 date: 2026-05-26
 description: A reading of Henri Poincaré's 1895 Analysis Situs and its five supplements — the founding document of algebraic topology, where manifolds, homology, the fundamental group, and the Poincaré conjecture were born.
 tags: [mathematics]
