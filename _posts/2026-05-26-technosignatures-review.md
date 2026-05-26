@@ -2,7 +2,7 @@
 layout: post
 title: "How to Find Aliens: A 118-Page Field Guide"
 slug: technosignatures-review
-date: 2026-05-27
+date: 2026-05-26
 description: A reading of Vidal et al.'s comprehensive review of technosignatures — from radioactive isotopes in Earth's crust to the simulation hypothesis — and what it reveals about the structure of the search for extraterrestrial intelligence.
 tags: [astrobiology, SETI, technosignatures]
 categories: [research]
