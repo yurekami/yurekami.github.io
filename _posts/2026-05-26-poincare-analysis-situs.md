@@ -9,7 +9,7 @@ categories: [research]
 giscus_comments: true
 related_posts: false
 toc:
-  beginning: true
+  sidebar: left
 ---
 
 In 1895, Henri Poincaré published a 121-page paper in the _Journal de l'École Polytechnique_ that would create an entirely new branch of mathematics. The paper was called _Analysis Situs_ — Latin for "analysis of position," a term borrowed from Leibniz — and it invented what we now call **algebraic topology**.
