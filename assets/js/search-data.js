@@ -16,7 +16,18 @@ ninja.data = [{
           handler: () => {
             window.location.href = "/blog/";
           },
-        },{id: "post-the-paper-that-invented-topology-poincaré-39-s-analysis-situs",
+        },{id: "post-how-to-find-aliens-a-118-page-field-guide",
+        
+          title: "How to Find Aliens: A 118-Page Field Guide",
+        
+        description: "A reading of Vidal et al.&#39;s comprehensive review of technosignatures — from radioactive isotopes in Earth&#39;s crust to the simulation hypothesis — and what it reveals about the structure of the search for extraterrestrial intelligence.",
+        section: "Posts",
+        handler: () => {
+          
+            window.location.href = "/blog/2026/technosignatures-review/";
+          
+        },
+      },{id: "post-the-paper-that-invented-topology-poincaré-39-s-analysis-situs",
         
           title: "The Paper That Invented Topology: Poincaré&#39;s Analysis Situs",
         
