@@ -16,7 +16,18 @@ ninja.data = [{
           handler: () => {
             window.location.href = "/blog/";
           },
-        },{id: "post-jump-table-forgery-how-trail-of-bits-forged-google-39-s-quantum-zk-proof",
+        },{id: "post-the-paper-that-invented-topology-poincaré-39-s-analysis-situs",
+        
+          title: "The Paper That Invented Topology: Poincaré&#39;s Analysis Situs",
+        
+        description: "A reading of Henri Poincaré&#39;s 1895 Analysis Situs and its five supplements — the founding document of algebraic topology, where manifolds, homology, the fundamental group, and the Poincaré conjecture were born.",
+        section: "Posts",
+        handler: () => {
+          
+            window.location.href = "/blog/2026/poincare-analysis-situs/";
+          
+        },
+      },{id: "post-jump-table-forgery-how-trail-of-bits-forged-google-39-s-quantum-zk-proof",
         
           title: "Jump-Table Forgery: How Trail of Bits Forged Google&#39;s Quantum ZK Proof",
         
