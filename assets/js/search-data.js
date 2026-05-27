@@ -16,7 +16,18 @@ ninja.data = [{
           handler: () => {
             window.location.href = "/blog/";
           },
-        },{id: "post-how-to-find-aliens-a-118-page-field-guide",
+        },{id: "post-rebuilding-complex-geometry-from-scratch-clausen-amp-scholze-39-s-condensed-approach",
+        
+          title: "Rebuilding Complex Geometry from Scratch: Clausen &amp; Scholze&#39;s Condensed Approach",
+        
+        description: "A reading of Clausen and Scholze&#39;s 148-page lecture notes that reprove the pillars of complex geometry — finiteness of coherent cohomology, Serre duality, GAGA, and Grothendieck–Hirzebruch–Riemann–Roch — from condensed mathematics, revealing why this framework may be the right foundation for all flavors of geometry.",
+        section: "Posts",
+        handler: () => {
+          
+            window.location.href = "/blog/2026/condensed-mathematics-complex-geometry/";
+          
+        },
+      },{id: "post-how-to-find-aliens-a-118-page-field-guide",
         
           title: "How to Find Aliens: A 118-Page Field Guide",
         
