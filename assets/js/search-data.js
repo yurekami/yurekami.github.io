@@ -16,7 +16,18 @@ ninja.data = [{
           handler: () => {
             window.location.href = "/blog/";
           },
-        },{id: "post-rebuilding-complex-geometry-from-scratch-clausen-amp-scholze-39-s-condensed-approach",
+        },{id: "post-and-vs-or-mochizuki-39-s-boolean-dissection-of-inter-universal-teichmüller-theory",
+        
+          title: "AND vs. OR: Mochizuki&#39;s Boolean Dissection of Inter-universal Teichmüller Theory",
+        
+        description: "A reading of Mochizuki&#39;s 167-page paper that recasts the logical structure of IUT — and the controversy around it — in terms of Boolean operators. The Theta-link is a logical AND; the critics say it&#39;s an OR. The difference determines whether the theory proves anything at all.",
+        section: "Posts",
+        handler: () => {
+          
+            window.location.href = "/blog/2026/mochizuki-iut-logical-structure/";
+          
+        },
+      },{id: "post-rebuilding-complex-geometry-from-scratch-clausen-amp-scholze-39-s-condensed-approach",
         
           title: "Rebuilding Complex Geometry from Scratch: Clausen &amp; Scholze&#39;s Condensed Approach",
         
