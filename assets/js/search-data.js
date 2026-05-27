@@ -27,6 +27,17 @@ ninja.data = [{
             window.location.href = "/blog/2026/mochizuki-iut-logical-structure/";
           
         },
+      },{id: "post-epicure-what-4-million-recipes-reveal-about-the-hidden-geometry-of-flavor",
+        
+          title: "Epicure: What 4 Million Recipes Reveal About the Hidden Geometry of Flavor",
+        
+        description: "A paper dissection of Radzikowski &amp; Chen&#39;s Epicure, which trains skip-gram embeddings on a multilingual recipe corpus and discovers that centuries of culinary tradition have been silently encoding molecular chemistry.",
+        section: "Posts",
+        handler: () => {
+          
+            window.location.href = "/blog/2026/epicure-geometry-of-food-embeddings/";
+          
+        },
       },{id: "post-rebuilding-complex-geometry-from-scratch-clausen-amp-scholze-39-s-condensed-approach",
         
           title: "Rebuilding Complex Geometry from Scratch: Clausen &amp; Scholze&#39;s Condensed Approach",
