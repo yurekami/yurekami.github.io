@@ -16,7 +16,18 @@ ninja.data = [{
           handler: () => {
             window.location.href = "/blog/";
           },
-        },{id: "post-and-vs-or-mochizuki-39-s-boolean-dissection-of-inter-universal-teichmüller-theory",
+        },{id: "post-geometrizing-p-adic-hodge-theory-bhatt-39-s-princeton-lectures",
+        
+          title: "Geometrizing p-adic Hodge Theory: Bhatt&#39;s Princeton Lectures",
+        
+        description: "A reading of Bhargav Bhatt&#39;s 138-page Princeton lecture notes on aspects of p-adic Hodge theory — perfectoid crystals, the Riemann–Hilbert functor, almost coherence, and a choicefree p-adic Simpson correspondence.",
+        section: "Posts",
+        handler: () => {
+          
+            window.location.href = "/blog/2026/p-adic-hodge-theory-bhatt/";
+          
+        },
+      },{id: "post-and-vs-or-mochizuki-39-s-boolean-dissection-of-inter-universal-teichmüller-theory",
         
           title: "AND vs. OR: Mochizuki&#39;s Boolean Dissection of Inter-universal Teichmüller Theory",
         
