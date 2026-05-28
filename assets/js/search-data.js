@@ -16,7 +16,18 @@ ninja.data = [{
           handler: () => {
             window.location.href = "/blog/";
           },
-        },{id: "post-geometrizing-p-adic-hodge-theory-bhatt-39-s-princeton-lectures",
+        },{id: "post-what-is-a-six-functor-formalism-scholze-39-s-answer",
+        
+          title: "What Is a Six-Functor Formalism? Scholze&#39;s Answer",
+        
+        description: "A reading of Scholze&#39;s 111-page lecture notes on six-functor formalisms — from the abstract definition via correspondences to Poincaré duality, ring stacks, solid modules, motivic sheaves, and a new construction of arithmetic D-modules via tempered power series.",
+        section: "Posts",
+        handler: () => {
+          
+            window.location.href = "/blog/2026/six-functor-formalisms-scholze/";
+          
+        },
+      },{id: "post-geometrizing-p-adic-hodge-theory-bhatt-39-s-princeton-lectures",
         
           title: "Geometrizing p-adic Hodge Theory: Bhatt&#39;s Princeton Lectures",
         
