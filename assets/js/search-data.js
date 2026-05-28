@@ -49,6 +49,17 @@ ninja.data = [{
             window.location.href = "/blog/2026/geometric-langlands-scholze/";
           
         },
+      },{id: "post-algebraic-geometry-39-s-secret-plot-to-take-over-analysis-scholze-and-clausen-39-s-analytic-geometry",
+        
+          title: "Algebraic Geometry&#39;s Secret Plot to Take Over Analysis: Scholze and Clausen&#39;s Analytic Geometry...",
+        
+        description: "A reading of Scholze and Clausen&#39;s 110-page lecture notes on analytic geometry — how condensed mathematics, liquid modules, entropy, and a mysterious arithmetic ring Z((T))_r turn functional analysis into commutative algebra and unify adic spaces with complex-analytic geometry.",
+        section: "Posts",
+        handler: () => {
+          
+            window.location.href = "/blog/2026/analytic-geometry-scholze-clausen/";
+          
+        },
       },{id: "post-and-vs-or-mochizuki-39-s-boolean-dissection-of-inter-universal-teichmüller-theory",
         
           title: "AND vs. OR: Mochizuki&#39;s Boolean Dissection of Inter-universal Teichmüller Theory",
