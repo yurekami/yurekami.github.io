@@ -74,9 +74,9 @@ $$H: \ell^1(\mathbb{N}) \to \mathbb{R}, \quad H(x_0, x_1, \ldots) = s \log\lvert
 
 This is the Shannon entropy of the distribution $$(\lvert x_i \rvert/s)$$, scaled by $$s$$. A direct estimate shows:
 
-$$\lvert s \log \rverts\lvert  + t \log \rvertt\lvert  - (s+t)\log \rverts+t|\lvert  \leq 2\log 2 \cdot ( \rverts\lvert  +  \rvertt|)$$
+$$\lvert s \log\lvert s\rvert + t \log\lvert t\rvert - (s+t)\log\lvert s+t\rvert \rvert \leq 2\log 2 \cdot (\lvert s\rvert + \lvert t\rvert)$$
 
-for all $$s, t \in \mathbb{R}$$. So $$H$$ is "almost linear" — it satisfies $$\lvert H(v + w) - H(v) - H(w) \rvert \leq C(\\lvert v\ \rvert + \\lvert w\ \rvert)$$. Such almost-linear functions give rise to extensions of topological vector spaces. But $$H$$ is not _globally_ close to any linear function: $$H(1/n, \ldots, 1/n, 0, \ldots) = \log n \to \infty$$, while any linear function $$\phi$$ with $$\phi(e_i) = \phi(e_j)$$ for all $$i,j$$ would give a bounded sequence. Therefore $$H$$ defines a **non-split extension**
+for all $$s, t \in \mathbb{R}$$. So $$H$$ is "almost linear" — it satisfies $$\lvert H(v + w) - H(v) - H(w) \rvert \leq C(\lVert v \rVert + \lVert w \rVert)$$. Such almost-linear functions give rise to extensions of topological vector spaces. But $$H$$ is not _globally_ close to any linear function: $$H(1/n, \ldots, 1/n, 0, \ldots) = \log n \to \infty$$, while any linear function $$\phi$$ with $$\phi(e_i) = \phi(e_j)$$ for all $$i,j$$ would give a bounded sequence. Therefore $$H$$ defines a **non-split extension**
 
 $$0 \to \mathbb{R} \to \tilde{V} \to \ell^1(\mathbb{N}) \to 0$$
 
@@ -94,7 +94,7 @@ $$[x] := x\lvert x \rvert^t = x + x\log\lvert x \rvert \cdot t + \tfrac{1}{2} x\
 
 is a multiplicative map $$\mathbb{R} \to \mathbb{R}[[t]]$$ that captures all orders at once. In the coordinates given by the $$[\cdot]$$-map, the $$\ell^1$$-balls in $$\mathbb{R}[t]/t^n$$ can be defined:
 
-$$ (\mathbb{R}[t]/t^n)[S]^{\ell^1 \leq c} := \left\{ \sum*i [x*{i,s}] t^i \;\middle\lvert \; \sum*{i,s} \rvertx*{i,s}| \leq c \right\}. $$
+$$ (\mathbb{R}[t]/t^n)[S]^{\ell^1 \leq c} := \left\{ \sum*i [x*{i,s}] t^i \;\middle\vert\; \sum*{i,s} \lvert x*{i,s}\rvert \leq c \right\} $$
 
 The entropy estimate (Lemma 5.9) shows these subsets are stable under addition up to a constant $$C(n)$$ — but the constant depends on the number of nilpotent levels. For $$p = 1$$ (the $$\ell^1$$ case), the construction cannot be made functorial for all profinite sets $$S$$. This is a _fundamental_ obstruction, not a technical one.
 
@@ -102,7 +102,7 @@ The entropy estimate (Lemma 5.9) shows these subsets are stable under addition u
 
 The resolution (Lecture VI) is to relax from $$\ell^1$$ to $$\ell^p$$ for $$p < 1$$. Kalton's theorem (1981) states that any extension of $$p$$-Banach spaces is $$p'$$-Banach for all $$p' < p$$ — the three-space problem has a positive answer for quasi-Banach spaces. This suggests replacing the measure space $$\mathcal{M}(S)$$ with
 
-$$\mathcal{M}_p(S) := \bigcup_{c > 0} \varprojlim_i \left\{ (a_s)_s \in \mathbb{R}[S_i] \;\middle\lvert \; \sum  \rverta_s|^p \leq c \right\}$$
+$$\mathcal{M}_p(S) := \bigcup_{c > 0} \varprojlim_i \left\{ (a_s)_s \in \mathbb{R}[S_i] \;\middle\vert\; \sum \lvert a_s\rvert^p \leq c \right\}$$
 
 — the space of "$$\ell^p$$-measures" on $$S$$. For $$p < 1$$, the $$[\cdot]$$-coordinates work functorially: the key bound $$\log^i\lvert x \rvert \leq \lvert x \rvert^{p-1}$$ for small $$\lvert x \rvert$$ (Proposition 6.4) ensures stability of the $$\ell^p$$-balls under all transition maps of profinite sets.
 

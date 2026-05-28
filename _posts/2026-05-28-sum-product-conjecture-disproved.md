@@ -52,7 +52,7 @@ where $$\Delta_K$$ is the discriminant. Since all elements of $$P$$ have embeddi
 
 Fix a parameter $$Y$$. Define
 
-$$G = \{ u \in \mathcal{O}_K^\times : \lvert \log \rvert\sigma_i(u)|| \leq Y \text{ for all } 1 \leq i \leq d \}.$$
+$$G = \{ u \in \mathcal{O}_K^\times : \lvert \log\lvert \sigma_i(u)\rvert \rvert \leq Y \text{ for all } 1 \leq i \leq d \}.$$
 
 By Dirichlet's unit theorem, the logarithmic embeddings of units form a rank-$$(d-1)$$ lattice in the hyperplane $$x_1 + \cdots + x_d = 0$$. The covolume is $$\sqrt{d} R_K$$ (where $$R_K$$ is the regulator), so
 
