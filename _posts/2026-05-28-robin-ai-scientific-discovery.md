@@ -12,9 +12,9 @@ toc:
   sidebar: left
 ---
 
-A system called Robin just did something no AI has done before: it proposed a disease mechanism, suggested drugs to test, analyzed the experimental results, proposed follow-up experiments, analyzed *those* results, and identified a clinically approved drug as a novel therapeutic candidate for a major disease — all with the intellectual steps automated by language model agents. The results are published in Nature.[^paper]
+A system called Robin just did something no AI has done before: it proposed a disease mechanism, suggested drugs to test, analyzed the experimental results, proposed follow-up experiments, analyzed _those_ results, and identified a clinically approved drug as a novel therapeutic candidate for a major disease — all with the intellectual steps automated by language model agents. The results are published in Nature.[^paper]
 
-[^paper]: Ali Essam Ghareeb, Benjamin Chang, Ludovico Mitchener, Angela Yiu, et al., "A multi-agent system for automating scientific discovery," *Nature* (2026). [doi:10.1038/s41586-026-10652-y](https://doi.org/10.1038/s41586-026-10652-y). Accelerated Article Preview. FutureHouse, San Francisco.
+[^paper]: Ali Essam Ghareeb, Benjamin Chang, Ludovico Mitchener, Angela Yiu, et al., "A multi-agent system for automating scientific discovery," _Nature_ (2026). [doi:10.1038/s41586-026-10652-y](https://doi.org/10.1038/s41586-026-10652-y). Accelerated Article Preview. FutureHouse, San Francisco.
 
 The drug is **ripasudil**, a Rho kinase (ROCK) inhibitor already approved in Japan for glaucoma. The disease is **dry age-related macular degeneration (dAMD)** — the leading cause of irreversible blindness in the developed world, with 1.5 million Americans having vision-threatening dAMD and a figure projected to nearly triple by 2050. There are currently limited treatment options.
 
@@ -53,7 +53,7 @@ Robin generated a second round of drug candidates informed by the Round 1 result
 
 ### Validation in primary human RPE
 
-The hits were re-screened using primary RPE stem cells (RPE-SC) from a >60-year-old patient, with fluorescently labeled bovine rod outer segments as a more physiologically relevant substrate. Ripasudil and Y-27632 were again hits, with ripasudil showing higher potency. Dose-response confirmed ripasudil's superiority. Surprisingly, ripasudil showed a *negative* relationship with cytotoxicity — higher doses *reduced* LDH release.
+The hits were re-screened using primary RPE stem cells (RPE-SC) from a >60-year-old patient, with fluorescently labeled bovine rod outer segments as a more physiologically relevant substrate. Ripasudil and Y-27632 were again hits, with ripasudil showing higher potency. Dose-response confirmed ripasudil's superiority. Surprisingly, ripasudil showed a _negative_ relationship with cytotoxicity — higher doses _reduced_ LDH release.
 
 An additional hit emerged: **KL001**, a circadian clock modulator. Robin had suggested it based on the circadian control of RPE phagocytosis. To the authors' knowledge, KL001 has never previously been proposed as an enhancer of phagocytosis.
 
@@ -81,7 +81,7 @@ Finch's performance: 100% adherence to expert rubrics on flow cytometry analysis
 
 ## What Makes This Different
 
-Previous AI systems for scientific discovery (Coscientist, TxGemma, AI Co-Scientist) have automated *parts* of the discovery process — hypothesis generation, or property prediction, or safety profiling. Robin is the first to automate all key intellectual steps in a continuous cycle:
+Previous AI systems for scientific discovery (Coscientist, TxGemma, AI Co-Scientist) have automated _parts_ of the discovery process — hypothesis generation, or property prediction, or safety profiling. Robin is the first to automate all key intellectual steps in a continuous cycle:
 
 1. Literature review → 2. Hypothesis generation → 3. Experiment proposal → 4. Data analysis → 5. Hypothesis refinement → repeat
 
@@ -97,7 +97,7 @@ The paper is honest about what Robin cannot do:
 - **Finch requires prompt engineering.** The data analysis agent needs task-specific prompting from domain experts. It cannot yet independently decide what analysis to run.
 - **In vitro only.** Ripasudil's efficacy for dAMD has been shown only in cell culture. In vivo validation and clinical trials are necessary.
 - **Stochastic analysis.** Finch's conclusions vary between runs. The 8-trajectory consensus mechanism mitigates this, but it's a feature of the architecture, not a guarantee.
-- **No guarantee of novelty.** While ROCK inhibitors had never been proposed for *dry* AMD via phagocytosis enhancement, ROCK inhibitors are known to enhance RPE phagocytosis, and ripasudil is a known ROCK inhibitor. The insight is the *combination* — connecting these known facts to a specific disease indication — which is exactly what drug repurposing requires.
+- **No guarantee of novelty.** While ROCK inhibitors had never been proposed for _dry_ AMD via phagocytosis enhancement, ROCK inhibitors are known to enhance RPE phagocytosis, and ripasudil is a known ROCK inhibitor. The insight is the _combination_ — connecting these known facts to a specific disease indication — which is exactly what drug repurposing requires.
 
 ## What It Means
 

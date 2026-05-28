@@ -16,11 +16,11 @@ Mumford once wrote that algebraic geometry "seems to have acquired the reputatio
 
 Peter Scholze opens his lectures on analytic geometry[^notes] by quoting this line and adding: "For some reason, this secret plot has so far stopped short of taking over analysis. The goal of this course is to launch a new attack, turning functional analysis into a branch of commutative algebra, and various types of analytic geometry (like manifolds) into algebraic geometry."
 
-[^notes]: Peter Scholze (joint with Dustin Clausen), *Lectures on Analytic Geometry*, lecture notes for a course at the University of Bonn, Winter 2019/20. Available at [https://www.math.uni-bonn.de/people/scholze/Analytic.pdf](https://www.math.uni-bonn.de/people/scholze/Analytic.pdf). 110 pages.
+[^notes]: Peter Scholze (joint with Dustin Clausen), _Lectures on Analytic Geometry_, lecture notes for a course at the University of Bonn, Winter 2019/20. Available at [https://www.math.uni-bonn.de/people/scholze/Analytic.pdf](https://www.math.uni-bonn.de/people/scholze/Analytic.pdf). 110 pages.
 
-This is not hyperbole. These 110-page lecture notes — the second installment of Scholze and Clausen's condensed mathematics program, following the *Lectures on Condensed Mathematics* from the preceding semester — construct a framework in which adic spaces (the foundation of $$p$$-adic geometry), complex-analytic spaces, smooth manifolds, and topological manifolds all become instances of a single notion of **analytic space**, built from the same categorical machinery as algebraic geometry: rings, modules, spectra, descent, quasicoherent sheaves.
+This is not hyperbole. These 110-page lecture notes — the second installment of Scholze and Clausen's condensed mathematics program, following the _Lectures on Condensed Mathematics_ from the preceding semester — construct a framework in which adic spaces (the foundation of $$p$$-adic geometry), complex-analytic spaces, smooth manifolds, and topological manifolds all become instances of a single notion of **analytic space**, built from the same categorical machinery as algebraic geometry: rings, modules, spectra, descent, quasicoherent sheaves.
 
-The key innovation making this possible is the theory of **liquid modules** — a new category of "topological" real vector spaces that, unlike every previous attempt, forms an abelian category with a well-behaved tensor product. The obstruction to building this category turns out to be *entropy*. And the tool for overcoming entropy is an arithmetic ring $$\mathbb{Z}((T))_r$$ that simultaneously encodes all $$\ell^p$$-spaces and connects the archimedean world to $$p$$-adic arithmetic.
+The key innovation making this possible is the theory of **liquid modules** — a new category of "topological" real vector spaces that, unlike every previous attempt, forms an abelian category with a well-behaved tensor product. The obstruction to building this category turns out to be _entropy_. And the tool for overcoming entropy is an arithmetic ring $$\mathbb{Z}((T))_r$$ that simultaneously encodes all $$\ell^p$$-spaces and connects the archimedean world to $$p$$-adic arithmetic.
 
 ## The Broken Category
 
@@ -28,7 +28,7 @@ The dream is old: do algebraic geometry with convergent power series instead of 
 
 Algebraic geometry is built on a foundation of commutative algebra. You start with the abelian category $$\mathrm{Ab}$$ of abelian groups, with its tensor product. Rings are monoid objects. Modules over rings give quasicoherent sheaves. Spec gives the space. Everything flows from the algebra.
 
-To do *analytic* geometry, you want the same workflow but with topological vector spaces. But topological abelian groups **do not form an abelian category**. The map
+To do _analytic_ geometry, you want the same workflow but with topological vector spaces. But topological abelian groups **do not form an abelian category**. The map
 
 $$(\mathbb{R}, \text{discrete topology}) \to (\mathbb{R}, \text{natural topology})$$
 
@@ -50,7 +50,7 @@ The first new algebraic structure built on this foundation is the category of **
 
 $$\mathbb{Z}[S]^{\blacksquare} := \varprojlim_i \mathbb{Z}[S_i],$$
 
-which can be thought of as the space of $$\mathbb{Z}$$-valued measures on $$S$$. A condensed abelian group $$M$$ is *solid* if every continuous map $$f: S \to M$$ from a profinite set extends uniquely to a map $$\mathbb{Z}[S]^{\blacksquare} \to M$$ — in other words, you can "integrate" against arbitrary measures.
+which can be thought of as the space of $$\mathbb{Z}$$-valued measures on $$S$$. A condensed abelian group $$M$$ is _solid_ if every continuous map $$f: S \to M$$ from a profinite set extends uniquely to a map $$\mathbb{Z}[S]^{\blacksquare} \to M$$ — in other words, you can "integrate" against arbitrary measures.
 
 The motivating computation (which captures the entire spirit of the theory): take $$S = \mathbb{N} \cup \{\infty\}$$, the one-point compactification of $$\mathbb{N}$$. The solidification of $$\mathbb{Z}[T] = \mathbb{Z}[S]/([{\infty}] = 0)$$ is
 
@@ -76,7 +76,7 @@ This is the Shannon entropy of the distribution $$(|x_i|/s)$$, scaled by $$s$$. 
 
 $$|s \log|s| + t \log|t| - (s+t)\log|s+t|| \leq 2\log 2 \cdot (|s| + |t|)$$
 
-for all $$s, t \in \mathbb{R}$$. So $$H$$ is "almost linear" — it satisfies $$|H(v + w) - H(v) - H(w)| \leq C(\|v\| + \|w\|)$$. Such almost-linear functions give rise to extensions of topological vector spaces. But $$H$$ is not *globally* close to any linear function: $$H(1/n, \ldots, 1/n, 0, \ldots) = \log n \to \infty$$, while any linear function $$\phi$$ with $$\phi(e_i) = \phi(e_j)$$ for all $$i,j$$ would give a bounded sequence. Therefore $$H$$ defines a **non-split extension**
+for all $$s, t \in \mathbb{R}$$. So $$H$$ is "almost linear" — it satisfies $$|H(v + w) - H(v) - H(w)| \leq C(\|v\| + \|w\|)$$. Such almost-linear functions give rise to extensions of topological vector spaces. But $$H$$ is not _globally_ close to any linear function: $$H(1/n, \ldots, 1/n, 0, \ldots) = \log n \to \infty$$, while any linear function $$\phi$$ with $$\phi(e_i) = \phi(e_j)$$ for all $$i,j$$ would give a bounded sequence. Therefore $$H$$ defines a **non-split extension**
 
 $$0 \to \mathbb{R} \to \tilde{V} \to \ell^1(\mathbb{N}) \to 0$$
 
@@ -94,9 +94,9 @@ $$[x] := x|x|^t = x + x\log|x| \cdot t + \tfrac{1}{2} x\log^2|x| \cdot t^2 + \cd
 
 is a multiplicative map $$\mathbb{R} \to \mathbb{R}[[t]]$$ that captures all orders at once. In the coordinates given by the $$[\cdot]$$-map, the $$\ell^1$$-balls in $$\mathbb{R}[t]/t^n$$ can be defined:
 
-$$ (\mathbb{R}[t]/t^n)[S]^{\ell^1 \leq c} := \left\{ \sum_i [x_{i,s}] t^i \;\middle|\; \sum_{i,s} |x_{i,s}| \leq c \right\}. $$
+$$ (\mathbb{R}[t]/t^n)[S]^{\ell^1 \leq c} := \left\{ \sum*i [x*{i,s}] t^i \;\middle|\; \sum*{i,s} |x*{i,s}| \leq c \right\}. $$
 
-The entropy estimate (Lemma 5.9) shows these subsets are stable under addition up to a constant $$C(n)$$ — but the constant depends on the number of nilpotent levels. For $$p = 1$$ (the $$\ell^1$$ case), the construction cannot be made functorial for all profinite sets $$S$$. This is a *fundamental* obstruction, not a technical one.
+The entropy estimate (Lemma 5.9) shows these subsets are stable under addition up to a constant $$C(n)$$ — but the constant depends on the number of nilpotent levels. For $$p = 1$$ (the $$\ell^1$$ case), the construction cannot be made functorial for all profinite sets $$S$$. This is a _fundamental_ obstruction, not a technical one.
 
 ## Liquid Modules: The Solution
 
@@ -108,7 +108,7 @@ $$\mathcal{M}_p(S) := \bigcup_{c > 0} \varprojlim_i \left\{ (a_s)_s \in \mathbb{
 
 A condensed $$\mathbb{R}$$-vector space is **$$p$$-liquid** if integration against $$\ell^{p'}$$-measures is well-defined for all $$p' < p$$:
 
-> **Theorem 6.5.** _Fix $$0 < p \leq 1$$. The category $$\mathrm{Liq}_p(\mathbb{R})$$ of $$p$$-liquid condensed $$\mathbb{R}$$-vector spaces is an abelian subcategory of $$\mathrm{Cond}(\mathbb{R})$$, stable under kernels, cokernels, and extensions. It has compact projective generators $$\mathcal{M}_{<p}(S)$$ for extremally disconnected $$S$$, a symmetric monoidal tensor product $$\otimes^{\mathrm{liq}}_p$$, and the derived category $$D(\mathrm{Liq}_p(\mathbb{R}))$$ embeds fully faithfully into $$D(\mathrm{Cond}(\mathbb{R}))$$._
+> **Theorem 6.5.** _Fix $$0 < p \leq 1$$. The category $$\mathrm{Liq}_p(\mathbb{R})$$ of $$p$$-liquid condensed $$\mathbb{R}$$-vector spaces is an abelian subcategory of $$\mathrm{Cond}(\mathbb{R})$$, stable under kernels, cokernels, and extensions. It has compact projective generators $$\mathcal{M}_{<p}(S)$$ for extremally disconnected $$S$$, a symmetric monoidal tensor product $$\otimes^{\mathrm{liq}}_p$$, and the derived category $$D(\mathrm{Liq}_p(\mathbb{R}))$$ embeds fully faithfully into $$D(\mathrm{Cond}(\mathbb{R}))$$.\_
 
 This is the category that makes archimedean analytic geometry possible. All Banach spaces (and more generally all complete locally convex spaces) are $$p$$-liquid for all $$0 < p \leq 1$$. The category has all the properties that algebraic geometers need to run their machinery.
 
@@ -160,7 +160,7 @@ The family of liquid $$\mathbb{R}$$-vector space structures $$(\mathbb{R}, \math
 
 Scholze concludes: "the analytic ring structures on $$\mathbb{R}$$ are inextricably linked to arithmetic, which arises in the limit $$p \to 0$$."
 
-This is the deepest punchline of the entire program. The passage from analysis to arithmetic is not an analogy — it is a *deformation*. The archimedean and non-archimedean worlds are literally connected by a one-parameter family of analytic ring structures, all living over the Berkovich spectrum of the most fundamental ring in mathematics.
+This is the deepest punchline of the entire program. The passage from analysis to arithmetic is not an analogy — it is a _deformation_. The archimedean and non-archimedean worlds are literally connected by a one-parameter family of analytic ring structures, all living over the Berkovich spectrum of the most fundamental ring in mathematics.
 
 ## What Happened Next
 
@@ -178,7 +178,7 @@ These notes are from 2019/20. Since then:
 
 ## The Shape of the Attack
 
-What makes these notes extraordinary is not any single theorem but the *arc* of the argument. You start with a broken category (topological abelian groups). You fix it (condensed sets). You build the $$p$$-adic theory cleanly (solid modules). You try to do the same for $$\mathbb{R}$$ and fail — and the failure is *entropy*, the function $$x \log|x|$$. You thicken the failure into a period ring (the real $$B_{\mathrm{dR}}^+$$). You relax from $$\ell^1$$ to $$\ell^p$$ and the obstruction vanishes (liquid modules). The proof reduces not to functional analysis but to arithmetic — the ring $$\mathbb{Z}((T))_r$$ is a PID. And at the end, you discover that the archimedean and non-archimedean worlds are connected by a deformation over the Berkovich spectrum of $$\mathbb{Z}$$.
+What makes these notes extraordinary is not any single theorem but the _arc_ of the argument. You start with a broken category (topological abelian groups). You fix it (condensed sets). You build the $$p$$-adic theory cleanly (solid modules). You try to do the same for $$\mathbb{R}$$ and fail — and the failure is _entropy_, the function $$x \log|x|$$. You thicken the failure into a period ring (the real $$B_{\mathrm{dR}}^+$$). You relax from $$\ell^1$$ to $$\ell^p$$ and the obstruction vanishes (liquid modules). The proof reduces not to functional analysis but to arithmetic — the ring $$\mathbb{Z}((T))_r$$ is a PID. And at the end, you discover that the archimedean and non-archimedean worlds are connected by a deformation over the Berkovich spectrum of $$\mathbb{Z}$$.
 
 The secret plot has been launched. Algebraic geometry now has analysis in its sights.
 

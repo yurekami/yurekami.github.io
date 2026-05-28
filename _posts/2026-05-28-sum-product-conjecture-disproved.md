@@ -110,7 +110,7 @@ The paper doesn't stop at Theorem 1.1. The same ideas give:
 
 The paper includes a forthright disclosure:
 
-> *The authors were inspired to revisit the possibility of disproving the sum-product conjecture using number fields of large degree by the recent OpenAI counterexample to the unit distance conjecture. GPT-5.5 Pro was used as a sounding board in the early stages of the development of this proof, but the final proof, including all the main ideas, was almost entirely human-generated (the exception being the suggestion of Lemma 3.4, which replaced a more complicated result of Schinzel with a short elementary argument). Everything in this paper was written by the authors.*
+> _The authors were inspired to revisit the possibility of disproving the sum-product conjecture using number fields of large degree by the recent OpenAI counterexample to the unit distance conjecture. GPT-5.5 Pro was used as a sounding board in the early stages of the development of this proof, but the final proof, including all the main ideas, was almost entirely human-generated (the exception being the suggestion of Lemma 3.4, which replaced a more complicated result of Schinzel with a short elementary argument). Everything in this paper was written by the authors._
 
 Lemma 3.4 is the unit separation lemma: if $$u \in \mathcal{O}_K^\times$$ and $$\phi^{-1} < |\sigma_i(u)| < \phi$$ for all $$i$$, then $$u = \pm 1$$. The proof is four lines: consider $$\alpha = u^2 + u^{-2} - 2$$; if $$\alpha \neq 0$$ then all embeddings lie in $$(0,1)$$, contradicting $$N(\alpha) \in \mathbb{Z}$$. This replaced a citation to a deeper result of Schinzel.
 
@@ -124,15 +124,15 @@ The conjecture is dead over $$\mathbb{R}$$. But several natural variants survive
 
 - **In bounded degree**: For $$A$$ contained in a number field of fixed degree (e.g., $$A \subset \mathbb{Q}$$), the conjecture is open. The construction fundamentally requires $$d \to \infty$$.
 
-- **The Solymosi barrier**: Solymosi proved $$|A+A|^2 |AA| \geq |A|^{4 - o(1)}$$ for any $$A \subset \mathbb{R}$$. This is *not* contradicted by the new counterexamples (which have large sum set and small product set or vice versa, but cannot violate this multiplicative constraint).
+- **The Solymosi barrier**: Solymosi proved $$|A+A|^2 |AA| \geq |A|^{4 - o(1)}$$ for any $$A \subset \mathbb{R}$$. This is _not_ contradicted by the new counterexamples (which have large sum set and small product set or vice versa, but cannot violate this multiplicative constraint).
 
-- **The $$4/3$$ barrier over $$\mathbb{R}$$**: The best lower bound $$|A|^{4/3+c}$$ holds for *all* $$A \subset \mathbb{R}$$ and is not affected by the counterexample. What dies is the conjecture that the exponent can be pushed to $$2 - o(1)$$.
+- **The $$4/3$$ barrier over $$\mathbb{R}$$**: The best lower bound $$|A|^{4/3+c}$$ holds for _all_ $$A \subset \mathbb{R}$$ and is not affected by the counterexample. What dies is the conjecture that the exponent can be pushed to $$2 - o(1)$$.
 
 ## The Architecture of a Counterexample
 
 What makes this paper beautiful is the simplicity of the underlying idea. The construction is a high-dimensional version of the classical Balog–Wooley example $$A = GP$$ (geometric progression times arithmetic progression). In one dimension, this only saves a logarithmic factor. The insight is that in $$d$$ dimensions, the unit group provides exponentially many "directions" in which to absorb multiplicative structure, while the integer lattice provides exponentially many "positions" in which to control additive structure. The tension between $$e^Y$$ (additive blow-up per dimension) and $$Y^{d-1}$$ (multiplicative saving from the unit group) resolves in favor of the product set as soon as $$Y$$ is a sufficiently large constant and $$d \to \infty$$.
 
-The number theory input is minimal — Martinet's towers and Blichfeldt's lemma — but the *idea* of using high-dimensional lattices to amplify a one-dimensional trick is what makes it work. As the authors note, "the final construction given here required far less number theoretic input than the unit distance counterexample." The difficulty was not in the proof but in the *decision to try this approach* — a decision that, by their own account, was prompted by the AI-assisted resolution of a different longstanding conjecture.
+The number theory input is minimal — Martinet's towers and Blichfeldt's lemma — but the _idea_ of using high-dimensional lattices to amplify a one-dimensional trick is what makes it work. As the authors note, "the final construction given here required far less number theoretic input than the unit distance counterexample." The difficulty was not in the proof but in the _decision to try this approach_ — a decision that, by their own account, was prompted by the AI-assisted resolution of a different longstanding conjecture.
 
 Fifty years of positive results had built an expectation that the exponent 2 was the truth. Now we know it isn't.
 

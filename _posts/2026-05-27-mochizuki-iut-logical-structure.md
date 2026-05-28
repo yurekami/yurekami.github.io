@@ -37,6 +37,7 @@ The paper's central insight is that IUT's logical structure can be expressed sym
 $$A \wedge B = A \wedge (B_1 \;\dot\vee\; B_2 \;\dot\vee\; \cdots) \implies A \wedge (B_1 \;\dot\vee\; B_2 \;\dot\vee\; \cdots \;\dot\vee\; B_1' \;\dot\vee\; B_2' \;\dot\vee\; \cdots) \implies \cdots$$
 
 where:
+
 - $$\wedge$$ is logical AND
 - $$\dot\vee$$ is logical XOR (exclusive-OR)
 - $$A$$ corresponds to the Theta-link's multiplicative structure — the gluing

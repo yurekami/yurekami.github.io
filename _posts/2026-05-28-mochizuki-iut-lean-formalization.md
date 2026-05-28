@@ -12,9 +12,9 @@ toc:
   sidebar: left
 ---
 
-In April 2026, Shinichi Mochizuki posted a 14-page document[^report] that may eventually rank among the most consequential in the history of formal verification: a preliminary progress report on formalizing his inter-universal Teichmüller theory (IUT) in the Lean proof assistant. The document is titled *On the Formalization of IUT: A Preliminary Progress Report*, and it describes joint work in progress with Yuichiro Hoshi, Go Yamashita, Yu Yang, and others at RIMS.
+In April 2026, Shinichi Mochizuki posted a 14-page document[^report] that may eventually rank among the most consequential in the history of formal verification: a preliminary progress report on formalizing his inter-universal Teichmüller theory (IUT) in the Lean proof assistant. The document is titled _On the Formalization of IUT: A Preliminary Progress Report_, and it describes joint work in progress with Yuichiro Hoshi, Go Yamashita, Yu Yang, and others at RIMS.
 
-[^report]: Shinichi Mochizuki, "On the Formalization of IUT: A Preliminary Progress Report," April 2026. Available at [https://www.kurims.kyoto-u.ac.jp/~motizuki/Formalization%20of%20IUT%20(2026-04).pdf](https://www.kurims.kyoto-u.ac.jp/~motizuki/Formalization%20of%20IUT%20(2026-04).pdf). 14 pages.
+[^report]: Shinichi Mochizuki, "On the Formalization of IUT: A Preliminary Progress Report," April 2026. Available at [https://www.kurims.kyoto-u.ac.jp/~motizuki/Formalization%20of%20IUT%20(2026-04).pdf](<https://www.kurims.kyoto-u.ac.jp/~motizuki/Formalization%20of%20IUT%20(2026-04).pdf>). 14 pages.
 
 This is not a completed formalization. The Lean code is described as "skeletal" — a bare-bones framework that captures the logical structure of a specific implication in IUT but does not yet contain all the details needed for public release. But the fact that this project exists, and that Mochizuki is framing it as a central priority, is itself significant.
 
@@ -40,8 +40,8 @@ Mochizuki makes an explicit and surprising framing choice. He argues that the pr
 
 He describes what he calls "vicious cycles" that have stymied communication:
 
-1. *"The logic is simple"* ↔ *"Don't insult my intelligence — the abc inequality can't follow from simple logic"*
-2. *"One must study IUTchI–IV in detail to understand"* ↔ *"One can't become motivated to study without confidence the theory is correct"*
+1. _"The logic is simple"_ ↔ _"Don't insult my intelligence — the abc inequality can't follow from simple logic"_
+2. _"One must study IUTchI–IV in detail to understand"_ ↔ _"One can't become motivated to study without confidence the theory is correct"_
 
 LeanForm, he argues, is "the first technology that appears to have the technical capacity to allow us to break free of such vicious cycles" — by providing "a logically verified record that can be processed by a machine in a fraction of a second in a way that is entirely immune to nonmathematical accusations."
 
@@ -51,13 +51,13 @@ The social/political dimension is stated explicitly: "No one wants to invest sub
 
 The formalization strategy is laid out as five stages:
 
-| Stage | Content | Status |
-|---|---|---|
-| **1** | [IUTchIII] Theorem 3.11 ⟹ Corollary 3.12 | Early skeletal code |
-| **2** | Proof of Theorem 3.11 modulo IUTchI–II | In progress |
-| **3** | IUTchI–II modulo earlier results (1995–2015) | Future |
-| **4** | Earlier results: anabelian geometry, Frobenioids, theta functions, etc. | Long-term |
-| **5** | Numerical aspects (IUTchIV, explicit estimates) | Long-term |
+| Stage | Content                                                                 | Status              |
+| ----- | ----------------------------------------------------------------------- | ------------------- |
+| **1** | [IUTchIII] Theorem 3.11 ⟹ Corollary 3.12                                | Early skeletal code |
+| **2** | Proof of Theorem 3.11 modulo IUTchI–II                                  | In progress         |
+| **3** | IUTchI–II modulo earlier results (1995–2015)                            | Future              |
+| **4** | Earlier results: anabelian geometry, Frobenioids, theta functions, etc. | Long-term           |
+| **5** | Numerical aspects (IUTchIV, explicit estimates)                         | Long-term           |
 
 The choice to begin with Stage 1 is deliberate: "since this has received the most public attention." Stage 1 is the implication from Theorem 3.11 to Corollary 3.12 — precisely the step Scholze and Stix challenged. Mochizuki frames this as "not so difficult" and argues that proper understanding reveals that "what one is really interested in is Stage 2."
 
@@ -74,6 +74,7 @@ $$R^{\triangleright} \xrightarrow{\;\sim\;} (R^{\triangleright})^N \subset R^{\t
 This isomorphism is compatible with the group action but **not with addition** — it is not a ring homomorphism. The central problem of IUT is: given two distinct copies $${}^{\dagger}R$$ and $${}^{\ddagger}R$$ of the ring $$R$$, glued along the $$N$$-th power map on their multiplicative monoids, can one recover (portions of) the ring structure of $${}^{\dagger}R$$ from the ring structure of $${}^{\ddagger}R$$?
 
 This seems "hopelessly intractable" in general. IUT claims to accomplish it for $$R = \mathcal{O}_F$$ (ring of integers of a number field) via:
+
 - Anabelian geometry (reconstructing ring structures from group-theoretic data)
 - The $$p$$-adic and complex logarithm
 - Kummer theory
@@ -89,7 +90,7 @@ The final section describes what has actually been written in Lean. The implicat
 
 1. The **first triangle**: expresses the multiradial algorithm — input is a basic prime-strip (BPS), output is the multiradial representation.
 
-2. The **second triangle**: expresses the *descent* aspect — the multiradial representation can be constructed from weaker, "vertically coric" (log-link invariant) étale data.
+2. The **second triangle**: expresses the _descent_ aspect — the multiradial representation can be constructed from weaker, "vertically coric" (log-link invariant) étale data.
 
 3. The **third triangle**: composes descent with an elementary "hull+det" operation (taking determinants of modules).
 
@@ -115,11 +116,12 @@ Several things stand out:
 
 ## What It Would Mean
 
-A completed and compiled Lean formalization of "3.11.5 ⟹ 3.12" would not settle the abc conjecture. It would settle something narrower but important: whether the *logical implication* from Theorem 3.11 to Corollary 3.12 is valid, given the definitions and hypotheses as Mochizuki states them.
+A completed and compiled Lean formalization of "3.11.5 ⟹ 3.12" would not settle the abc conjecture. It would settle something narrower but important: whether the _logical implication_ from Theorem 3.11 to Corollary 3.12 is valid, given the definitions and hypotheses as Mochizuki states them.
 
 The Scholze–Stix objection was not (primarily) that the logic of the implication is wrong, but that the hypotheses of Theorem 3.11 cannot be satisfied — that the "distinct ring structures" and their "gluing" do not have the properties Mochizuki claims. A formalization of Stage 1 alone would not address this objection directly; that would require Stages 2–3.
 
 Nevertheless, a completed Stage 1 formalization would:
+
 - Provide the first machine-verified component of IUT
 - Demonstrate that the logical structure of the critical step is expressible in a standard proof assistant
 - Create a precise target for mathematical scrutiny: either the Lean code compiles, or it doesn't
@@ -130,4 +132,4 @@ We are not there yet. The code is skeletal. The project is in its early stages. 
 
 ---
 
-_The report is available at [https://www.kurims.kyoto-u.ac.jp/~motizuki/Formalization%20of%20IUT%20(2026-04).pdf](https://www.kurims.kyoto-u.ac.jp/~motizuki/Formalization%20of%20IUT%20(2026-04).pdf). For background, see also a [previous post](/blog/2026/mochizuki-iut-logical-structure/) on Mochizuki's report on the logical structure of IUT._
+_The report is available at [https://www.kurims.kyoto-u.ac.jp/~motizuki/Formalization%20of%20IUT%20(2026-04).pdf](<https://www.kurims.kyoto-u.ac.jp/~motizuki/Formalization%20of%20IUT%20(2026-04).pdf>). For background, see also a [previous post](/blog/2026/mochizuki-iut-logical-structure/) on Mochizuki's report on the logical structure of IUT._

@@ -12,9 +12,9 @@ toc:
   sidebar: left
 ---
 
-Every building needs a foundation, and the foundation for the Clausen–Scholze revolution in mathematics is this document: *Lectures on Condensed Mathematics*,[^notes] originally taught at Bonn in summer 2019, now posted to the arXiv as a "stable citable version" in May 2026.
+Every building needs a foundation, and the foundation for the Clausen–Scholze revolution in mathematics is this document: _Lectures on Condensed Mathematics_,[^notes] originally taught at Bonn in summer 2019, now posted to the arXiv as a "stable citable version" in May 2026.
 
-[^notes]: Peter Scholze (joint with Dustin Clausen), *Lectures on Condensed Mathematics*, arXiv:2605.03658 (May 2026). 78 pages. Originally taught as a course at the University of Bonn, Summer 2019.
+[^notes]: Peter Scholze (joint with Dustin Clausen), _Lectures on Condensed Mathematics_, arXiv:2605.03658 (May 2026). 78 pages. Originally taught as a course at the University of Bonn, Summer 2019.
 
 If you've been following the posts on [analytic geometry](/blog/2026/analytic-geometry-scholze-clausen/), [complex geometry rebuilt from scratch](/blog/2026/condensed-mathematics-complex-geometry/), [six-functor formalisms](/blog/2026/six-functor-formalisms-scholze/), or the [proof of geometric Langlands](/blog/2026/geometric-langlands-scholze/), you've seen the downstream applications. This is the source — the 78 pages where the key definitions are made, the key theorems proved, and the program launched.
 
@@ -24,15 +24,15 @@ If you've been following the posts on [analytic geometry](/blog/2026/analytic-ge
 
 This question — so basic it seems barely mathematical — is the starting point. The answer, in a sentence: replace topological spaces with **condensed sets**, and everything works.
 
-"Everything works" means: the category of condensed abelian groups is abelian (topological abelian groups are not); it satisfies Grothendieck's axioms (AB3)–(AB6) and (AB3\*)–(AB4\*) — the best possible behavior; it has compact projective generators; it has a well-behaved derived category; and it embeds all compactly generated topological spaces fully faithfully. The fix is not a hack. It is a *better foundation*.
+"Everything works" means: the category of condensed abelian groups is abelian (topological abelian groups are not); it satisfies Grothendieck's axioms (AB3)–(AB6) and (AB3\*)–(AB4\*) — the best possible behavior; it has compact projective generators; it has a well-behaved derived category; and it embeds all compactly generated topological spaces fully faithfully. The fix is not a hack. It is a _better foundation_.
 
 ## Condensed Sets
 
-> **Definition 1.2.** A *condensed set* is a sheaf of sets on the pro-étale site of a point — the category of profinite sets with finite jointly surjective families as covers.
+> **Definition 1.2.** A _condensed set_ is a sheaf of sets on the pro-étale site of a point — the category of profinite sets with finite jointly surjective families as covers.
 
 Concretely: a condensed set is a functor $$T: \{\text{profinite sets}\}^{\mathrm{op}} \to \mathrm{Sets}$$ satisfying a sheaf condition. Every topological space $$X$$ gives a condensed set via $$\underline{X}(S) = \mathrm{Cont}(S, X)$$ — the set of continuous maps from $$S$$ to $$X$$. This functor is faithful on all topological spaces, and fully faithful on compactly generated ones (Proposition 1.7).
 
-The key example that shows condensed sets are *strictly more* than topological spaces:
+The key example that shows condensed sets are _strictly more_ than topological spaces:
 
 > **Example 1.9.** Let $$\mathbb{R}_{\mathrm{disc}}$$ be the reals with the discrete topology, and $$\underline{\mathbb{R}}$$ the reals with their natural topology. The map $$\underline{\mathbb{R}_{\mathrm{disc}}} \to \underline{\mathbb{R}}$$ is injective, and its cokernel $$Q$$ is a condensed abelian group with "underlying" abelian group $$Q(*) = 0$$. But for a general profinite set $$S$$,
 >
@@ -70,7 +70,7 @@ This is a nontrivial test: the condensed framework must reproduce classical resu
 
 Lectures V–VI introduce the first major new algebraic structure: **solid abelian groups**. The motivation is that tensor products of condensed abelian groups are "usually pathological" — for instance, $$\mathbb{Z}_p \otimes \mathbb{R}$$ in condensed abelian groups is not what anyone wants.
 
-> **Definition 5.1.** For a profinite set $$S = \varprojlim S_i$$, define $$\mathbb{Z}[S]^{\blacksquare} := \varprojlim \mathbb{Z}[S_i]$$. A condensed abelian group $$A$$ is *solid* if every map $$f: S \to A$$ from a profinite set extends uniquely to $$\mathbb{Z}[S]^{\blacksquare} \to A$$.
+> **Definition 5.1.** For a profinite set $$S = \varprojlim S_i$$, define $$\mathbb{Z}[S]^{\blacksquare} := \varprojlim \mathbb{Z}[S_i]$$. A condensed abelian group $$A$$ is _solid_ if every map $$f: S \to A$$ from a profinite set extends uniquely to $$\mathbb{Z}[S]^{\blacksquare} \to A$$.
 
 By Nöbeling's theorem, $$\mathbb{Z}[S]^{\blacksquare} \cong \prod_I \mathbb{Z}$$ for some set $$I$$ — the free solid module on a profinite set is just a product of copies of $$\mathbb{Z}$$. Solid modules are the condensed abelian groups that "respect the profinite topology" by allowing integration against integer-valued measures.
 
@@ -92,7 +92,7 @@ And for a CW complex $$X$$: $$\mathbb{Z}[\underline{X}]^{L\blacksquare} \cong H_
 
 Lecture VII abstracts the pattern into the key definition of the entire program:
 
-> **Definition 7.4.** An *analytic ring* is a condensed ring $$A$$ equipped with a "theory of measures" $$\mathcal{M}$$: a functor assigning to each extremally disconnected $$S$$ an $$A$$-module $$\mathcal{M}[S]$$, such that $$R\mathrm{Hom}_A(\mathcal{M}[S], C) \to R\Gamma(S, C)$$ is an isomorphism for all $$S$$ and all complexes $$C$$ built from $$\mathcal{M}[T]$$'s.
+> **Definition 7.4.** An _analytic ring_ is a condensed ring $$A$$ equipped with a "theory of measures" $$\mathcal{M}$$: a functor assigning to each extremally disconnected $$S$$ an $$A$$-module $$\mathcal{M}[S]$$, such that $$R\mathrm{Hom}_A(\mathcal{M}[S], C) \to R\Gamma(S, C)$$ is an isomorphism for all $$S$$ and all complexes $$C$$ built from $$\mathcal{M}[T]$$'s.
 
 The condition says: the abstract notion of "measure" and the concrete notion of "section" agree at the derived level. Different choices of $$\mathcal{M}$$ give different geometries:
 
@@ -125,7 +125,7 @@ Scholze's concluding remark captures the achievement: "Modulo establishing the f
 
 The enabling fact is that solid $$A$$-modules allow $$\prod_I A \otimes_{A^{\blacksquare}} A[1/f]^{\blacksquare} \cong \prod_I A[1/f]$$ — products commute with localization. This fails for abstract $$A$$-modules. The fix makes $$j_!$$ (left adjoint to restriction) exist, and from that single formal fact, the entire theory of coherent duality follows.
 
-Scholze flags what is truly new: "$$f^!$$ preserves discrete objects... however, our definition makes critical use of condensed mathematics! Indeed, $$f_!$$ does *not* preserve discrete objects, and does not exist (naively) in classical approaches."
+Scholze flags what is truly new: "$$f^!$$ preserves discrete objects... however, our definition makes critical use of condensed mathematics! Indeed, $$f_!$$ does _not_ preserve discrete objects, and does not exist (naively) in classical approaches."
 
 ## Globalization: Gluing on Adic Spaces
 
@@ -133,7 +133,7 @@ Lectures IX–X prove that the solid module theory globalizes to adic spaces:
 
 > **Theorem 9.8.** The association $$\mathrm{Spa}(A, A^+) \mapsto D((A, A^+)^{\blacksquare})$$ defines a sheaf of $$\infty$$-categories on discrete adic spaces.
 
-The proof reduces to the key computation $$\mathbb{Z}[[T]] \otimes^{L}_{(\mathbb{Z}[T], \mathbb{Z})^{\blacksquare}} \mathbb{Z}((T^{-1})) = 0$$ — the "functions near the boundary" vanish after completing at the boundary. Scholze gives an explicit example (an $$\mathbb{F}_p[T]$$-module that localizes to zero but isn't zero) showing that gluing fails at the abelian level — the $$\infty$$-categorical language, with its homotopy-coherent descent, is *necessary*.
+The proof reduces to the key computation $$\mathbb{Z}[[T]] \otimes^{L}_{(\mathbb{Z}[T], \mathbb{Z})^{\blacksquare}} \mathbb{Z}((T^{-1})) = 0$$ — the "functions near the boundary" vanish after completing at the boundary. Scholze gives an explicit example (an $$\mathbb{F}_p[T]$$-module that localizes to zero but isn't zero) showing that gluing fails at the abelian level — the $$\infty$$-categorical language, with its homotopy-coherent descent, is _necessary_.
 
 ## What This Document Is
 

@@ -23,11 +23,11 @@ The first contribution is unglamorous but load-bearing: building a clean corpus.
 
 Epicure does not train a single model. It trains three **Metapath2Vec** variants that differ in their random-walk schemas over a heterogeneous ingredient graph:
 
-| Model | Walk Schema | What It Captures |
-|-------|-------------|------------------|
-| **Cooc** | Traverses recipe co-occurrence edges only | Culinary tradition --- what *is* paired |
-| **Chem** | Traverses FlavorDB chemical compound edges only | Molecular affinity --- what *could* be paired |
-| **Core** | Balanced traversal across both edge types | The intersection of tradition and chemistry |
+| Model    | Walk Schema                                     | What It Captures                              |
+| -------- | ----------------------------------------------- | --------------------------------------------- |
+| **Cooc** | Traverses recipe co-occurrence edges only       | Culinary tradition --- what _is_ paired       |
+| **Chem** | Traverses FlavorDB chemical compound edges only | Molecular affinity --- what _could_ be paired |
+| **Core** | Balanced traversal across both edge types       | The intersection of tradition and chemistry   |
 
 This is the paper's central conceptual device: a **chemistry-vs-recipe-context spectrum**. Cooc lives at the cultural end (soy sauce near dashi, because Japanese cuisine pairs them). Chem lives at the molecular end (soy sauce near parmesan, because both are rich in glutamates). Core occupies the middle ground.
 
@@ -46,7 +46,7 @@ The most striking results come from nearest-neighbor analysis and UMAP projectio
 
 **Chem clusters by molecular family.** Here things get interesting. Umami-rich ingredients --- soy sauce, miso, parmesan, tomato paste --- cluster together regardless of cuisine. Acidic ingredients (citrus, vinegar, yogurt) form their own neighborhood. The embedding has rediscovered flavor chemistry from molecular structure alone.
 
-**Core reveals cross-cultural bridges.** The combined embedding surfaces ingredients that are close in chemistry *and* appear in overlapping culinary contexts, but across different traditions. These are the "why does this work?" moments that molecular gastronomy lives for.
+**Core reveals cross-cultural bridges.** The combined embedding surfaces ingredients that are close in chemistry _and_ appear in overlapping culinary contexts, but across different traditions. These are the "why does this work?" moments that molecular gastronomy lives for.
 
 The paper also applies **WEAT** (Word Embedding Association Tests) adapted for food, probing whether the embeddings encode cuisine stereotypes or category biases. They find that embeddings do reflect training-data imbalances --- English-language recipe dominance distorts representation of non-Western cuisines --- which is honest and useful to report.
 
@@ -76,4 +76,4 @@ The recipe corpus is the proof of concept. The geometry is the point.
 
 ---
 
-**Paper:** Radzikowski, J. & Chen, J. (2026). *Epicure: Navigating the Emergent Geometry of Food Ingredient Embeddings.* [arXiv:2605.22391](https://arxiv.org/abs/2605.22391)
+**Paper:** Radzikowski, J. & Chen, J. (2026). _Epicure: Navigating the Emergent Geometry of Food Ingredient Embeddings._ [arXiv:2605.22391](https://arxiv.org/abs/2605.22391)

@@ -42,7 +42,7 @@ Scholze proposes an even more precise formulation (Conjecture 1.5): the entire s
 
 ## Weil's Rosetta Stone
 
-None of this is what the paper proves. These are the *original* questions, over number fields, which remain wide open. But Weil observed long ago that number theory has three parallel incarnations:
+None of this is what the paper proves. These are the _original_ questions, over number fields, which remain wide open. But Weil observed long ago that number theory has three parallel incarnations:
 
 1. **Number fields** ($$\mathbb{Z}$$, $$\mathbb{Q}$$, ...) — the original setting
 2. **Function fields over finite fields** ($$\mathbb{F}_q[t]$$, curves $$X/\mathbb{F}_q$$) — more tractable
@@ -58,7 +58,7 @@ The landmark result:
 >
 > $$\mathcal{A}_c(\mathrm{BunG}(\mathbb{F}_q)) \cong \Gamma(\mathrm{LocSys}'_{\check{G}},\; \omega_{\mathrm{LocSys}'_{\check{G}}}).$$
 
-The space of compactly supported automorphic functions *is* the global sections of the dualizing sheaf on the moduli of local systems. This essentially resolves Conjecture 1.5 in the function field case. Moreover, Raskin has announced joint work with Gaitsgory and V. Lafforgue deducing the **Arthur–Ramanujan conjecture** in this setting.
+The space of compactly supported automorphic functions _is_ the global sections of the dualizing sheaf on the moduli of local systems. This essentially resolves Conjecture 1.5 in the function field case. Moreover, Raskin has announced joint work with Gaitsgory and V. Lafforgue deducing the **Arthur–Ramanujan conjecture** in this setting.
 
 As Scholze emphasizes: "Thus, at the end of the day, one proves concrete statements about actual numbers, namely eigenvalues of Hecke operators!"
 
@@ -71,7 +71,7 @@ The proof strategy is a four-step program:
 3. Show the conjecture is essentially **independent of the sheaf theory** (de Rham, Betti, or étale).
 4. **Prove** the equivalence in characteristic 0, for D-modules, then deform to positive characteristic.
 
-The key conceptual move is *categorification*. Where the arithmetic Langlands program works with vector spaces and functions, the geometric Langlands program works with **categories and sheaves**. Scholze describes this as "algebra with categories":
+The key conceptual move is _categorification_. Where the arithmetic Langlands program works with vector spaces and functions, the geometric Langlands program works with **categories and sheaves**. Scholze describes this as "algebra with categories":
 
 > When roughly a century ago one was gradually going from doing algebra with numbers (adding, multiplying, ...) to doing algebra with modules (direct sums, tensor products, ...), here one is doing algebra with categories (which also admit direct sums, tensor products, ...).
 
@@ -113,7 +113,7 @@ The bridge between $$G$$ and its Langlands dual $$\check{G}$$ is the **geometric
 
 $$\mathrm{Perv}(\mathrm{Hck}^{\mathrm{loc}}_G) \cong \mathrm{Rep}(\check{G})$$
 
-between perverse sheaves on the local Hecke stack and representations of the dual group. This is a categorification of the classical Satake isomorphism. Crucially, it shows that the perverse sheaves are *miraculously* symmetric monoidal — the commutativity of Hecke operators, which in arithmetic is a computation, here becomes a consequence of fusion.
+between perverse sheaves on the local Hecke stack and representations of the dual group. This is a categorification of the classical Satake isomorphism. Crucially, it shows that the perverse sheaves are _miraculously_ symmetric monoidal — the commutativity of Hecke operators, which in arithmetic is a computation, here becomes a consequence of fusion.
 
 In Scholze's view, this is "in fact the correct definition of the Langlands dual group — it is the Tannakian group that arises in the geometric Satake equivalence."
 
@@ -149,7 +149,7 @@ $$\mathrm{tr}(\mathrm{Fr} \mid D(\mathrm{BunG})) \xrightarrow{\;\sim\;} \mathcal
 
 The trace of Frobenius on the category of sheaves recovers the vector space of automorphic functions. Applying this to both sides of the geometric equivalence yields the arithmetic isomorphism.
 
-This is a categorification of Grothendieck's sheaf-function dictionary: where classically a sheaf $$\mathcal{F}$$ gives a function via $$x \mapsto \mathrm{tr}(\mathrm{Frob}_x \mid \mathcal{F}_x)$$, here an entire *category* of sheaves gives a vector space of functions via the categorical trace.
+This is a categorification of Grothendieck's sheaf-function dictionary: where classically a sheaf $$\mathcal{F}$$ gives a function via $$x \mapsto \mathrm{tr}(\mathrm{Frob}_x \mid \mathcal{F}_x)$$, here an entire _category_ of sheaves gives a vector space of functions via the categorical trace.
 
 ## What Doesn't Work (Yet)
 
@@ -169,7 +169,7 @@ At one point in the paper, Scholze writes:
 
 This is about the choice of six-functor formalism: whether to use $$(f^*, f_!)$$ or $$(f^!, f_*)$$ as the basic operations. The two choices are related by Verdier duality and agree on compact objects, but diverge after passing to ind-categories and stacks. Scholze finds the second convention unnatural (he uses the first in his report), and admits he cannot fully follow the foundational papers that use it.
 
-This is revealing not as a limitation of Scholze but as a statement about the *state of the field*. The proof of geometric Langlands operates at such a level of categorical abstraction — "algebra with categories" in the literal sense, where the basic operations are tensor products and colimits of entire $$(\infty,1)$$-categories — that even the most technically gifted mathematicians can struggle with conventions and foundations. The machine works. But the machine is not yet easy to read.
+This is revealing not as a limitation of Scholze but as a statement about the _state of the field_. The proof of geometric Langlands operates at such a level of categorical abstraction — "algebra with categories" in the literal sense, where the basic operations are tensor products and colimits of entire $$(\infty,1)$$-categories — that even the most technically gifted mathematicians can struggle with conventions and foundations. The machine works. But the machine is not yet easy to read.
 
 ## The Shape of Things
 

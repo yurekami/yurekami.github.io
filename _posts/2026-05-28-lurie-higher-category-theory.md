@@ -24,11 +24,11 @@ This post is not a reading of a single document but an attempt to explain why th
 
 The problem Lurie's work solves can be stated simply: **how do you do algebra when equalities are replaced by isomorphisms, and isomorphisms are replaced by higher isomorphisms, all the way up?**
 
-In classical mathematics, two objects are either equal or not. In category theory, the right notion is isomorphism — objects can be "the same" without being identical. But isomorphisms themselves can be isomorphic (a natural transformation between functors is an "isomorphism between isomorphisms"), and *those* can be isomorphic too, ad infinitum.
+In classical mathematics, two objects are either equal or not. In category theory, the right notion is isomorphism — objects can be "the same" without being identical. But isomorphisms themselves can be isomorphic (a natural transformation between functors is an "isomorphism between isomorphisms"), and _those_ can be isomorphic too, ad infinitum.
 
 This tower of "higher coherences" arises naturally whenever homotopy theory touches algebra. A topological space has not just a set of points but a fundamental groupoid (paths between points, homotopies between paths, homotopies between homotopies...). A derived category has not just morphisms but chain homotopies, homotopies between chain homotopies, and so on. A symmetric monoidal category has not just an associativity isomorphism $$(A \otimes B) \otimes C \cong A \otimes (B \otimes C)$$ but a pentagon of coherence isomorphisms, and then higher pentagons, forever.
 
-Before Lurie, the standard approach was to either truncate (work with 1-categories and ignore the higher structure) or to use *ad hoc* models (model categories, simplicial categories, Segal spaces) that each captured some of the structure but none captured all of it in a way that was simultaneously rigorous, general, and usable.
+Before Lurie, the standard approach was to either truncate (work with 1-categories and ignore the higher structure) or to use _ad hoc_ models (model categories, simplicial categories, Segal spaces) that each captured some of the structure but none captured all of it in a way that was simultaneously rigorous, general, and usable.
 
 ## The Trilogy
 
@@ -38,7 +38,7 @@ Lurie's foundational program consists of three books, each building on the previ
 
 949 pages. Published by Princeton University Press as Annals of Mathematics Studies #170.
 
-[^htt]: Jacob Lurie, *Higher Topos Theory*, Annals of Mathematics Studies 170, Princeton University Press (2009). Updated April 2017. [PDF](https://www.math.ias.edu/~lurie/papers/HTT.pdf).
+[^htt]: Jacob Lurie, _Higher Topos Theory_, Annals of Mathematics Studies 170, Princeton University Press (2009). Updated April 2017. [PDF](https://www.math.ias.edu/~lurie/papers/HTT.pdf).
 
 HTT develops the theory of **$$(\infty,1)$$-categories** — higher categories in which all $$k$$-morphisms for $$k > 1$$ are invertible. The model is **quasi-categories** (a.k.a. weak Kan complexes): simplicial sets satisfying a weakened horn-filling condition. This is the "operating system" on which everything else runs.
 
@@ -52,13 +52,13 @@ Along the way, HTT develops the entire categorical toolkit: limits and colimits,
 
 1553 pages (unpublished, but universally cited).
 
-[^ha]: Jacob Lurie, *Higher Algebra*, updated September 2017. [PDF](https://www.math.ias.edu/~lurie/papers/HA.pdf).
+[^ha]: Jacob Lurie, _Higher Algebra_, updated September 2017. [PDF](https://www.math.ias.edu/~lurie/papers/HA.pdf).
 
 Where HTT develops the "topology" of $$\infty$$-categories (limits, colimits, descent), HA develops the "algebra": **$$\infty$$-operads**, **stable $$\infty$$-categories**, **ring spectra**, and **modules** over them.
 
 The key concept is the **stable $$\infty$$-category** — the $$\infty$$-categorical analogue of an abelian category, where the role of chain complexes is absorbed into the categorical structure itself. The derived category of an abelian category is a stable $$\infty$$-category; but so are the categories of spectra in stable homotopy theory, the categories of modules over ring spectra, and the categories that arise in Scholze's condensed mathematics.
 
-HA also develops the theory of **symmetric monoidal $$\infty$$-categories** and **commutative algebra objects** in them. This is where the notion of a "ring" is generalized to the $$\infty$$-categorical setting — an $$\mathbb{E}_\infty$$-ring is a commutative ring up to all higher coherences. The classical notion of a commutative ring is recovered as the special case of a *discrete* $$\mathbb{E}_\infty$$-ring.
+HA also develops the theory of **symmetric monoidal $$\infty$$-categories** and **commutative algebra objects** in them. This is where the notion of a "ring" is generalized to the $$\infty$$-categorical setting — an $$\mathbb{E}_\infty$$-ring is a commutative ring up to all higher coherences. The classical notion of a commutative ring is recovered as the special case of a _discrete_ $$\mathbb{E}_\infty$$-ring.
 
 This is the book that makes the following sentence from Scholze's [six-functor formalism notes](/blog/2026/six-functor-formalisms-scholze/) possible: "a commutative algebra in categories is the same thing as a symmetric monoidal category." That sentence encodes months of foundational work, all of which is done in HA.
 
@@ -66,7 +66,7 @@ This is the book that makes the following sentence from Scholze's [six-functor f
 
 ~1700 pages (and growing). Not yet published; approximately two-thirds complete as of February 2018.
 
-[^sag]: Jacob Lurie, *Spectral Algebraic Geometry (Under Construction)*, updated February 2018. [PDF](https://www.math.ias.edu/~lurie/papers/SAG-rootfile.pdf).
+[^sag]: Jacob Lurie, _Spectral Algebraic Geometry (Under Construction)_, updated February 2018. [PDF](https://www.math.ias.edu/~lurie/papers/SAG-rootfile.pdf).
 
 SAG builds algebraic geometry on the foundations of HA — replacing commutative rings with $$\mathbb{E}_\infty$$-ring spectra, and schemes with **spectral schemes**. The resulting theory subsumes classical algebraic geometry (which is recovered by restricting to discrete rings) and derived algebraic geometry (which uses simplicial commutative rings), while also encompassing the "brave new algebra" of stable homotopy theory.
 
@@ -90,7 +90,7 @@ Beyond the trilogy, Lurie's homepage lists works that have each independently re
 
 Mathematics has a "language tax": before you can state a theorem, you need a language in which to state it, and before you can prove it, you need foundational results in that language. Lurie's work pays this tax for an entire generation.
 
-Consider what is needed to even *state* the geometric Langlands conjecture:
+Consider what is needed to even _state_ the geometric Langlands conjecture:
 
 - $$D_{\mathrm{Nilp}}(\mathrm{BunG})$$ — a category of sheaves with nilpotent singular support on an Artin stack. Defining this requires: stable $$\infty$$-categories (HA), descent for sheaves on stacks (HTT), the notion of singular support in the derived setting.
 

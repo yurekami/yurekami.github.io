@@ -12,21 +12,21 @@ toc:
   sidebar: left
 ---
 
-For decades, the answer to "what is a six-functor formalism?" was "you know it when you see it." Every cohomology theory worth its name — étale cohomology, singular cohomology, D-modules, mixed Hodge modules — came with the same package of six interrelated functors and a web of compatibilities between them. But writing down what that package *actually is*, as a mathematical object, turned out to be one of the most difficult problems in modern algebraic geometry.
+For decades, the answer to "what is a six-functor formalism?" was "you know it when you see it." Every cohomology theory worth its name — étale cohomology, singular cohomology, D-modules, mixed Hodge modules — came with the same package of six interrelated functors and a web of compatibilities between them. But writing down what that package _actually is_, as a mathematical object, turned out to be one of the most difficult problems in modern algebraic geometry.
 
-Peter Scholze's lecture notes, *Six-Functor Formalisms*,[^notes] first taught in Winter 2022/23 and updated in October 2025, give a definitive answer. The notes define the abstract notion, develop its formal consequences (including an elegant reduction of Poincaré–Verdier duality to a simple adjunction problem), and then work through a remarkable procession of examples — topological spaces, coherent sheaves, solid modules, motivic sheaves, and a new construction of arithmetic D-modules — that all fit into the same framework. A recurring theme, first observed by Drinfeld, is that six-functor formalisms factor through **ring stacks**: commutative ring objects in the world of stacks.
+Peter Scholze's lecture notes, _Six-Functor Formalisms_,[^notes] first taught in Winter 2022/23 and updated in October 2025, give a definitive answer. The notes define the abstract notion, develop its formal consequences (including an elegant reduction of Poincaré–Verdier duality to a simple adjunction problem), and then work through a remarkable procession of examples — topological spaces, coherent sheaves, solid modules, motivic sheaves, and a new construction of arithmetic D-modules — that all fit into the same framework. A recurring theme, first observed by Drinfeld, is that six-functor formalisms factor through **ring stacks**: commutative ring objects in the world of stacks.
 
-[^notes]: Peter Scholze, *Six-Functor Formalisms*, lecture notes for a course at the University of Bonn, Winter 2022/23, updated October 2025. Available at [https://people.mpim-bonn.mpg.de/scholze/SixFunctors.pdf](https://people.mpim-bonn.mpg.de/scholze/SixFunctors.pdf). 111 pages.
+[^notes]: Peter Scholze, _Six-Functor Formalisms_, lecture notes for a course at the University of Bonn, Winter 2022/23, updated October 2025. Available at [https://people.mpim-bonn.mpg.de/scholze/SixFunctors.pdf](https://people.mpim-bonn.mpg.de/scholze/SixFunctors.pdf). 111 pages.
 
 ## The Six Functors, from Scratch
 
 Start with a category $$\mathcal{C}$$ of geometric objects — topological spaces, schemes, analytic spaces — and an assignment $$X \mapsto D(X)$$ to some derived category. Six functors arise:
 
-| Functor | Description | Right adjoint |
-|---|---|---|
-| $$f^*$$ | Pullback | $$f_*$$ (pushforward) |
-| $$\otimes$$ | Tensor product | $$\mathcal{H}\mathrm{om}$$ (internal Hom) |
-| $$f_!$$ | Proper pushforward | $$f^!$$ (exceptional inverse image) |
+| Functor     | Description        | Right adjoint                             |
+| ----------- | ------------------ | ----------------------------------------- |
+| $$f^*$$     | Pullback           | $$f_*$$ (pushforward)                     |
+| $$\otimes$$ | Tensor product     | $$\mathcal{H}\mathrm{om}$$ (internal Hom) |
+| $$f_!$$     | Proper pushforward | $$f^!$$ (exceptional inverse image)       |
 
 Each even-numbered functor is the right adjoint of the odd-numbered one above it. Pullback $$f^*$$ is symmetric monoidal ($$f^*(A \otimes B) \cong f^*A \otimes f^*B$$). And $$f_!$$ satisfies the **base change formula** ($$g^* f_! \cong f'_! g'^*$$ for Cartesian squares) and the **projection formula** ($$f_! A \otimes B \cong f_!(A \otimes f^*B)$$).
 
@@ -50,7 +50,7 @@ The category of correspondences $$\mathrm{Corr}(\mathcal{C}, E)$$ has the same o
 2. **Pullback** $$f^*$$ — from contravariant morphisms (the left leg of a span)
 3. **Proper pushforward** $$f_!$$ — from covariant $$E$$-morphisms (the right leg)
 
-All the coherences — base change, projection formula, associativity — are encoded *automatically* by the functoriality of $$D$$ on correspondences. No additional data or diagrams needed.
+All the coherences — base change, projection formula, associativity — are encoded _automatically_ by the functoriality of $$D$$ on correspondences. No additional data or diagrams needed.
 
 > **Definition 2.5.** A **6-functor formalism** is a 3-functor formalism for which $$- \otimes A$$, $$f^*$$, and $$f_!$$ all admit right adjoints.
 
@@ -72,7 +72,7 @@ Scholze constructs a **2-category of kernels** $$\mathcal{LZ}_D$$: objects are o
 
 > **Theorem 5.5.** A morphism $$f: X \to Y$$ is **cohomologically smooth** if and only if there exists an invertible object $$L \in D(X)$$ and maps $$\alpha: R\Gamma_c(X, L) \to \mathbb{1}_Y$$ and $$\beta: \Delta_! \mathbb{1}_X \to p_1^* L$$ satisfying the triangle identities of an adjunction (up to a correction that can always be made — Lemma 5.6). In that case, $$f^! \cong f^* \otimes L$$ and $$L = f^! \mathbb{1}_Y$$ is the **dualizing complex**.
 
-The key simplification (Lemma 5.6/5.11): one does *not* need the triangle identities to hold on the nose — it suffices that the composites are isomorphisms (not necessarily the identity). The correction to a genuine adjunction is then automatic. This "Lax Zorro" lemma drastically simplifies verification in practice.
+The key simplification (Lemma 5.6/5.11): one does _not_ need the triangle identities to hold on the nose — it suffices that the composites are isomorphisms (not necessarily the identity). The correction to a genuine adjunction is then automatic. This "Lax Zorro" lemma drastically simplifies verification in practice.
 
 **Example:** For $$f: \mathbb{R} \to *$$ and $$D = D(\mathrm{Ab}(-))$$, the dualizing complex is $$\mathbb{Z}[1]$$. The trace map $$\alpha$$ comes from $$R\Gamma_c(\mathbb{R}, \mathbb{Z}[1]) \cong \mathbb{Z}$$. The coproduct $$\beta$$ comes from the computation $$R\mathcal{H}\mathrm{om}(\Delta_! \mathbb{Z}[-1], \mathbb{Z}) \cong \mathbb{Z}$$ via the triangle $$\Delta_! \mathbb{Z} \to \mathbb{Z} \to j_! \mathbb{Z}$$ for $$j: \mathbb{R}^2 \setminus \Delta \hookrightarrow \mathbb{R}^2$$.
 
@@ -88,7 +88,7 @@ The first functor $$F$$ is a "transmutation" $$X \mapsto X_R$$ determined by a *
 
 The examples are striking:
 
-- **The Betti stack** $$X_{\mathrm{Betti}}$$: For a topological space $$X$$, the functor $$S \mapsto \mathrm{Cont}(|S|, X)$$ on schemes gives a pro-étale algebraic space, and $$D(X, \mathbb{Z}) \cong D_{\mathrm{qc}}(X_{\mathrm{Betti}})$$. This is Exercise 1.7 in the notes — the six-functor formalism on topological spaces *is* the quasicoherent sheaf theory on Betti stacks.
+- **The Betti stack** $$X_{\mathrm{Betti}}$$: For a topological space $$X$$, the functor $$S \mapsto \mathrm{Cont}(|S|, X)$$ on schemes gives a pro-étale algebraic space, and $$D(X, \mathbb{Z}) \cong D_{\mathrm{qc}}(X_{\mathrm{Betti}})$$. This is Exercise 1.7 in the notes — the six-functor formalism on topological spaces _is_ the quasicoherent sheaf theory on Betti stacks.
 
 - **The de Rham stack** $$X_{\mathrm{dR}}$$: Simpson's de Rham stack, the quotient $$X/(X \subset X \times X)^{\wedge}$$. Quasicoherent sheaves on $$X_{\mathrm{dR}}$$ recover algebraic D-modules.
 
@@ -102,13 +102,13 @@ In each case, the ring stack encodes the "coefficients" of the cohomology theory
 
 Lecture IX develops the six-functor formalism for **solid modules** — the condensed/analytic framework from [the Analytic Geometry lectures](/blog/2026/analytic-geometry-scholze-clausen/). A curious phenomenon arises that Scholze flags explicitly:
 
-> "Something weird happens here": for coherent sheaves, it is the *proper* maps where $$f_*$$ admits a left adjoint, not the open immersions — the opposite of the topological and étale settings.
+> "Something weird happens here": for coherent sheaves, it is the _proper_ maps where $$f_*$$ admits a left adjoint, not the open immersions — the opposite of the topological and étale settings.
 
-In the topological setting, open immersions $$j$$ give $$j_! = j_*$$ (extension by zero), and proper maps give $$f_! = f_*$$. For coherent sheaves, open immersions $$j^* = -\otimes_A A[1/f]$$ do *not* commute with products, so $$j^*$$ has no left adjoint — the roles of "proper" and "open" are swapped. The solid formalism (working with condensed modules) resolves this by making completions and localizations behave algebraically.
+In the topological setting, open immersions $$j$$ give $$j_! = j_*$$ (extension by zero), and proper maps give $$f_! = f_*$$. For coherent sheaves, open immersions $$j^* = -\otimes_A A[1/f]$$ do _not_ commute with products, so $$j^*$$ has no left adjoint — the roles of "proper" and "open" are swapped. The solid formalism (working with condensed modules) resolves this by making completions and localizations behave algebraically.
 
 > **Theorem 9.17.** In the solid formalism, any smooth map $$f: X \to Y$$ is cohomologically smooth with dualizing complex $$\Omega^d_{X/Y}[d]$$. For lci maps, $$f^!\mathbb{1} = \det(L_{X/Y})$$ is invertible.
 
-The payoff (Theorem 9.18): finiteness of coherent cohomology — proper pushforward preserves pseudocoherent and coherent objects — follows *formally* from the abstract duality theory plus the cohomological smoothness of $$\mathbb{A}^1_{\mathbb{Z}} \to \mathrm{Spec}(\mathbb{Z})$$ in the solid formalism.
+The payoff (Theorem 9.18): finiteness of coherent cohomology — proper pushforward preserves pseudocoherent and coherent objects — follows _formally_ from the abstract duality theory plus the cohomological smoothness of $$\mathbb{A}^1_{\mathbb{Z}} \to \mathrm{Spec}(\mathbb{Z})$$ in the solid formalism.
 
 ## Motivic Sheaves: The Universal Example
 
@@ -116,7 +116,7 @@ Lecture XI gives the following remarkable characterization:
 
 > **Theorem 11.1** (Drew–Gallauer). _The $$\infty$$-category of stable presentable 6-functor formalisms on $$\mathrm{Sch}/k$$ satisfying (1) smooth maps are cohomologically smooth, (2) excision, and (3) $$\mathbb{A}^1$$-triviality, has an **initial object**: the Morel–Voevodsky stable homotopy category $$\mathrm{SH}_k$$._
 
-In other words: $$\mathrm{SH}_k$$ is the *universal* six-functor formalism. Any ring stack satisfying the conditions of Theorem 10.6 receives a unique map from $$\mathrm{SH}$$ (Corollary 11.3). This gives motivic sheaves their definitive characterization — not as a construction, but as a universal property.
+In other words: $$\mathrm{SH}_k$$ is the _universal_ six-functor formalism. Any ring stack satisfying the conditions of Theorem 10.6 receives a unique map from $$\mathrm{SH}$$ (Corollary 11.3). This gives motivic sheaves their definitive characterization — not as a construction, but as a universal property.
 
 Aoki's thesis (announced in these notes) makes this even sharper:
 
@@ -142,7 +142,7 @@ The motivation for "tempered": the logarithm $$\log(1+x) = \sum (-1)^{n+1} x^n/n
 
 The notes end with a delightful section on what happens when $$\mathcal{C}$$ is just a point. A 3-functor formalism is then a single symmetric monoidal $$\infty$$-category $$D$$. Extending to stacks gives $$D(X) = \mathrm{Fun}(X, D)$$ — parametrized spectra. The notion of "cohomologically étale" becomes: all $$n$$-truncated maps with finite homotopy group fibers.
 
-The deepest result in this toy case is Hopkins–Lurie **ambidexterity** (Theorem 13.3): for $$K(n)$$-local spectra, any $$n$$-truncated map with finite $$\pi_i$$ fibers ($$0 \leq i \leq n$$) is simultaneously cohomologically étale *and* cohomologically proper — the proper and étale directions coincide. Ambidexterity is the chromatic homotopy theory analogue of the "weird" role reversal Scholze noted for coherent sheaves.
+The deepest result in this toy case is Hopkins–Lurie **ambidexterity** (Theorem 13.3): for $$K(n)$$-local spectra, any $$n$$-truncated map with finite $$\pi_i$$ fibers ($$0 \leq i \leq n$$) is simultaneously cohomologically étale _and_ cohomologically proper — the proper and étale directions coincide. Ambidexterity is the chromatic homotopy theory analogue of the "weird" role reversal Scholze noted for coherent sheaves.
 
 ## What the Notes Achieve
 
