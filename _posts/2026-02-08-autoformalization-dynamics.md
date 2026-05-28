@@ -18,7 +18,7 @@ I built a computational model to find out. The answer surprised me.
 
 Automated theorem proving is advancing fast. AlphaProof, Lean, Mathlib — the tools for machines to generate and verify mathematical proofs are improving at a rate that makes "AI proves new theorems" a plausible near-term headline.
 
-But proving theorems is only one piece of the puzzle. Before a machine can prove anything, someone has to *formalize* the question — translate it from the informal language mathematicians actually think in into the rigid syntax a proof assistant understands. And after the proof is generated, someone has to *interpret* it — understand what it means, why it matters, and how it connects to the broader landscape of mathematics.
+But proving theorems is only one piece of the puzzle. Before a machine can prove anything, someone has to _formalize_ the question — translate it from the informal language mathematicians actually think in into the rigid syntax a proof assistant understands. And after the proof is generated, someone has to _interpret_ it — understand what it means, why it matters, and how it connects to the broader landscape of mathematics.
 
 I wanted to understand the dynamics of this entire ecosystem. Not just "will AI get better at proofs?" but "what happens to the system of mathematicians, provers, knowledge bases, and verification tools as they co-evolve over decades?"
 
@@ -97,13 +97,13 @@ That last transition is irreversible under default dynamics. Once H becomes the 
 
 I ran the model under five parameter scenarios:
 
-| Scenario | What it models | Outcome |
-|----------|---------------|---------|
-| **Baseline** | Business as usual | Boom and bust in ~50 years |
-| **Verification Crisis** | Weak verification investment | Fast collapse, low peaks |
-| **Formalization Boom** | Massive incentive push | Bigger boom, still crashes |
-| **Rubber Stamping** | Humans stop checking proofs | Slow degradation, compromised V |
-| **Knowledge Fortress** | Heavy investment in verification infrastructure | **Survives** |
+| Scenario                | What it models                                  | Outcome                         |
+| ----------------------- | ----------------------------------------------- | ------------------------------- |
+| **Baseline**            | Business as usual                               | Boom and bust in ~50 years      |
+| **Verification Crisis** | Weak verification investment                    | Fast collapse, low peaks        |
+| **Formalization Boom**  | Massive incentive push                          | Bigger boom, still crashes      |
+| **Rubber Stamping**     | Humans stop checking proofs                     | Slow degradation, compromised V |
+| **Knowledge Fortress**  | Heavy investment in verification infrastructure | **Survives**                    |
 
 Only one scenario survives: the **Knowledge Fortress**.
 
@@ -116,9 +116,10 @@ Only one scenario survives: the **Knowledge Fortress**.
     Final state comparison across all five scenarios. Only Knowledge Fortress maintains high verification integrity.
 </div>
 
-The Knowledge Fortress works because it invests in *verification infrastructure that gets stronger as the knowledge base grows*. More formal proofs mean more cross-references, more consistency checks, more ways to catch reward hacking. The knowledge base protects verification, verification protects human interpretation, interpretation sustains formalization, and formalization grows the knowledge base. A virtuous cycle that resists collapse.
+The Knowledge Fortress works because it invests in _verification infrastructure that gets stronger as the knowledge base grows_. More formal proofs mean more cross-references, more consistency checks, more ways to catch reward hacking. The knowledge base protects verification, verification protects human interpretation, interpretation sustains formalization, and formalization grows the knowledge base. A virtuous cycle that resists collapse.
 
 In the Knowledge Fortress scenario:
+
 - Verification stays above 0.95 for the entire simulation
 - Human interpretation dips but recovers to 0.7
 - The knowledge base grows to 600+ (vs. peak ~80 in baseline before crashing)
@@ -206,4 +207,4 @@ The code is at [github.com/yurekami/autoformalization-dynamics](https://github.c
 
 ---
 
-*"What I cannot create, I do not understand." — Richard Feynman*
+_"What I cannot create, I do not understand." — Richard Feynman_

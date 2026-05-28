@@ -13,7 +13,7 @@ toc:
   sidebar: left
 ---
 
-[BGJ-Sieve-AMX](https://github.com/zhaoziyu0008/BGJ-Sieve-AMX) is the reference implementation that accompanies Zhao, Ding and Yang's *Sieving with Streaming Memory Access*. It is, by several metrics, the fastest publicly available BGJ sieve for the Shortest Vector Problem — hand-tuned for Intel's AVX512-VNNI and AMX-INT8 instruction sets, roughly 35,000 lines of C++ with non-trivial inline assembly, and the kind of code where you expect the bugs to live inside the bucketing kernels or the quadratic-float arithmetic.
+[BGJ-Sieve-AMX](https://github.com/zhaoziyu0008/BGJ-Sieve-AMX) is the reference implementation that accompanies Zhao, Ding and Yang's _Sieving with Streaming Memory Access_. It is, by several metrics, the fastest publicly available BGJ sieve for the Shortest Vector Problem — hand-tuned for Intel's AVX512-VNNI and AMX-INT8 instruction sets, roughly 35,000 lines of C++ with non-trivial inline assembly, and the kind of code where you expect the bugs to live inside the bucketing kernels or the quadratic-float arithmetic.
 
 They don't. The bug I want to describe is in a twelve-line argv loop, and it quietly corrupts the parameters fed to the final pump — the innermost, most expensive phase of an SVP challenge run.
 
@@ -31,11 +31,11 @@ The entry point is `app/bin_svp_tool.cpp`. The argument loop uses the common `at
 
 Note what is absent. `i` is not advanced past the two positional numbers. Every other flag — `-l`, `-r`, `-s`, `-t`, `-v`, `-msd`, `-esd`, `-ssd`, `-ds` — uses `atol(argv[++i])`. This one peeks.
 
-The loop is a plain `if/else if` chain with no terminal `else` and no unknown-flag warning, so tokens that fall off the end are silently discarded. This means the happy path still *appears* to work: invoke `--lsh 0.15 0.2`, and on the next two iterations `0.15` and `0.2` match nothing and vanish, leaving `lsh_qr = 0.15` and `lsh_er = 0.2` as intended. The bug does not fire on the example the author tested.
+The loop is a plain `if/else if` chain with no terminal `else` and no unknown-flag warning, so tokens that fall off the end are silently discarded. This means the happy path still _appears_ to work: invoke `--lsh 0.15 0.2`, and on the next two iterations `0.15` and `0.2` match nothing and vanish, leaving `lsh_qr = 0.15` and `lsh_er = 0.2` as intended. The bug does not fire on the example the author tested.
 
 ## Two ways the bug fires
 
-**Shape 1: adjacent flags.** Invoke `--lsh -t 4`. The parser evaluates `atof("-t") == 0.0` and `atof("4") == 4.0`. `lsh_qr` is set to zero; `lsh_er` is set to the *thread count*. The loop then advances to `-t`, which is handled correctly, so `num_threads = 4` also. The user sees a run that launches with four threads and believes they passed no LSH parameters. They did not. `lsh_er = 4.0` is about twenty times the intended value, and is about to be passed into the LSH filter as a radius scaling constant.
+**Shape 1: adjacent flags.** Invoke `--lsh -t 4`. The parser evaluates `atof("-t") == 0.0` and `atof("4") == 4.0`. `lsh_qr` is set to zero; `lsh_er` is set to the _thread count_. The loop then advances to `-t`, which is handled correctly, so `num_threads = 4` also. The user sees a run that launches with four threads and believes they passed no LSH parameters. They did not. `lsh_er = 4.0` is about twenty times the intended value, and is about to be passed into the LSH filter as a radius scaling constant.
 
 **Shape 2: the `--final` trapdoor.** A few lines later, the defaults guard reads:
 

@@ -56,14 +56,7 @@
   "interests": [
     {
       "name": "LLM Systems",
-      "keywords": [
-        "Distributed Training",
-        "Model Serving",
-        "RLHF",
-        "Efficient Fine-Tuning",
-        "Expert Parallelism",
-        "Structured Outputs"
-      ]
+      "keywords": ["Distributed Training", "Model Serving", "RLHF", "Efficient Fine-Tuning", "Expert Parallelism", "Structured Outputs"]
     }
   ]
 }
