@@ -71,6 +71,17 @@ ninja.data = [{
             window.location.href = "/blog/2026/godel-theory-of-everything/";
           
         },
+      },{id: "post-gödel-in-cryptography-the-impossible-zero-knowledge-proof-that-works-anyway",
+        
+          title: "Gödel in Cryptography: The Impossible Zero-Knowledge Proof That Works Anyway",
+        
+        description: "A reading of Rahul Ilango&#39;s Machtey Award-winning paper that uses Gödel&#39;s incompleteness theorem to construct &quot;effectively zero-knowledge&quot; proofs for NP — non-interactive, with perfect soundness, and no trusted setup — circumventing a classical impossibility result by exploiting the gap between truth and provability.",
+        section: "Posts",
+        handler: () => {
+          
+            window.location.href = "/blog/2026/godel-in-cryptography-ilango/";
+          
+        },
       },{id: "post-the-langlands-program-proved-geometrically-scholze-39-s-bourbaki-report",
         
           title: "The Langlands Program Proved (Geometrically): Scholze&#39;s Bourbaki Report",
