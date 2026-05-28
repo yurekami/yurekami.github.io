@@ -27,6 +27,17 @@ ninja.data = [{
             window.location.href = "/blog/2026/six-functor-formalisms-scholze/";
           
         },
+      },{id: "post-robin-the-first-ai-system-to-discover-a-drug-candidate-in-a-lab-in-the-loop",
+        
+          title: "Robin: The First AI System to Discover a Drug Candidate in a Lab-in-the-Loop...",
+        
+        description: "A reading of the Nature paper introducing Robin, FutureHouse&#39;s multi-agent system that autonomously generated hypotheses, proposed experiments, analyzed data, and identified ripasudil as a novel therapeutic candidate for dry age-related macular degeneration — the first AI-driven drug repurposing through an iterative lab-in-the-loop cycle.",
+        section: "Posts",
+        handler: () => {
+          
+            window.location.href = "/blog/2026/robin-ai-scientific-discovery/";
+          
+        },
       },{id: "post-geometrizing-p-adic-hodge-theory-bhatt-39-s-princeton-lectures",
         
           title: "Geometrizing p-adic Hodge Theory: Bhatt&#39;s Princeton Lectures",
