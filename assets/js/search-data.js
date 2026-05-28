@@ -16,7 +16,18 @@ ninja.data = [{
           handler: () => {
             window.location.href = "/blog/";
           },
-        },{id: "post-the-sum-product-conjecture-is-false-how-number-fields-broke-a-50-year-old-problem",
+        },{id: "post-programbench-no-llm-can-rebuild-ffmpeg-from-scratch",
+        
+          title: "ProgramBench: No LLM Can Rebuild FFmpeg From Scratch",
+        
+        description: "A reading of Meta FAIR&#39;s ProgramBench — a benchmark where AI agents must architect and implement entire software projects from scratch given only an executable and its docs. No model fully solves any task. The best (Opus 4.7) passes 95% of tests on just 3% of tasks.",
+        section: "Posts",
+        handler: () => {
+          
+            window.location.href = "/blog/2026/programbench-software-from-scratch/";
+          
+        },
+      },{id: "post-the-sum-product-conjecture-is-false-how-number-fields-broke-a-50-year-old-problem",
         
           title: "The Sum-Product Conjecture Is False: How Number Fields Broke a 50-Year-Old Problem",
         
