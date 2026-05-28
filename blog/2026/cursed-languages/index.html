@@ -20,11 +20,11 @@
     A["High Abstraction"] --&gt; B["Easily Transmissible"]
     B --&gt; C["Accumulates at Scale"]
     C --&gt; D["Abundant Data"]
-    
+
     E["Low Abstraction"] --&gt; F["Requires Physical Generation"]
     F --&gt; G["Expensive to Collect"]
     G --&gt; H["Scarce Data"]
-    
+
     A -.-&gt;|"causal, not coincidental"| D
     E -.-&gt;|"causal, not coincidental"| H
 
@@ -34,18 +34,18 @@
     style H fill:#451a03,stroke:#f0883e,color:#c9d1d9
 </code></pre> <p>This means the “cursed region” isn’t an arbitrary quadrant — it’s the <em>expected</em> region for primitive modalities. The curse is structural, not accidental. And this has implications for strategy: you cannot “fix” data scarcity for primitive modalities by building better data pipelines, because the scarcity is a consequence of the modality’s nature, not of insufficient infrastructure.</p> <h3 id="33-the-research-language-proposal-is-circular">3.3 The research language proposal is circular</h3> <p>Liu’s most provocative claim is that we need to <em>create</em> a new language for AI research — one that is “more abstract and more compressed” than natural language. “Physics of AI” is offered as a candidate.</p> <p>But consider the bootstrapping problem. Liu’s own framework tells us that languages in the “data-scarce, high-abstraction” quadrant are exactly the ones that need scale to be useful and can’t achieve scale without adoption. Who produces the first million tokens of “Physics of AI” language? Who trains the model that learns it? How does it reach the critical mass needed for pretraining?</p> <p>Natural language didn’t face this problem because it evolved organically over millennia, with selection pressure at every step. Mathematical notation reached its current form through centuries of practitioner refinement. These languages weren’t designed — they were selected for. Proposing to <em>design</em> a research language is a categorically different kind of task, and the piece doesn’t engage with the mechanism by which it would achieve scale.</p> <p>This isn’t a fatal objection — formal languages have been successfully introduced before (programming languages, mathematical notation for specific fields). But those succeeded by offering immediate utility to practitioners who adopted them voluntarily. The value proposition for “Physics of AI” as a language needs to be made concrete: what can you express in it that you can’t express in mathematics + natural language? What is the incentive for individual researchers to invest in learning and producing it?</p> <h3 id="34-the-bitter-lesson-engagement-doesnt-land">3.4 The Bitter Lesson engagement doesn’t land</h3> <p>Liu (via Saining Xie) argues that natural language’s success is a <em>counterexample</em> to the Bitter Lesson, because NL itself is “a beautifully structured artifact — a gift from natural evolution.”</p> <p>But Sutton’s Bitter Lesson is specifically about <strong>researcher-designed</strong> inductive biases versus <strong>learned</strong> representations. It argues that hand-crafted features and domain-specific architectures consistently lose to general methods plus scale. Natural language’s structure wasn’t designed by ML researchers — it was present in the data. The Bitter Lesson is entirely compatible with “leverage well-structured data when you have it.”</p> <p>The real question — the one Liu’s argument needs to address — is: <strong>when you don’t have well-structured data (the cursed region), does the Bitter Lesson reassert itself?</strong> That is, should we invest in domain-specific inductive biases for robotics and physics, or should we bet on general architectures plus more data? Liu seems to favor the former (“we must leverage human intuition to inject better representations”), but the Bitter Lesson argument against this position is not addressed.</p> <p>This is not an academic quibble. It determines whether the right strategy for the cursed region is to build better architectures (the “sweet lesson” approach) or to find ways to generate more data (the Bitter Lesson approach — simulation, synthetic data, self-play). These are very different research agendas.</p> <hr> <h2 id="4-the-question-the-piece-doesnt-ask">4. The question the piece doesn’t ask</h2> <p>The deepest question Liu’s framework raises but doesn’t answer:</p> <blockquote> <p><strong>Is there a general mechanism for converting a cursed language into a blessed one?</strong></p> </blockquote> <p>If yes, then the research agenda is to find that mechanism — and it would likely involve some combination of:</p> <ol> <li> <strong>Automated abstraction</strong> — models that learn to compress primitive data into abstract representations that are themselves transmissible and composable (i.e., that <em>create</em> language from raw signal).</li> <li> <strong>Simulation as data generation</strong> — using physics simulators to generate unlimited primitive data, bypassing the physical collection bottleneck.</li> <li> <strong>Cross-modal bootstrapping</strong> — using NL as a scaffold to bootstrap learning in primitive modalities, then gradually removing the scaffold.</li> </ol> <p>If no — if each modality is its own special case — then Liu’s unifying framework dissolves into a list of independent research problems. Still valuable as a diagnostic, but not a paradigm.</p> <pre><code class="language-mermaid">flowchart TB
     Q{"General curse-lifting&lt;br/&gt;mechanism exists?"}
-    
+
     Q --&gt;|Yes| U["Unified Research Agenda"]
     U --&gt; U1["Automated abstraction"]
     U --&gt; U2["Simulation at scale"]
     U --&gt; U3["Cross-modal bootstrapping"]
-    
+
     Q --&gt;|No| F["Independent Problems"]
     F --&gt; F1["Vision: better representation learning"]
     F --&gt; F2["Robotics: sim-to-real transfer"]
     F --&gt; F3["Physics: symbolic regression"]
     F --&gt; F4["Neuro: data collection infrastructure"]
-    
+
     Q --&gt;|Partially| M["Modality-Dependent Strategies"]
     M --&gt; M1["Primitive data → simulation approach"]
     M --&gt; M2["Abstract but scarce → language design"]
