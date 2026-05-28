@@ -1,0 +1,7 @@
+{
+  "tool_name": "PowerShell",
+  "tool_input_preview": "{\"command\":\"gh api repos/yurekami/yurekami.github.io/contents/blog/2026 --jq '.[].name' -H \\\"ref: gh-pages\\\" 2>&1\",\"description\":\"Check blog URL structure on gh-pages\"}",
+  "error": "Exit code 1\n{\"message\":\"Not Found\",\"documentation_url\":\"https://docs.github.com/rest/repos/contents#get-repository-content\",\"status\":\"404\"}\u001b[31;1mgh: Not Found (HTTP 404)\u001b[0m",
+  "timestamp": "2026-05-26T13:37:05.391Z",
+  "retry_count": 1
+}

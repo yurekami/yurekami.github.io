@@ -2,7 +2,7 @@
 layout: post
 title: "The Sum-Product Conjecture Is False: How Number Fields Broke a 50-Year-Old Problem"
 slug: sum-product-conjecture-disproved
-date: 2026-05-29
+date: 2026-05-28
 description: A reading of Bloom, Sawin, Schildkraut, and Zhelezov's disproof of the Erdős sum-product conjecture for real numbers — using totally real number fields of large degree to build sets where both A+A and AA are simultaneously small, settling a central question in additive combinatorics.
 tags: [mathematics, combinatorics, number-theory, additive-combinatorics]
 categories: [research]
