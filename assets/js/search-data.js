@@ -27,6 +27,17 @@ ninja.data = [{
             window.location.href = "/blog/2026/p-adic-hodge-theory-bhatt/";
           
         },
+      },{id: "post-can-gödel-kill-the-theory-of-everything-a-critical-reading-of-kiefer-2024",
+        
+          title: "Can Gödel Kill the Theory of Everything? A Critical Reading of Kiefer (2024)...",
+        
+        description: "A critical reading of Claus Kiefer&#39;s prize-winning essay on whether Gödel&#39;s incompleteness theorems constrain the search for a final theory of physics — where the argument works, where it equivocates, and what the strongest version would actually look like.",
+        section: "Posts",
+        handler: () => {
+          
+            window.location.href = "/blog/2026/godel-theory-of-everything/";
+          
+        },
       },{id: "post-and-vs-or-mochizuki-39-s-boolean-dissection-of-inter-universal-teichmüller-theory",
         
           title: "AND vs. OR: Mochizuki&#39;s Boolean Dissection of Inter-universal Teichmüller Theory",
