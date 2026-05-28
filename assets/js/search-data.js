@@ -16,7 +16,18 @@ ninja.data = [{
           handler: () => {
             window.location.href = "/blog/";
           },
-        },{id: "post-what-is-a-six-functor-formalism-scholze-39-s-answer",
+        },{id: "post-the-sum-product-conjecture-is-false-how-number-fields-broke-a-50-year-old-problem",
+        
+          title: "The Sum-Product Conjecture Is False: How Number Fields Broke a 50-Year-Old Problem",
+        
+        description: "A reading of Bloom, Sawin, Schildkraut, and Zhelezov&#39;s disproof of the Erdős sum-product conjecture for real numbers — using totally real number fields of large degree to build sets where both A+A and AA are simultaneously small, settling a central question in additive combinatorics.",
+        section: "Posts",
+        handler: () => {
+          
+            window.location.href = "/blog/2026/sum-product-conjecture-disproved/";
+          
+        },
+      },{id: "post-what-is-a-six-functor-formalism-scholze-39-s-answer",
         
           title: "What Is a Six-Functor Formalism? Scholze&#39;s Answer",
         
