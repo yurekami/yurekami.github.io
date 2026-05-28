@@ -60,6 +60,17 @@ ninja.data = [{
             window.location.href = "/blog/2026/geometric-langlands-scholze/";
           
         },
+      },{id: "post-the-foundation-scholze-39-s-lectures-on-condensed-mathematics",
+        
+          title: "The Foundation: Scholze&#39;s Lectures on Condensed Mathematics",
+        
+        description: "A reading of Scholze&#39;s 78-page founding lectures on condensed mathematics — the theory that replaces topological spaces with sheaves on profinite sets, fixes the broken category of topological abelian groups, and turns functional analysis into commutative algebra. Now a stable citable arXiv version.",
+        section: "Posts",
+        handler: () => {
+          
+            window.location.href = "/blog/2026/condensed-mathematics-scholze/";
+          
+        },
       },{id: "post-algebraic-geometry-39-s-secret-plot-to-take-over-analysis-scholze-and-clausen-39-s-analytic-geometry",
         
           title: "Algebraic Geometry&#39;s Secret Plot to Take Over Analysis: Scholze and Clausen&#39;s Analytic Geometry...",
