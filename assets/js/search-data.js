@@ -38,6 +38,17 @@ ninja.data = [{
             window.location.href = "/blog/2026/p-adic-hodge-theory-bhatt/";
           
         },
+      },{id: "post-mochizuki-turns-to-lean-a-progress-report-on-formalizing-iut",
+        
+          title: "Mochizuki Turns to Lean: A Progress Report on Formalizing IUT",
+        
+        description: "A reading of Mochizuki&#39;s April 2026 preliminary report on formalizing inter-universal Teichmüller theory in Lean — what it contains, what it reveals about the current state of the project, and what it means for the most contentious question in contemporary mathematics.",
+        section: "Posts",
+        handler: () => {
+          
+            window.location.href = "/blog/2026/mochizuki-iut-lean-formalization/";
+          
+        },
       },{id: "post-can-gödel-kill-the-theory-of-everything-a-critical-reading-of-kiefer-2024",
         
           title: "Can Gödel Kill the Theory of Everything? A Critical Reading of Kiefer (2024)...",
