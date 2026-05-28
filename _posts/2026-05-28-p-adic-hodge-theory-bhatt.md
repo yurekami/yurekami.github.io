@@ -116,7 +116,7 @@ This is weaker than coherence in the classical sense — the object
 
 $$\bigoplus_n \mathcal{O}_K/(\epsilon_n)[a_n]$$
 
-is almost coherent for any sequence $$\{\epsilon_n\}$$ in $$\mathfrak{m}_K$$ with $$|\epsilon_n| \to 1$$ and any integer shifts $$\{a_n\}$$, even though it is not coherent unless $$\epsilon_n$$ is a unit for large $$n$$.
+is almost coherent for any sequence $$\{\epsilon_n\}$$ in $$\mathfrak{m}_K$$ with $$\lvert \epsilon_n \rvert \to 1$$ and any integer shifts $$\{a_n\}$$, even though it is not coherent unless $$\epsilon_n$$ is a unit for large $$n$$.
 
 Despite this permissiveness, almost coherent crystals have a **Grothendieck duality** autoequivalence, and pushforward along $$X^{\mathrm{pfd}} \to X$$ preserves and detects almost coherence. This finiteness theory, inspired by Zavyalov's work (itself inspired by unpublished work of Gabber), is what makes the applications in §8 and §11 possible.
 

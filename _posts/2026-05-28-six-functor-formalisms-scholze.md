@@ -88,7 +88,7 @@ The first functor $$F$$ is a "transmutation" $$X \mapsto X_R$$ determined by a *
 
 The examples are striking:
 
-- **The Betti stack** $$X_{\mathrm{Betti}}$$: For a topological space $$X$$, the functor $$S \mapsto \mathrm{Cont}(|S|, X)$$ on schemes gives a pro-étale algebraic space, and $$D(X, \mathbb{Z}) \cong D_{\mathrm{qc}}(X_{\mathrm{Betti}})$$. This is Exercise 1.7 in the notes — the six-functor formalism on topological spaces _is_ the quasicoherent sheaf theory on Betti stacks.
+- **The Betti stack** $$X_{\mathrm{Betti}}$$: For a topological space $$X$$, the functor $$S \mapsto \mathrm{Cont}(\lvert S \rvert, X)$$ on schemes gives a pro-étale algebraic space, and $$D(X, \mathbb{Z}) \cong D_{\mathrm{qc}}(X_{\mathrm{Betti}})$$. This is Exercise 1.7 in the notes — the six-functor formalism on topological spaces _is_ the quasicoherent sheaf theory on Betti stacks.
 
 - **The de Rham stack** $$X_{\mathrm{dR}}$$: Simpson's de Rham stack, the quotient $$X/(X \subset X \times X)^{\wedge}$$. Quasicoherent sheaves on $$X_{\mathrm{dR}}$$ recover algebraic D-modules.
 
@@ -130,8 +130,8 @@ The final lecture (XII) is the most speculative and perhaps the most exciting. S
 
 The construction uses power series with controlled growth:
 
-- **Tempered open disk**: $$\mathcal{D}^{\circ,\mathrm{temp}}_{\mathbb{Q}_p}$$ consists of power series $$\sum a_n T^n$$ with $$|a_n|$$ of at most polynomial growth in $$n$$.
-- **Tempered closed disk**: $$\mathcal{D}^{\mathrm{temp}}_{\mathbb{Q}_p} = \mathrm{colim}_{k > 0}$$ of power series with $$|a_n| = o(n^{-k})$$.
+- **Tempered open disk**: $$\mathcal{D}^{\circ,\mathrm{temp}}_{\mathbb{Q}_p}$$ consists of power series $$\sum a_n T^n$$ with $$\lvert a_n \rvert$$ of at most polynomial growth in $$n$$.
+- **Tempered closed disk**: $$\mathcal{D}^{\mathrm{temp}}_{\mathbb{Q}_p} = \mathrm{colim}_{k > 0}$$ of power series with $$\lvert a_n \rvert = o(n^{-k})$$.
 - **Ring stack**: $$(\mathbb{A}^1_{\mathbb{F}_p})^{\mathrm{temp}} = \mathcal{D}^{\mathrm{temp}}_{\mathbb{Q}_p} / \mathcal{D}^{\circ,\mathrm{temp}}_{\mathbb{Q}_p}$$, an $$\mathbb{F}_p$$-algebra stack over $$\mathbb{Q}_p^{\blacksquare}$$.
 
 This ring stack satisfies the conditions of Theorem 10.6, yielding a transmutation $$X \mapsto X^{\mathrm{temp}}$$ and a realization $$\mathrm{SH} \to D^{\blacksquare}(X^{\mathrm{temp}})$$ that factors through arithmetic D-modules.

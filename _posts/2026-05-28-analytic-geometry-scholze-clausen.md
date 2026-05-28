@@ -70,31 +70,31 @@ But $$\mathcal{M}$$-complete modules don't form an abelian category either. Lect
 
 The key construction is due to Ribe (1979). Consider the function
 
-$$H: \ell^1(\mathbb{N}) \to \mathbb{R}, \quad H(x_0, x_1, \ldots) = s \log|s| - \sum_i x_i \log|x_i|, \quad s = \sum_i x_i.$$
+$$H: \ell^1(\mathbb{N}) \to \mathbb{R}, \quad H(x_0, x_1, \ldots) = s \log\lvert s \rvert - \sum_i x_i \log\lvert x_i \rvert, \quad s = \sum_i x_i.$$
 
-This is the Shannon entropy of the distribution $$(|x_i|/s)$$, scaled by $$s$$. A direct estimate shows:
+This is the Shannon entropy of the distribution $$(\lvert x_i \rvert/s)$$, scaled by $$s$$. A direct estimate shows:
 
-$$|s \log|s| + t \log|t| - (s+t)\log|s+t|| \leq 2\log 2 \cdot (|s| + |t|)$$
+$$\lvert s \log \rverts\lvert  + t \log \rvertt\lvert  - (s+t)\log \rverts+t|\lvert  \leq 2\log 2 \cdot ( \rverts\lvert  +  \rvertt|)$$
 
-for all $$s, t \in \mathbb{R}$$. So $$H$$ is "almost linear" — it satisfies $$|H(v + w) - H(v) - H(w)| \leq C(\|v\| + \|w\|)$$. Such almost-linear functions give rise to extensions of topological vector spaces. But $$H$$ is not _globally_ close to any linear function: $$H(1/n, \ldots, 1/n, 0, \ldots) = \log n \to \infty$$, while any linear function $$\phi$$ with $$\phi(e_i) = \phi(e_j)$$ for all $$i,j$$ would give a bounded sequence. Therefore $$H$$ defines a **non-split extension**
+for all $$s, t \in \mathbb{R}$$. So $$H$$ is "almost linear" — it satisfies $$\lvert H(v + w) - H(v) - H(w) \rvert \leq C(\\lvert v\ \rvert + \\lvert w\ \rvert)$$. Such almost-linear functions give rise to extensions of topological vector spaces. But $$H$$ is not _globally_ close to any linear function: $$H(1/n, \ldots, 1/n, 0, \ldots) = \log n \to \infty$$, while any linear function $$\phi$$ with $$\phi(e_i) = \phi(e_j)$$ for all $$i,j$$ would give a bounded sequence. Therefore $$H$$ defines a **non-split extension**
 
 $$0 \to \mathbb{R} \to \tilde{V} \to \ell^1(\mathbb{N}) \to 0$$
 
 — Ribe's extension. The condensed formulation (Proposition 5.6) shows this extension exists in the category of Smith spaces (the duals of Banach spaces), proving that $$\mathcal{M}$$-complete modules are **not stable under extensions**.
 
-Entropy — the function $$x \log|x|$$ — is the precise obstruction to building abelian categories from Banach spaces. This is one of the most surprising connections in the entire program: information theory enters the foundations of geometry.
+Entropy — the function $$x \log\lvert x \rvert$$ — is the precise obstruction to building abelian categories from Banach spaces. This is one of the most surprising connections in the entire program: information theory enters the foundations of geometry.
 
 ## The Real $$B_{\mathrm{dR}}^+$$: Period Rings for the Reals
 
 The entropy obstruction can be "thickened out" — extended infinitely in a nilpotent direction — to produce a real analogue of Fontaine's period ring $$B_{\mathrm{dR}}^+$$ from $$p$$-adic Hodge theory.
 
-The idea: the function $$x \log|x|$$ encodes the first-order deviation from linearity. Its higher powers $$x \log^i|x|$$ encode higher-order deviations. The **Teichmüller-like representative**
+The idea: the function $$x \log\lvert x \rvert$$ encodes the first-order deviation from linearity. Its higher powers $$x \log^i\lvert x \rvert$$ encode higher-order deviations. The **Teichmüller-like representative**
 
-$$[x] := x|x|^t = x + x\log|x| \cdot t + \tfrac{1}{2} x\log^2|x| \cdot t^2 + \cdots \in \mathbb{R}[[t]]$$
+$$[x] := x\lvert x \rvert^t = x + x\log\lvert x \rvert \cdot t + \tfrac{1}{2} x\log^2\lvert x \rvert \cdot t^2 + \cdots \in \mathbb{R}[[t]]$$
 
 is a multiplicative map $$\mathbb{R} \to \mathbb{R}[[t]]$$ that captures all orders at once. In the coordinates given by the $$[\cdot]$$-map, the $$\ell^1$$-balls in $$\mathbb{R}[t]/t^n$$ can be defined:
 
-$$ (\mathbb{R}[t]/t^n)[S]^{\ell^1 \leq c} := \left\{ \sum*i [x*{i,s}] t^i \;\middle|\; \sum*{i,s} |x*{i,s}| \leq c \right\}. $$
+$$ (\mathbb{R}[t]/t^n)[S]^{\ell^1 \leq c} := \left\{ \sum*i [x*{i,s}] t^i \;\middle\lvert \; \sum*{i,s} \rvertx*{i,s}| \leq c \right\}. $$
 
 The entropy estimate (Lemma 5.9) shows these subsets are stable under addition up to a constant $$C(n)$$ — but the constant depends on the number of nilpotent levels. For $$p = 1$$ (the $$\ell^1$$ case), the construction cannot be made functorial for all profinite sets $$S$$. This is a _fundamental_ obstruction, not a technical one.
 
@@ -102,9 +102,9 @@ The entropy estimate (Lemma 5.9) shows these subsets are stable under addition u
 
 The resolution (Lecture VI) is to relax from $$\ell^1$$ to $$\ell^p$$ for $$p < 1$$. Kalton's theorem (1981) states that any extension of $$p$$-Banach spaces is $$p'$$-Banach for all $$p' < p$$ — the three-space problem has a positive answer for quasi-Banach spaces. This suggests replacing the measure space $$\mathcal{M}(S)$$ with
 
-$$\mathcal{M}_p(S) := \bigcup_{c > 0} \varprojlim_i \left\{ (a_s)_s \in \mathbb{R}[S_i] \;\middle|\; \sum |a_s|^p \leq c \right\}$$
+$$\mathcal{M}_p(S) := \bigcup_{c > 0} \varprojlim_i \left\{ (a_s)_s \in \mathbb{R}[S_i] \;\middle\lvert \; \sum  \rverta_s|^p \leq c \right\}$$
 
-— the space of "$$\ell^p$$-measures" on $$S$$. For $$p < 1$$, the $$[\cdot]$$-coordinates work functorially: the key bound $$\log^i|x| \leq |x|^{p-1}$$ for small $$|x|$$ (Proposition 6.4) ensures stability of the $$\ell^p$$-balls under all transition maps of profinite sets.
+— the space of "$$\ell^p$$-measures" on $$S$$. For $$p < 1$$, the $$[\cdot]$$-coordinates work functorially: the key bound $$\log^i\lvert x \rvert \leq \lvert x \rvert^{p-1}$$ for small $$\lvert x \rvert$$ (Proposition 6.4) ensures stability of the $$\ell^p$$-balls under all transition maps of profinite sets.
 
 A condensed $$\mathbb{R}$$-vector space is **$$p$$-liquid** if integration against $$\ell^{p'}$$-measures is well-defined for all $$p' < p$$:
 
@@ -114,7 +114,7 @@ This is the category that makes archimedean analytic geometry possible. All Bana
 
 ## The Arithmetic Ring $$\mathbb{Z}((T))_r$$
 
-The most technically surprising aspect of the theory is that the real-variable problem reduces to an arithmetic one. The proof of Theorem 6.5 does not stay in the world of $$\mathbb{R}$$-vector spaces — it passes through the **condensed ring** $$\mathbb{Z}((T))_r$$, whose $$S$$-valued points are formal Laurent series $$\sum a_n T^n$$ with $$a_n \in C(S, \mathbb{Z})$$ and $$\sum |a_n| r^n < \infty$$.
+The most technically surprising aspect of the theory is that the real-variable problem reduces to an arithmetic one. The proof of Theorem 6.5 does not stay in the world of $$\mathbb{R}$$-vector spaces — it passes through the **condensed ring** $$\mathbb{Z}((T))_r$$, whose $$S$$-valued points are formal Laurent series $$\sum a_n T^n$$ with $$a_n \in C(S, \mathbb{Z})$$ and $$\sum \lvert a_n \rvert r^n < \infty$$.
 
 This ring is entirely arithmetic — it is built from $$\mathbb{Z}$$ and formal variables — but it simultaneously encodes all the $$\ell^p$$-theories. The key theorem (6.9): for any $$0 < r' < r$$, the evaluation map $$\theta_{r'}: \mathbb{Z}((T))_r \to \mathbb{R}$$ sending $$T \mapsto r'$$ is surjective, with kernel generated by a single nonzerodivisor $$f_{r'}$$. Moreover:
 
@@ -148,9 +148,9 @@ All flavors of geometry under one roof.
 
 ## The Berkovich Spectrum of $$\mathbb{Z}$$
 
-The final vision (pages 106–107) is the most striking. Scholze introduces the **Novikov-type ring** $$\mathbb{Z}((T^{\mathbb{R}}))_{>r}$$, consisting of formal sums $$\sum_{x \in \mathbb{R}} a_x T^x$$ with $$a_x \in \mathbb{Z}$$ and $$\sum |a_x| r^x < \infty$$. This ring carries an $$\mathbb{R}_{\geq 1}$$-action via $$T \mapsto T^t$$, making it a $$\lambda$$-ring with continuous Frobenius lifts.
+The final vision (pages 106–107) is the most striking. Scholze introduces the **Novikov-type ring** $$\mathbb{Z}((T^{\mathbb{R}}))_{>r}$$, consisting of formal sums $$\sum_{x \in \mathbb{R}} a_x T^x$$ with $$a_x \in \mathbb{Z}$$ and $$\sum \lvert a_x \rvert r^x < \infty$$. This ring carries an $$\mathbb{R}_{\geq 1}$$-action via $$T \mapsto T^t$$, making it a $$\lambda$$-ring with continuous Frobenius lifts.
 
-There is a natural map from the underlying space $$|\mathrm{AnSpec}(\mathbb{Z}((T^{\mathbb{R}}))_{>r})|$$ to $$\mathcal{M}(\mathbb{Z})$$ — the **Berkovich spectrum of $$\mathbb{Z}$$**, the space of all multiplicative seminorms on $$\mathbb{Z}$$. This space contains:
+There is a natural map from the underlying space $$\lvert \mathrm{AnSpec}(\mathbb{Z}((T^{\mathbb{R}}))_{>r}) \rvert$$ to $$\mathcal{M}(\mathbb{Z})$$ — the **Berkovich spectrum of $$\mathbb{Z}$$**, the space of all multiplicative seminorms on $$\mathbb{Z}$$. This space contains:
 
 - A point for each prime $$p$$ (the $$p$$-adic valuation)
 - A real interval $$(0, 1]$$ (the archimedean valuations, parametrized by $$p$$ in the liquid theory $$(\mathbb{R}, \mathcal{M}_{<p})$$)
@@ -178,7 +178,7 @@ These notes are from 2019/20. Since then:
 
 ## The Shape of the Attack
 
-What makes these notes extraordinary is not any single theorem but the _arc_ of the argument. You start with a broken category (topological abelian groups). You fix it (condensed sets). You build the $$p$$-adic theory cleanly (solid modules). You try to do the same for $$\mathbb{R}$$ and fail — and the failure is _entropy_, the function $$x \log|x|$$. You thicken the failure into a period ring (the real $$B_{\mathrm{dR}}^+$$). You relax from $$\ell^1$$ to $$\ell^p$$ and the obstruction vanishes (liquid modules). The proof reduces not to functional analysis but to arithmetic — the ring $$\mathbb{Z}((T))_r$$ is a PID. And at the end, you discover that the archimedean and non-archimedean worlds are connected by a deformation over the Berkovich spectrum of $$\mathbb{Z}$$.
+What makes these notes extraordinary is not any single theorem but the _arc_ of the argument. You start with a broken category (topological abelian groups). You fix it (condensed sets). You build the $$p$$-adic theory cleanly (solid modules). You try to do the same for $$\mathbb{R}$$ and fail — and the failure is _entropy_, the function $$x \log\lvert x \rvert$$. You thicken the failure into a period ring (the real $$B_{\mathrm{dR}}^+$$). You relax from $$\ell^1$$ to $$\ell^p$$ and the obstruction vanishes (liquid modules). The proof reduces not to functional analysis but to arithmetic — the ring $$\mathbb{Z}((T))_r$$ is a PID. And at the end, you discover that the archimedean and non-archimedean worlds are connected by a deformation over the Berkovich spectrum of $$\mathbb{Z}$$.
 
 The secret plot has been launched. Algebraic geometry now has analysis in its sights.
 
