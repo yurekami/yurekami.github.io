@@ -60,6 +60,17 @@ ninja.data = [{
             window.location.href = "/blog/2026/mochizuki-iut-lean-formalization/";
           
         },
+      },{id: "post-the-infrastructure-of-modern-mathematics-lurie-39-s-higher-category-theory",
+        
+          title: "The Infrastructure of Modern Mathematics: Lurie&#39;s Higher Category Theory",
+        
+        description: "A survey of Jacob Lurie&#39;s foundational program — Higher Topos Theory, Higher Algebra, and Spectral Algebraic Geometry — the 3,000+ pages of infrastructure that make condensed mathematics, six-functor formalisms, geometric Langlands, and p-adic Hodge theory possible.",
+        section: "Posts",
+        handler: () => {
+          
+            window.location.href = "/blog/2026/lurie-higher-category-theory/";
+          
+        },
       },{id: "post-can-gödel-kill-the-theory-of-everything-a-critical-reading-of-kiefer-2024",
         
           title: "Can Gödel Kill the Theory of Everything? A Critical Reading of Kiefer (2024)...",
