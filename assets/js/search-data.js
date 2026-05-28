@@ -38,6 +38,17 @@ ninja.data = [{
             window.location.href = "/blog/2026/godel-theory-of-everything/";
           
         },
+      },{id: "post-the-langlands-program-proved-geometrically-scholze-39-s-bourbaki-report",
+        
+          title: "The Langlands Program Proved (Geometrically): Scholze&#39;s Bourbaki Report",
+        
+        description: "A reading of Peter Scholze&#39;s 56-page Séminaire Bourbaki report on the proof of the geometric Langlands conjecture by Gaitsgory, Raskin, and collaborators — from the Rosetta Stone of number theory to algebra with categories, the spectral action, and what it all means for the original arithmetic questions.",
+        section: "Posts",
+        handler: () => {
+          
+            window.location.href = "/blog/2026/geometric-langlands-scholze/";
+          
+        },
       },{id: "post-and-vs-or-mochizuki-39-s-boolean-dissection-of-inter-universal-teichmüller-theory",
         
           title: "AND vs. OR: Mochizuki&#39;s Boolean Dissection of Inter-universal Teichmüller Theory",
