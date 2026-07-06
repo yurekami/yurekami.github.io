@@ -16,7 +16,18 @@ ninja.data = [{
           handler: () => {
             window.location.href = "/blog/";
           },
-        },{id: "post-shattering-triples-with-six-permutations-a-machine-found-bound-and-its-lean-formalization",
+        },{id: "post-how-to-spend-a-discovery-budget-a-scaling-theory-for-simpletes",
+        
+          title: "How to Spend a Discovery Budget: A Scaling Theory for SimpleTES",
+        
+        description: "SimpleTES shows empirically that splitting a search budget across parallel chains, refinement depth, and best-of-K wins at LLM-driven scientific discovery. It never says why, or how to split the budget. I built a probabilistic model of the loop, proved three theorems about it — an optimal-allocation law, a budget-invariance null, and an asymmetric non-redundancy result — and had six agents try to break them. One of my own claims did not survive. A note on what the theory says, how hard I checked it, and an honest, failed swing at their headline Erdős record.",
+        section: "Posts",
+        handler: () => {
+          
+            window.location.href = "/blog/2026/simpletes-evaluation-driven-scaling/";
+          
+        },
+      },{id: "post-shattering-triples-with-six-permutations-a-machine-found-bound-and-its-lean-formalization",
         
           title: "Shattering Triples with Six Permutations: A Machine-Found Bound and Its Lean Formalization",
         
