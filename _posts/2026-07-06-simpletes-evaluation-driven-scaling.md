@@ -100,7 +100,7 @@ Nothing here rests on my say-so. Every claim was checked by Monte-Carlo, and the
     </div>
 </div>
 <div class="caption">
-    Monte-Carlo verification of the model in §1, no fitting. (A) optimal $$\mathbb{E}[\text{gap}]\cdot B/\ln B$$ is flat and sits on the analytic constant $$\tau/\ln(1/\rho) = 1.55$$. (B) refinement depth has an interior optimum at $$L^{\star} \approx \ln B/\ln(1/\rho)$$, marked. (C) best-of-$$K$$ raises $$\mathbb{E}[\text{gap}]$$ — $$K^{\star}=1$$. (D) removing $$C$$ or $$L$$ is order-catastrophic, while best-of-$$K$$ ($$K\ge2$$) merely wastes budget.
+    Monte-Carlo verification of the model in §1, no fitting. (A) optimal \(\mathbb{E}[\text{gap}]\cdot B/\ln B\) is flat and sits on the analytic constant \(\tau/\ln(1/\rho) = 1.55\). (B) refinement depth has an interior optimum at \(L^{\star} \approx \ln B/\ln(1/\rho)\), marked. (C) best-of-\(K\) raises \(\mathbb{E}[\text{gap}]\) — \(K^{\star}=1\). (D) removing \(C\) or \(L\) is order-catastrophic, while best-of-\(K\) (\(K\ge2\)) merely wastes budget.
 </div>
 
 The two blind re-derivations rebuilt Theorem 2 from the model alone and both landed on the same constant $$1.552$$ — one via an extreme-value / Poisson-process argument that additionally pinned the residual to the _mean_ contraction $$\rho^{L}$$ (rate $$0.644$$), not the median ($$0.786$$). The verdicts:
