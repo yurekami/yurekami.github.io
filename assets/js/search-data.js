@@ -16,7 +16,18 @@ ninja.data = [{
           handler: () => {
             window.location.href = "/blog/";
           },
-        },{id: "post-programbench-no-llm-can-rebuild-ffmpeg-from-scratch",
+        },{id: "post-shattering-triples-with-six-permutations-a-machine-found-bound-and-its-lean-formalization",
+        
+          title: "Shattering Triples with Six Permutations: A Machine-Found Bound and Its Lean Formalization",
+        
+        description: "I pointed a prover–verifier LLM loop at a curated list of open problems, and it sharpened the upper bound in a Johnson–Wickes combinatorics problem from BCC30, from 47/60 to 19/28. Then I formalized the whole reduction in Lean 4 — including a from-scratch proof of the monotonicity lemma — leaving exactly one unformalized input, a finite exhaustive search. A note on what these pipelines can and cannot do.",
+        section: "Posts",
+        handler: () => {
+          
+            window.location.href = "/blog/2026/shattering-triples-six-permutations/";
+          
+        },
+      },{id: "post-programbench-no-llm-can-rebuild-ffmpeg-from-scratch",
         
           title: "ProgramBench: No LLM Can Rebuild FFmpeg From Scratch",
         
