@@ -130,4 +130,4 @@ It is not a breakthrough. It is a bounded improvement to one inequality on a nic
 
 What I think it *is*: a small piece of evidence about where the frontier actually sits. A prover–verifier loop, aimed at precisely-stated neglected problems and married to a verification discipline strict enough to survive Lean, can produce genuine, referee-able increments and can drive harder problems down to a single sharp lemma. It stalls exactly at the step that has always been hard. That step — the new idea — is still ours. The long tail of careful computations and few-page arguments that nobody got around to is, increasingly, not.
 
-*The Lean development (three files, ~525 lines, `lake build` clean, no `sorry`) and the search code are available; I'm happy to point anyone who wants to check the axiom audit or re-run the $$f(7)$$ search to them.*
+*The Lean development (three files, ~525 lines, `lake build` clean, no `sorry`, with Lemma 1 kernel-checked) and my from-scratch search verifiers are on GitHub: [**yurekami/shatter-bound**](https://github.com/yurekami/shatter-bound). Clone it and run `#print axioms restriction_bound` yourself, or re-run the $$f(7)$$ search.*
