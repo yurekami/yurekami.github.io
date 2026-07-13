@@ -16,7 +16,18 @@ ninja.data = [{
           handler: () => {
             window.location.href = "/blog/";
           },
-        },{id: "post-how-to-spend-a-discovery-budget-a-scaling-theory-for-simpletes",
+        },{id: "post-the-learning-lagrangian-is-vacuous-refuting-a-paper-then-getting-refuted-myself",
+        
+          title: "The Learning Lagrangian Is Vacuous: Refuting a Paper, Then Getting Refuted Myself",
+        
+        description: "A recent preprint claims Adam is the least-action trajectory of a &#39;learning Lagrangian.&#39; I set out to build on it and ended up with a three-part machine-checked refutation: the Euler–Lagrange equation is a Bartlett-identity tautology, the Lagrangian is degenerate and static, and a 615-run GPU sweep shows the exponent it &#39;derives&#39; is not a constant. Then an adversarial literature sweep dismantled my replacement theory just as thoroughly. A post about both halves — and why the second half is the part worth writing down.",
+        section: "Posts",
+        handler: () => {
+          
+            window.location.href = "/blog/2026/learning-lagrangian-refutation/";
+          
+        },
+      },{id: "post-how-to-spend-a-discovery-budget-a-scaling-theory-for-simpletes",
         
           title: "How to Spend a Discovery Budget: A Scaling Theory for SimpleTES",
         
